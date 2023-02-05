@@ -18,6 +18,14 @@ const routes: Routes = [
   {
     path: 'registro-medico',
     loadChildren: () => import('./pages/web/registro-medico/registro-medico.module').then( m => m.RegistroMedicoPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./pages/movil/registro/registro.module').then( m => m.RegistroPageModule)
+  },
+  {
+    path: 'perfil-dermatologico',
+    loadChildren: () => import('./pages/movil/perfil-dermatologico/perfil-dermatologico.module').then( m => m.PerfilDermatologicoModule)
   }
 ];
 
