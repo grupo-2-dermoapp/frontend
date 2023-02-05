@@ -26,7 +26,15 @@ const routes: Routes = [
   {
     path: 'perfil-dermatologico',
     loadChildren: () => import('./pages/movil/perfil-dermatologico/perfil-dermatologico.module').then( m => m.PerfilDermatologicoModule)
-  }
+  },
+  {
+    path: 'crear-consulta',
+    loadChildren: () => import('./pages/movil/crear-consulta/crear-consulta.module').then( m => m.CrearConsultaPageModule)
+  },
+  {
+    path: 'cuerpo',
+    loadChildren: () => import('./pages/movil/cuerpo/cuerpo.module').then( m => m.CuerpoPageModule)
+  },
 ];
 
 @NgModule({
