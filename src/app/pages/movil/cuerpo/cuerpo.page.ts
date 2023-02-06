@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
 import { AppService } from 'src/app/config/app.service';
-import { partesCuerpo } from 'src/app/interfaces/partes-cuerpo.interface';
+import { PartesCuerpoInterface } from 'src/app/interfaces/partes-cuerpo.interface';
 
 @Component({
   selector: 'app-cuerpo',
@@ -62,7 +62,7 @@ export class CuerpoPage implements OnInit {
     }
     parteCuerpo+= this.rotacion === 'frente' ? 'Frente':'Espalda';
 
-    this.partes = this.app?.partesCuerpo[parteCuerpo as keyof partesCuerpo];
+    this.partes = this.app?.partesCuerpo[parteCuerpo as keyof PartesCuerpoInterface];
     this.cuerpo = `assets/images/${parte}-${this.rotacion}.png`;
   }
 
