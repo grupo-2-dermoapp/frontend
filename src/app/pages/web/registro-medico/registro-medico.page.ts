@@ -50,8 +50,7 @@ export class RegistroMedicoPage {
 		} else {
 		const loading = await this.loadingController.create();
 		await loading.present();
-		this.registroMedicoService.registroMedico(
-			this.transformarParaBackend(this.registro.value),this.file)
+		this.registroMedicoService.registro(this.registro.value,this.file)
 		.subscribe({
 			next:async (res) => {
 				await loading.dismiss();
@@ -73,14 +72,6 @@ export class RegistroMedicoPage {
 				await alert.present();
 			}}
 		);
-		}
-	}
-
-	transformarParaBackend(registroMedico:RegistroMedicoFormInterface):RegistroMedicoBackendInterface{
-		return {
-			email:registroMedico.email,
-			names:registroMedico.nombre,
-			password: registroMedico.password
 		}
 	}
 
