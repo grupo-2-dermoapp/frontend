@@ -1,0 +1,41 @@
+name: Build and Deploy
+
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      - develop
+    pull_request:
+
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Use coturiv/setup-ionic
+      uses: coturiv/setup-ionic@v1
+      with:
+        cordova-version: 8
+        install-java: false
+        install-pods: false
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install NPM Modules
+      run: |
+        npm i -D -E @angular/cli
+        npm install
+    - name: Build
+      run: |
+        ionic build --prod -- --base-href 'https://grupo-2-dermoapp.github.io/frontend/'
+        ls www
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./www
