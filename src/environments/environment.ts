@@ -10,7 +10,7 @@ export const environment = {
     API_REGISTRO_USUARIO_ENDPOINT: 'patient-register',
     API_LOGIN_USUARIO_ENDPOINT: 'patient-login',
     API_REGISTRO_MEDICO_ENDPOINT: 'doctor-register',
-    API_LOGIN_MEDICO_ENDPOINT: 'patient-login',
+    API_LOGIN_MEDICO_ENDPOINT: 'doctor-login',
     
   }
 };
