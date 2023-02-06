@@ -5,8 +5,12 @@
 export const environment = {
   production: false,
   API: {
-    API_URL: 'http://localhost',
-    API_AUTH_ENDPOINT: '/auth',
+    API_URL: 'http://localhost:8080/dermoapp/auth/v1/',
+    API_AUTH_ENDPOINT: 'patient-login',
+    API_PERFIL_DERMATOLOGICO_ENDPOINT: 'dermo-profile-register',
+    API_REGISTRO_USUARIO_ENDPOINT: 'patient-register',
+    API_LOGIN_USUARIO_ENDPOINT: 'patient-login',
+    API_REGISTRO_MEDICO_ENDPOINT: 'doctor-register',
   }
 };
 

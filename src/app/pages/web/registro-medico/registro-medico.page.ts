@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { RegistroMedicoBackendInterface, RegistroMedicoFormInterface } from 'src/app/interfaces/registro-medico.interface';
 import { RegistroMedicoService } from './registro-medico.service';
 
 @Component({
@@ -49,12 +50,20 @@ export class RegistroMedicoPage {
 		} else {
 		const loading = await this.loadingController.create();
 		await loading.present();
-		this.registroMedicoService.registro(this.registro.value).subscribe(
-			async (res) => {
+		this.registroMedicoService.registroMedico(
+			this.transformarParaBackend(this.registro.value),this.file)
+		.subscribe({
+			next:async (res) => {
 				await loading.dismiss();
+				const alert = await this.alertController.create({
+					header: 'Registro correcto',
+					message: 'Gracias por registrarse en DermoApp',
+					buttons: ['Aceptar']
+				});
+				await alert.present();
 				this.router.navigateByUrl('/login', { replaceUrl: true });
 			},
-			async (res) => {
+			error:async (res) => {
 				await loading.dismiss();
 				const alert = await this.alertController.create({
 					header: 'Registro fallido',
@@ -62,8 +71,16 @@ export class RegistroMedicoPage {
 					buttons: ['Aceptar']
 				});
 				await alert.present();
-			}
+			}}
 		);
+		}
+	}
+
+	transformarParaBackend(registroMedico:RegistroMedicoFormInterface):RegistroMedicoBackendInterface{
+		return {
+			email:registroMedico.email,
+			names:registroMedico.nombre,
+			password: registroMedico.password
 		}
 	}
 

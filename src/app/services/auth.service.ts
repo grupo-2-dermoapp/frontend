@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { LoginUsuarioInterface } from '../interfaces/login-usuario.interface';
 
 
 const API_AUTH_URL = environment.API.API_URL + environment.API.API_AUTH_ENDPOINT;
@@ -13,7 +14,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(loginData:any): Observable<any> {
+  login(loginData:LoginUsuarioInterface): Observable<any> {
     return this.http.post<any>(API_AUTH_URL, loginData);
   }
 }

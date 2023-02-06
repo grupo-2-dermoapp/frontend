@@ -1,19 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { RegistroUsuarioBackendInterface } from 'src/app/interfaces/registro-usuario.interface';
+import { environment } from 'src/environments/environment';
+
+
+const API_AUTH_URL = environment.API.API_URL + environment.API.API_REGISTRO_USUARIO_ENDPOINT;
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistroService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  registro(registerData:any){
-    console.log('Registro ',registerData)
-    return new Observable((subs)=>{
-      subs.next("");
-      subs.complete();
-    })
-
+  registro(registroUsuario:RegistroUsuarioBackendInterface):Observable<any>{
+    return this.http.post<any>(API_AUTH_URL, registroUsuario);
   }
 }

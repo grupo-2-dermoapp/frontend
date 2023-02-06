@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RegistroService } from './registro.service';
 import { PerfilDermatologicoPage } from '../perfil-dermatologico/perfil-dermatologico.page';
+import { RegistroUsuarioBackendInterface, RegistroUsuarioFormInterface } from 'src/app/interfaces/registro-usuario.interface';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage implements OnInit {
+export class RegistroPage {
 
   registro: FormGroup;
 	constructor(
@@ -36,11 +37,7 @@ export class RegistroPage implements OnInit {
 		  })
   }
 
-	ngOnInit() {
-
-	}
-
-	async crearPerfilDermatologico(){
+	async crearPerfilDermatologico() {
 		const modal = await this.modalCtrl.create({
 			component: PerfilDermatologicoPage,
 		  });
@@ -53,7 +50,6 @@ export class RegistroPage implements OnInit {
 			this.registro.get('validacionPerfilDematologico')?.disable();
 			this.registro.get('perfilDematologico')?.setValue(data);
 		  }
-
 	}
 
 	async registrarse() {
@@ -74,12 +70,21 @@ export class RegistroPage implements OnInit {
 		} else {
 		const loading = await this.loadingController.create();
 		await loading.present();
-		this.registroService.registro(this.registro.value).subscribe(
-			async (res) => {
+
+		this.registroService.registro(this.transformarParaBackend(this.registro.value))
+		.subscribe({
+			next:async (res) => {
 				await loading.dismiss();
+				await loading.dismiss();
+				const alert = await this.alertController.create({
+					header: 'Registro Exitoso',
+					message: 'Gracias por registrarse en DermoApp',
+					buttons: ['Aceptar']
+				});
+				await alert.present();
 				this.router.navigateByUrl('/login', { replaceUrl: true });
 			},
-			async (res) => {
+			error:async (res) => {
 				await loading.dismiss();
 				const alert = await this.alertController.create({
 					header: 'Registro fallido',
@@ -88,9 +93,20 @@ export class RegistroPage implements OnInit {
 				});
 				await alert.present();
 			}
-		);
+		});
 		}
 
+	}
+
+	transformarParaBackend(registroUsuario:RegistroUsuarioFormInterface):RegistroUsuarioBackendInterface{
+		return {
+			email:registroUsuario.email,
+			names: registroUsuario.nombre,
+			password:registroUsuario.password,
+			age:registroUsuario.edad,
+			location: registroUsuario.residencia,
+			dermatological_profile_uuid: registroUsuario.perfilDematologico
+		}
 	}
 
 	get email() {
