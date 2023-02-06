@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 
 describe('AuthService', () => {
 
-  const API_AUTH_URL = environment.API.API_URL + environment.API.API_AUTH_ENDPOINT;
+  // const API_AUTH_URL = environment.API.API_URL + environment.API.API_AUTH_ENDPOINT;
   let service: AuthService;
   let httpMock: HttpTestingController;
 
