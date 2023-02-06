@@ -43,6 +43,7 @@ export class LoginPage  {
 		}else {
 			const loading = await this.loadingController.create();
 			await loading.present();
+			console.log(this.credentials.value)
 			this.authService.login(this.credentials.value).subscribe({
 				next: async (res) => {
 					await loading.dismiss();

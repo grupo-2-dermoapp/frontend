@@ -1,25 +1,23 @@
-export interface partesCuerpo {
-    cabezaFrente:parteCuerpo[],
-    cabezaEspalda:parteCuerpo[],
-    brazoIzqFrente:parteCuerpo[],
-    brazoIzqEspalda:parteCuerpo[],
-    brazoDerFrente:parteCuerpo[],
-    brazoDerEspalda:parteCuerpo[],
-    pieIzqFrente:parteCuerpo[],
-    pieIzqEspalda:parteCuerpo[],
-    pieDerFrente:parteCuerpo[],
-    pieDerEspalda:parteCuerpo[],
-    piernaIzqFrente:parteCuerpo[],
-    piernaIzqEspalda:parteCuerpo[],
-    piernaDerFrente:parteCuerpo[],
-    piernaDerEspalda:parteCuerpo[],
-    torsoFrente:parteCuerpo[],
-    torsoEspalda:parteCuerpo[]
+export interface PartesCuerpoInterface {
+    cabezaFrente:ParteCuerpoInterface[],
+    cabezaEspalda:ParteCuerpoInterface[],
+    brazoIzqFrente:ParteCuerpoInterface[],
+    brazoIzqEspalda:ParteCuerpoInterface[],
+    brazoDerFrente:ParteCuerpoInterface[],
+    brazoDerEspalda:ParteCuerpoInterface[],
+    pieIzqFrente:ParteCuerpoInterface[],
+    pieIzqEspalda:ParteCuerpoInterface[],
+    pieDerFrente:ParteCuerpoInterface[],
+    pieDerEspalda:ParteCuerpoInterface[],
+    piernaIzqFrente:ParteCuerpoInterface[],
+    piernaIzqEspalda:ParteCuerpoInterface[],
+    piernaDerFrente:ParteCuerpoInterface[],
+    piernaDerEspalda:ParteCuerpoInterface[],
+    torsoFrente:ParteCuerpoInterface[],
+    torsoEspalda:ParteCuerpoInterface[]
 
 }
-
-
-interface parteCuerpo {
+interface ParteCuerpoInterface {
     id: number,
     nombre: string
 }
