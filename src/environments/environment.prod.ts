@@ -8,6 +8,7 @@ export const environment = {
     API_REGISTRO_MEDICO_ENDPOINT: 'doctor-register',
     API_LOGIN_MEDICO_ENDPOINT: 'doctor-login',
     API_CASOS_MEDICOS_ENDPOINT: 'medical-cases',
-    API_SELECCIONAR_CASO_MEDICO_ENDPOINT: 'choose-case'
+    API_SELECCIONAR_CASO_MEDICO_ENDPOINT: 'choose-case',
+    API_CREAR_DIAGNOSTICO_ENDPOINT: 'create-diagnosis'
   }
 };
