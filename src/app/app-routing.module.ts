@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'casos-medicos',
     loadChildren: () => import('./pages/web/casos-medicos/casos-medicos.module').then( m => m.CasosMedicosPageModule)
+  },
+  {
+    path: 'detalle-consulta',
+    loadChildren: () => import('./pages/detalle-consulta/detalle-consulta.module').then( m => m.DetalleConsultaPageModule)
   }
 ];
 
