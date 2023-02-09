@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CasosMedicosService } from './casos-medicos.service';
 import { startWith, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-casos-medicos',
@@ -59,6 +60,7 @@ export class CasosMedicosPage implements OnInit {
   constructor(private casosMedicosService:CasosMedicosService,
     private authService:AuthService,
     private loadingController: LoadingController,
+    private router: Router,
     private alertController: AlertController,
     private fb: FormBuilder
     ) {
@@ -76,19 +78,24 @@ export class CasosMedicosPage implements OnInit {
           );
      }
 
-     private _filtroCasosMedicos(value: any) {
-        if (typeof value === 'string') {
-          const valorFiltro = value.toLowerCase();
-          return this.casos.filter(
-            casosMedicos => {
-              const filter = casosMedicos?.name.toLowerCase();
-              return filter.includes(valorFiltro);
-            }
-          );
+    private _filtroCasosMedicos(value: any) {
+    if (typeof value === 'string') {
+        const valorFiltro = value.toLowerCase();
+        return this.casos.filter(
+        casosMedicos => {
+            const filter = casosMedicos?.name.toLowerCase();
+            return filter.includes(valorFiltro);
         }
-        return "";
+        );
+    }
+    return "";
 
-      }
+    }
+
+    verDetalleCasoMedico(id:string){
+        this.router.navigate(['/detalle-consulta', { casoMedicoId: id }]);
+    }
+
 
   async ngOnInit() {
         this.busquedaCasosMedicos();
