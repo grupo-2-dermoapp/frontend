@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
+import { CasosMedicosService } from './casos-medicos.service';
 
 @Component({
   selector: 'app-casos-medicos',
@@ -48,9 +51,31 @@ export class CasosMedicosPage implements OnInit {
     "name": "Priya Dutt",
     "descripcion": "descripcion",
 }];
-  constructor() { }
+  constructor(private casosMedicosService:CasosMedicosService,
+    private authService:AuthService,
+    private loadingController: LoadingController,
+    private alertController: AlertController
+    ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+        /*const loading = await this.loadingController.create();
+		await loading.present();
+        this.casosMedicosService.obtenerCasosMedicos(this.authService.user.email)
+        .subscribe({
+            next: async (res) => {
+                await loading.dismiss();
+                this.casos=res.data;
+            },
+            error:async (res) => {
+                await loading.dismiss();
+                const alert = await this.alertController.create({
+                    header: 'Error obteniendo los casos medicos',
+                    message: res.error.error,
+                    buttons: ['Aceptar']
+                });
+                await alert.present();
+            }}
+        );*/
   }
 
 }
