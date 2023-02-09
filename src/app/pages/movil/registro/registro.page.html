@@ -82,7 +82,7 @@
       <ion-item>
         <ion-checkbox slot="start" formControlName="terminosCondiciones"></ion-checkbox>
         <ion-label>Aceptar terminos y condiciones.
-          <a>Leer</a>
+          <a (click)="verTerminosYCondiciones()">Leer</a>
         </ion-label>
       </ion-item>
       <div *ngIf="(terminosCondiciones?.dirty || terminosCondiciones?.touched) && terminosCondiciones?.errors" class="form-error">

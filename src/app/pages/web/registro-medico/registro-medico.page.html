@@ -1,6 +1,6 @@
 <ion-content padding>
   <h1 class="center titulo-registro">
-    Editar información personal 
+    Registro Medico
   </h1>
   <div class="web-registro">
 	<form (ngSubmit)="registrarse()" [formGroup]="registro">
@@ -36,7 +36,7 @@
 				<span *ngIf="nacionalidad?.errors?.['required']">La nacionalidad es requerida</span>
 			</div>
 
-      
+
       <ion-item>
         <ion-label>Especialidad</ion-label>
         <ion-item >
@@ -52,11 +52,11 @@
 
       <ion-item>
       <ion-label for="file">Licenia Medica</ion-label>
-        
-        <input 
+
+        <input
         #inputFiles
         formControlName="licenciaMedica"
-        id="file" 
+        id="file"
         type="file"
         name="pdf"
         formControlName="licenciaMedica"
@@ -98,7 +98,7 @@
     <div class="center boton-registro" >
       <ion-button id="register-button" type="submit" expand="block">
         Registrarse
-      </ion-button>  
+      </ion-button>
     </div>
 	</form>
 </div>
