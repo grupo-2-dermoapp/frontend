@@ -1,13 +1,23 @@
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { RegistroMedicoFormInterface } from 'src/app/interfaces/registro-medico.interface';
+import { environment } from 'src/environments/environment';
 
 import { RegistroMedicoService } from './registro-medico.service';
 
 describe('RegistroMedicoService', () => {
+
   let service: RegistroMedicoService;
+  let httpMock: HttpTestingController;
+  const API_REGISTRO_MEDICO_ENDPOINT = environment.API.API_URL + environment.API.API_REGISTRO_MEDICO_ENDPOINT;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule]
+    });
     service = TestBed.inject(RegistroMedicoService);
+    httpMock = TestBed.inject(HttpTestingController);
+
   });
 
   it('should be created', () => {
@@ -15,9 +25,7 @@ describe('RegistroMedicoService', () => {
   });
 
   it('should Create new doctor', () => {
-    // Posiblemente se debe emular el servicio http
-    // Tambien se debe definir el modelo de datos del user (Tomado temporalmente del form del componente)
-    const user = {
+    const user: RegistroMedicoFormInterface = {
       nombre: '',
       email: '',
       nacionalidad: '',
@@ -26,11 +34,12 @@ describe('RegistroMedicoService', () => {
       password: '',
       passwordConfirmation: ''
     }
-    service.registro(user).subscribe({
-      next: (response) => {
-        // Se debe cambiar la validacion cuando se defina la respuesta del servicio
-        expect(response).toBe('');
-      }
-    })
+
+    let file = new File([], 'test-file')
+    service.registro(user, file).subscribe();
+
+    const req = httpMock.expectOne(`${API_REGISTRO_MEDICO_ENDPOINT}`);
+    expect(req.request.method).toBe("POST");
+    req.flush('');
   });
 });

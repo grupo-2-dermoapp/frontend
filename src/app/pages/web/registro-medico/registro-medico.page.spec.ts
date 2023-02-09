@@ -1,16 +1,21 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { AlertController, IonicModule, LoadingController } from '@ionic/angular';
+import { Observable, of, throwError } from 'rxjs';
 
 import { RegistroMedicoPage } from './registro-medico.page';
+import { RegistroMedicoService } from './registro-medico.service';
 
 describe('RegistroMedicoPage', () => {
   let component: RegistroMedicoPage;
   let fixture: ComponentFixture<RegistroMedicoPage>;
-  let alertControllerMock;
+  let alertControllerMock: any;
   let alertMock: any;
   let loadingControllerMock;
   let loadingMock: any;
+  let registroMedicoService: RegistroMedicoService;
+  let registroMedicoServiceMock: any;
 
   let file = {
     size: 10,
@@ -21,8 +26,6 @@ describe('RegistroMedicoPage', () => {
       files: [] as any
     }
   }
-
-
 
   beforeEach(waitForAsync(() => {
 
@@ -39,19 +42,24 @@ describe('RegistroMedicoPage', () => {
     alertMock.dismiss.and.returnValue(Promise.resolve());
 
     alertControllerMock = jasmine.createSpyObj(['create', 'present']);
-    alertControllerMock.create.and.returnValue(Promise.resolve(loadingMock));
+    alertControllerMock.create.and.returnValue(Promise.resolve(alertMock));
+
+    registroMedicoServiceMock = jasmine.createSpyObj(['registro']);
+    registroMedicoServiceMock.registro.and.returnValue(of('pass'));
 
     TestBed.configureTestingModule({
       declarations: [ RegistroMedicoPage ],
-      imports: [IonicModule.forRoot()],
+      imports: [IonicModule.forRoot(), HttpClientTestingModule],
       providers: [
         FormBuilder,
         { provide: LoadingController, useValue: loadingControllerMock },
-        { provide: AlertController, useValue: alertControllerMock }
+        { provide: AlertController, useValue: alertControllerMock },
+        { provide: RegistroMedicoService, useValue: registroMedicoServiceMock }
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(RegistroMedicoPage);
+    registroMedicoService = TestBed.inject(RegistroMedicoService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
@@ -88,6 +96,7 @@ describe('RegistroMedicoPage', () => {
   });
 
   it('should save pdf file', () => {
+
     file.size = 10;
     file.type = 'application/pdf';
     files.target.files = [file];
@@ -102,7 +111,8 @@ describe('RegistroMedicoPage', () => {
     expect(component.registro.get).toHaveBeenCalled();
   });
 
-  it('should validate correct form', () => {
+  it('should validate correct form', async () => {
+
     component.registro.setValue({
       nombre: 'test',
       email: 'test@test.com',
@@ -112,8 +122,31 @@ describe('RegistroMedicoPage', () => {
       password: '123456',
       passwordConfirmation: '123456'
     })
-    component.registrarse();
-    expect(component).toBeTruthy();
+    await component.registrarse();
+    expect(registroMedicoServiceMock.registro).toHaveBeenCalled();
+  });
+
+  it('should validate correct form failing observer', async () => {
+
+    component.registro.setValue({
+      nombre: 'test',
+      email: 'test@test.com',
+      nacionalidad: 'test',
+      especialidad: 'test',
+      licenciaMedica: 'test',
+      password: '123456',
+      passwordConfirmation: '123456'
+    })
+
+    registroMedicoServiceMock.registro.and.returnValue(throwError(() => {
+      return {
+        error: {
+          error: ''
+        }
+      }
+    }));
+    await component.registrarse();
+    expect(registroMedicoServiceMock.registro).toHaveBeenCalled();
   });
 
 

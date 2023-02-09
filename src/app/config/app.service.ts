@@ -1,6 +1,5 @@
 import { Injectable, } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { IDValueInterface } from '../interfaces/id-value.interface';
 import { PartesCuerpoInterface } from '../interfaces/partes-cuerpo.interface';
 import { PerfilDermatologicoInterface } from '../interfaces/perfil-dermatologico.interface';
 
