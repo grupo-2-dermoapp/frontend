@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AppService } from 'src/app/config/app.service';
@@ -16,6 +16,8 @@ export class DetalleConsultaPage implements OnInit {
   isPhone = false;
   consulta: FormGroup;
 
+  diagnosticoForm: FormGroup;
+
   constructor(public appService:AppService,
     private fb: FormBuilder,
     private alertController: AlertController,
@@ -27,16 +29,27 @@ export class DetalleConsultaPage implements OnInit {
 
     this.isPhone = this.appService.isPhone;
     this.consulta = this.fb.group({
-      tipoLesion: [{value:1,disabled:true}],
-      formaLesion: [{value:1,disabled:true}],
-      numeroLesiones: [{value:1,disabled:true}],
-      distribucion: [{value:1,disabled:true}],
-      parteDelCuerpo: [{value:'Cara',disabled:true}],
+      tipoLesion: [1],
+      formaLesion: [1],
+      numeroLesiones: [1],
+      distribucion: [1],
+      parteDelCuerpo: ['Cara'],
       parteDelCuerpoId: [null],
-      casoMedicoAceptado: [null]
+      casoMedicoAceptado: [true]
       });
-      const casoMedicoId = this.route.snapshot.paramMap.get('casoMedicoId');
-      console.log(casoMedicoId);
+      Object.keys(this.consulta.controls)
+			.forEach(control=>{
+				this.consulta.get(control)?.disable();
+			}
+			);
+
+    const casoMedicoId = this.route.snapshot.paramMap.get('casoMedicoId');
+    console.log(casoMedicoId);
+    this.diagnosticoForm = this.fb.group({
+      nombreLesion: [null,Validators.required, Validators.minLength(6),Validators.maxLength(24)],
+      diagnostico: [null,Validators.required, Validators.minLength(20),Validators.maxLength(200)],
+      tratamiento: [null,Validators.required, Validators.minLength(20),Validators.maxLength(200)]
+      });
    }
 
   ngOnInit() {
@@ -52,7 +65,7 @@ export class DetalleConsultaPage implements OnInit {
     const {role}  = await alert.onDidDismiss();
     if(role==='ok'){
       this.casoMedicoAceptado?.setValue(true);
-      this.seleccionarCasomedico();
+      //this.seleccionarCasomedico();
     }
   }
 
@@ -85,8 +98,57 @@ export class DetalleConsultaPage implements OnInit {
 		});
   }
 
+  async crearDiagnostico(){
+    console.log('Diagnostico')
+    if (this.diagnosticoForm.invalid){
+			Object.keys(this.diagnosticoForm.controls)
+			.forEach(control=>{
+				this.diagnosticoForm.get(control)?.markAllAsTouched();
+			}
+			);
+		}else {
+      const loading = await this.loadingController.create();
+			await loading.present();
+			console.log(this.diagnosticoForm.value)
+			this.authService.login(this.diagnosticoForm.value).subscribe({
+				next: async (res) => {
+					await loading.dismiss();
+					const alert = await this.alertController.create({
+						header: 'Creación de diagnostico',
+						message: 'Creación de diagnostico exitoso',
+						buttons: ['Aceptar']
+					});
+					await alert.present();
+					this.router.navigateByUrl('/casos-medicos', { replaceUrl: true });
+				},
+				error: async (res) => {
+					await loading.dismiss();
+					const alert = await this.alertController.create({
+						header: 'Creación de diagnostico',
+						message: 'Hubo un error creando el diagnostico',
+						buttons: ['Aceptar']
+					});
+					await alert.present();
+				}}
+			);
+    }
+
+  }
+
   get casoMedicoAceptado() {
 		return this.consulta.get('casoMedicoAceptado');
+	}
+
+  get nombreLesion() {
+		return this.diagnosticoForm.get('nombreLesion');
+	}
+
+  get diagnostico() {
+		return this.diagnosticoForm.get('diagnostico');
+	}
+
+  get tratamiento() {
+		return this.diagnosticoForm.get('tratamiento');
 	}
 
 }
