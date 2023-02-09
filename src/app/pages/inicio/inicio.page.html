@@ -14,16 +14,18 @@
     </ion-toolbar>
   </ion-header>
 
+  <div *ngIf="!isPhone" id="explicacion" class="center">
+    <strong class="capitalize">Bienvenido a Dermo App</strong>
+  </div>
+
   <div id="container" class="title">
-    <strong class="capitalize">Nombre de Sujeto de prueba</strong>
+    <strong class="capitalize">{{user.names | uppercase}}</strong>
   </div>
 
   <br>
-  <div id="explicacion" class="center">
-    <strong class="capitalize">Explicación de dermo app</strong>
-  </div>
+
   <div class="inicio-description">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>El objetivo de DermoApp es apoyar a pacientes con problemas dermatológicos en el diagnóstico y tratamiento de lesiones dermatológicas, así como en la localización de dermatólogos especializados cercanos a las zonas en las que habita un paciente, cuando sea posible.</p>
   </div>
   <div class="spacer" style="width:300px;height:51px;" id="login-spacer2"></div>
 

@@ -98,6 +98,26 @@ export class RegistroPage {
 
 	}
 
+  async verTerminosYCondiciones(){
+		const alert = await this.alertController.create({
+			header: 'Terminos y condiciones',
+			message: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sapien ex, convallis at enim vel, rutrum luctus risus. Morbi imperdiet porttitor scelerisque. Vivamus rhoncus felis vel vulputate luctus. Maecenas in mattis enim, quis tristique purus. Nunc sed faucibus nunc, id venenatis leo. Curabitur orci est, lacinia et nisi eget, rhoncus elementum urna. Duis massa quam, porttitor at efficitur malesuada, fringilla a eros. Donec iaculis enim nec ante tincidunt fermentum. Pellentesque vel fermentum diam. Praesent sit amet fermentum lacus, quis volutpat massa. Proin consequat eros vitae orci luctus, vel faucibus lectus fringilla. Aliquam tincidunt scelerisque ante, tempus congue elit blandit eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam id nibh diam. Curabitur mauris velit, eleifend egestas pellentesque a, porta ut quam.
+
+			Nunc fringilla ante nec ante molestie, vitae gravida est ullamcorper. Proin eget eleifend dolor. Nam varius nisl a rhoncus malesuada. Quisque sed lorem ac leo iaculis pulvinar. Morbi vestibulum volutpat mauris a cursus. Nulla vel ex tincidunt, ultrices justo sed, placerat lorem. Suspendisse potenti. Sed fringilla consequat risus a convallis. Quisque faucibus arcu in mollis fermentum. Maecenas est velit, vestibulum sed risus in, congue efficitur purus. Cras at auctor neque, ac rutrum nunc.
+
+			Phasellus porttitor dolor tempor velit venenatis pulvinar. Vivamus eu est sit amet velit ullamcorper laoreet vitae in justo. Duis pellentesque vitae sapien ac pretium. In scelerisque ante quis dictum sollicitudin. Cras sit amet tortor tincidunt, varius tortor id, eleifend tellus. Proin pulvinar orci eros, et malesuada metus iaculis in. In gravida iaculis risus.
+
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec orci urna, iaculis ac mi id, ornare volutpat eros. Pellentesque sagittis lorem ac dolor sodales, sit amet accumsan lectus venenatis. Donec venenatis metus augue, ut ultricies lorem vehicula eu. Proin ultrices volutpat ex, sit amet ornare orci finibus sit amet. Mauris tristique at sem ut condimentum. Mauris a lacinia ligula. In ac ex tempus, pretium nisi in, pharetra tellus. Maecenas ornare, ipsum non ultrices facilisis, ipsum purus tempus velit, ut fermentum orci ligula vitae nisi. Suspendisse nulla velit, hendrerit at ultricies sed, volutpat sed ex. Nunc ut tellus vestibulum, efficitur justo ut, gravida arcu. Aliquam blandit nisi gravida efficitur vestibulum. Etiam sem arcu, dapibus non massa eu, sagittis convallis odio. Duis elementum arcu eget ex aliquam, et semper eros dignissim. Cras et tellus quam. Duis odio magna, aliquet eu sodales eu, pellentesque vel enim.
+
+			In tempus urna in massa hendrerit vehicula. Curabitur semper velit quis enim rhoncus feugiat. Nullam semper ipsum eu urna ultricies facilisis. Maecenas porttitor augue nec semper rutrum. Maecenas finibus lorem et odio elementum, et vulputate magna venenatis. Nunc mattis nunc turpis, in venenatis mi eleifend eu. Maecenas quis nisl eu tellus mattis vehicula. Integer non ipsum varius, euismod ligula eget, efficitur nibh. Fusce consequat sem magna, nec porttitor diam ultricies eget. Aenean non maximus odio. Duis augue nunc, pulvinar ut nunc nec, vulputate tempor tellus. Aenean ultrices dignissim bibendum.
+
+			Generated 5 paragraphs, 485 words, 3293 bytes of Lorem Ipsum`,
+			cssClass: 'alert-justify',
+			buttons: ['Aceptar']
+		});
+		await alert.present();
+	}
+
 	transformarParaBackend(registroUsuario:RegistroUsuarioFormInterface):RegistroUsuarioBackendInterface{
 		return {
 			email:registroUsuario.email,

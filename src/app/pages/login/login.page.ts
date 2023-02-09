@@ -39,7 +39,7 @@ export class LoginPage  {
 				this.credentials.get(control)?.markAllAsTouched();
 			}
 			);
-      
+
 		}else {
 			const loading = await this.loadingController.create();
 			await loading.present();
@@ -47,6 +47,7 @@ export class LoginPage  {
 			this.authService.login(this.credentials.value).subscribe({
 				next: async (res) => {
 					await loading.dismiss();
+          this.authService.setUser(res.user);
 					this.router.navigateByUrl('/inicio', { replaceUrl: true });
 				},
 				error:async (res) => {
@@ -60,7 +61,7 @@ export class LoginPage  {
 				}}
 			);
 		}
-		
+
 	}
 
 	get email() {
