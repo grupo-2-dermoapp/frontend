@@ -5,7 +5,7 @@ import { CasosMedicoResponseInterface } from 'src/app/interfaces/casos-medicos.i
 import { environment } from 'src/environments/environment';
 
 
-const API_AUTH_URL = environment.API.API_URL + environment.API.API_CASOS_MEDICOS_ENDPOINT;
+const API_AUTH_URL = environment.API.AUTH_API_URL + environment.API.API_CASOS_MEDICOS_ENDPOINT;
 
 @Injectable({
   providedIn: 'root'

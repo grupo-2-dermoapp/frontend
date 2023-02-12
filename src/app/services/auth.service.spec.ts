@@ -7,7 +7,7 @@ import { AppService } from '../config/app.service';
 
 describe('AuthService', () => {
 
-  const API_AUTH_URL = environment.API.API_URL;
+  const API_AUTH_URL = environment.API.AUTH_API_URL;
   let service: AuthService;
   let appService: AppService;
   let httpMock: HttpTestingController;

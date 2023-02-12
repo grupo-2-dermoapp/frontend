@@ -75,9 +75,26 @@ export class CrearConsultaPage {
 			await loading.present();
 			this.crearConsultaService.crearConsulta(
 				this.transformarParaBackend(this.consulta.value,data.values))
-			.subscribe(()=>{
-				this.router.navigateByUrl('/inicio', { replaceUrl: true });
-				loading.dismiss()});
+			.subscribe({
+				next: async (res) => {
+					await loading.dismiss();
+					const alert = await this.alertController.create({
+						header: 'Creación de caso medico',
+						message: 'Creación de caso medico exitoso',
+						buttons: ['Aceptar']
+					});
+					await alert.present();
+					this.router.navigateByUrl('/inicio', { replaceUrl: true });
+				},
+				error: async (res) => {
+					await loading.dismiss();
+					const alert = await this.alertController.create({
+						header: 'Creación de caso medico',
+						message: 'Hubo un error creando el caso medico',
+						buttons: ['Aceptar']
+					});
+					await alert.present();
+				}});
 	}
 
 	transformarParaBackend(consultaForm:ConsultaFormInterface,tipoDeDiagnostico:string):ConsultaBackendInterface{
@@ -87,8 +104,8 @@ export class CrearConsultaPage {
 			number_of_injuries: consultaForm.numeroLesiones,
 			injury_distribucion: consultaForm.distribucion,
 			body_part: consultaForm.parteDelCuerpoId,
-			user_id: this.authService.user.user_id,
-			type_of_diagnosis:tipoDeDiagnostico,
+			patient_uuid: this.authService.user.uuid,
+			type_of_diagnosis:tipoDeDiagnostico
 		}
 	}
 
