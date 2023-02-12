@@ -29,12 +29,11 @@ export class DetalleConsultaPage implements OnInit {
 
     this.isPhone = this.appService.isPhone;
     this.consulta = this.fb.group({
-      tipoLesion: [1],
-      formaLesion: [1],
-      numeroLesiones: [1],
-      distribucion: [1],
-      parteDelCuerpo: ['Cara'],
-      parteDelCuerpoId: [null],
+      tipoLesion: [null],
+      formaLesion: [null],
+      numeroLesiones: [null],
+      distribucion: [null],
+      parteDelCuerpo: [null],
       casoMedicoAceptado: [true]
       });
       Object.keys(this.consulta.controls)
@@ -44,7 +43,22 @@ export class DetalleConsultaPage implements OnInit {
 			);
 
     const casoMedicoId = this.route.snapshot.paramMap.get('casoMedicoId');
-    console.log(casoMedicoId);
+	if(casoMedicoId){
+		const casoMedico =this.authService.getCasoMedico(casoMedicoId)
+		console.log(casoMedico);
+		if(casoMedico){
+			this.consulta.get('tipoLesion')?.setValue(casoMedico.tipoLesion?.id)
+			this.consulta.get('formaLesion')?.setValue(casoMedico.formaLesion?.id)
+			this.consulta.get('numeroLesiones')?.setValue(casoMedico.numeroLesiones?.id)
+			this.consulta.get('distribucion')?.setValue(casoMedico.distribucion?.id)
+			this.consulta.get('parteDelCuerpo')?.setValue(casoMedico.parteDelCuerpo)
+		}else {
+			this.erroObteniendoCasoMedico()
+		}
+	}else {
+		this.erroObteniendoCasoMedico()
+	}
+   
     this.diagnosticoForm = this.fb.group({
       nombreLesion: [null,Validators.required, Validators.minLength(6),Validators.maxLength(24)],
       diagnostico: [null,Validators.required, Validators.minLength(20),Validators.maxLength(200)],
@@ -53,6 +67,21 @@ export class DetalleConsultaPage implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  async erroObteniendoCasoMedico(){
+	const alert = await this.alertController.create({
+		header: 'Error',
+		message: 'Error obteniendo la informacion del caso medico',
+		buttons: ['Aceptar']
+	  });
+	  await alert.present();
+	this.router.navigateByUrl('/casos-medicos', { replaceUrl: true });
+  }
+
+  llenarInformacionCasoMedico(){
+	this.consulta.get('')
+
   }
 
   async aceptarCasoMedico() {
