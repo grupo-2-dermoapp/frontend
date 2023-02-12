@@ -16,7 +16,7 @@
     <form [formGroup]="consulta">
       <div class="input-group">
         <ion-item>
-          <ion-label>Tipos de lesión:</ion-label>
+          <ion-label>Tipos de lesión:</ion-label> 
         </ion-item>
         <ion-item>
           <ion-select formControlName="tipoLesion" placeholder="Seleccione su tipo de lesión" class="form-item">
@@ -30,7 +30,7 @@
           </ion-item>
           <ion-item>
             <ion-select formControlName="formaLesion" placeholder="Seleccione la forma de la lesión" class="form-item">
-              <ion-select-option *ngFor="let forma of appService.consulta.formas" [value]="forma.id">
+              <ion-select-option *ngFor="let forma of appService.consulta.formasDeLesiones" [value]="forma.id">
                 {{forma.value}}</ion-select-option>
             </ion-select>
           </ion-item>
@@ -52,7 +52,7 @@
           </ion-item>
           <ion-item>
             <ion-select formControlName="distribucion" placeholder="Seleccione la distribución de la lesión" class="form-item">
-              <ion-select-option *ngFor="let distribucion of appService.consulta.distribucion" [value]="distribucion.id">
+              <ion-select-option *ngFor="let distribucion of appService.consulta.distribucionDeLaLesion" [value]="distribucion.id">
                 {{distribucion.value}}</ion-select-option>
             </ion-select>
           </ion-item>
