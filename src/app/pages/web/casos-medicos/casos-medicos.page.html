@@ -20,13 +20,21 @@
     <ion-row>
       <ion-col>No.</ion-col>
       <ion-col>Nombre paciente</ion-col>
-      <ion-col>Tipo lesión</ion-col>
+      <ion-col>Tipo</ion-col>
+      <ion-col>Forma</ion-col>
+      <ion-col>Número</ion-col>
+      <ion-col>Distribución</ion-col>
+      <ion-col>Parte del cuerpo</ion-col>
       <ion-col>Seleccionar</ion-col>
     </ion-row>
     <ion-row *ngFor="let caso of filtroCasosMedicos | async; index as i" >
       <ion-col>{{ i + 1 }}</ion-col>
       <ion-col>{{ caso.paciente.nombre }}</ion-col>
       <ion-col>{{ caso.tipoLesion.value }}</ion-col>
+      <ion-col>{{ caso.formaLesion.value }}</ion-col>
+      <ion-col>{{ caso.numeroLesiones.value }}</ion-col>
+      <ion-col>{{ caso.distribucion.value }}</ion-col>
+      <ion-col>{{ caso.parteDelCuerpo }}</ion-col>
       <ion-col>
         <ion-button (click)="verDetalleCasoMedico(caso)" >Seleccionar</ion-button>
       </ion-col>

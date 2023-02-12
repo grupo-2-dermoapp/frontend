@@ -44,6 +44,15 @@ export class AuthService {
     localStorage.setItem(casoMedico.casoMedicoId,JSON.stringify(casoMedico));
   }
 
+  getCasoMedico(casoMedicoId:string):CasosMedicosTableInterface | null{
+    let casoMedico =localStorage.getItem(casoMedicoId)
+    if(casoMedico){
+      return JSON.parse(casoMedico)
+    }else {
+      return null
+    }
+  }
+
   logout(){
     localStorage.removeItem('user');
   }

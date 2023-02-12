@@ -62,7 +62,7 @@ export class CasosMedicosPage implements OnInit {
 
 
   async ngOnInit() {
-        this.busquedaCasosMedicos();
+       
         const loading = await this.loadingController.create();
 		await loading.present();
         this.casosMedicosService.obtenerCasosMedicos()
@@ -71,6 +71,8 @@ export class CasosMedicosPage implements OnInit {
                 await loading.dismiss();
                 
                 this.casos=this.convertirCasosMedicosBackendAFrontEnd(res.medical_cases);
+                console.log( this.casos);
+                this.busquedaCasosMedicos();
             },
             error:async (res) => {
                 await loading.dismiss();
@@ -89,17 +91,17 @@ export class CasosMedicosPage implements OnInit {
     casosMedicosBackend.forEach(casoMedicoBack=>casosMedicosFront.push({
         tipoDeDiagnostico:casoMedicoBack.type_of_diagnosis,
         casoMedicoId:casoMedicoBack.uuid,
-        tipoLesion:this.appService.consulta.tiposDeLesion.find(tipoLesion=>tipoLesion.id===casoMedicoBack.type_of_injury),
-        formaLesion:this.appService.consulta.formasDeLesiones.find(forma=>forma.id===casoMedicoBack.type_of_injury),
-        numeroLesiones:this.appService.consulta.numeroDeLesiones.find(lesiones=>lesiones.id===casoMedicoBack.type_of_injury),
-        distribucion:this.appService.consulta.distribucionDeLaLesion.find(distribucion=>distribucion.id===casoMedicoBack.type_of_injury),
+        tipoLesion:this.appService.obtenerConsultaPorId('tiposDeLesion',casoMedicoBack.type_of_injury),
+        formaLesion:this.appService.obtenerConsultaPorId('formasDeLesiones',casoMedicoBack.shape_of_injury),
+        numeroLesiones:this.appService.obtenerConsultaPorId('numeroDeLesiones',casoMedicoBack.number_of_injuries),
+        distribucion:this.appService.obtenerConsultaPorId('distribucionDeLaLesion',casoMedicoBack.injury_distribucion),
         parteDelCuerpo:this.appService.obtenerParteCuerpoPorId(casoMedicoBack.body_part),
         paciente: {
-            nombre:casoMedicoBack.patient.name
+            nombre:casoMedicoBack?.patient?.name
         }
 
     }))
-    return []
+    return casosMedicosFront
 
   }
 

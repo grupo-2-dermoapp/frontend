@@ -1,4 +1,3 @@
-import { ConsultaFormInterface } from "./consulta.interface";
 import { IDValueInterface } from "./id-value.interface";
 import { PaginatorInterface, ResponseInterface } from "./response.interface";
 
@@ -26,7 +25,7 @@ export interface CasosMedicosTableInterface {
     formaLesion: IDValueInterface| undefined;
     numeroLesiones: IDValueInterface| undefined;
     distribucion: IDValueInterface| undefined;
-    parteDelCuerpo: IDValueInterface| undefined;
+    parteDelCuerpo: string| undefined;
     paciente:{
         nombre:string;
     }

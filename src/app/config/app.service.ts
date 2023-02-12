@@ -475,19 +475,22 @@ export class AppService {
     }
   }
 
-  obtenerConsultaPorId(nombreConsulta:string,id:string){
+  obtenerConsultaPorId(nombreConsulta:string,id:string):IDValueInterface |undefined{
     const consulta = this.consulta[nombreConsulta as keyof typeof this.consulta]
     return consulta.find((obj:any)=>obj.id===id);
   }
 
-  obtenerParteCuerpoPorId(id:string){
+  obtenerParteCuerpoPorId(id:string):string | undefined{
     let parteCuerpo:IDValueInterface | undefined;
     Object.keys(this.partesCuerpo)
     .forEach((parte)=>{
       const partes = this.partesCuerpo[parte as keyof typeof this.partesCuerpo]
-      parteCuerpo=partes.find(p=>p.id===id);
+      let parteFilter=partes.find(p=>p.id===id);
+      if(parteFilter){
+        parteCuerpo =parteFilter;
+      }
     });
-    return parteCuerpo;
+    return parteCuerpo?.value;
   }
   
   
