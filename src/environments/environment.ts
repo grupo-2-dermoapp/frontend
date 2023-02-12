@@ -14,7 +14,7 @@ export const environment = {
     API_LOGIN_MEDICO_ENDPOINT: 'doctor-login',
     API_CASOS_MEDICOS_ENDPOINT: 'medical-cases',
     API_SELECCIONAR_CASO_MEDICO_ENDPOINT: 'choose-medical-case',
-    API_CREAR_DIAGNOSTICO_ENDPOINT: 'create-diagnosis',
+    API_CREAR_DIAGNOSTICO_ENDPOINT: 'medical-diagnostic',
     API_CREAR_CONSULTA_MEDICA_ENDPOINT: 'create-medical-consultation'
     
   }

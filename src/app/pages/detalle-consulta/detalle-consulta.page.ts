@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AppService } from 'src/app/config/app.service';
+import { DiagnosticoBackendInterface, DiagnosticoFormInterface } from 'src/app/interfaces/diagnostico.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { DetalleConsultaService } from './detalle-consulta.service';
 
@@ -17,6 +18,7 @@ export class DetalleConsultaPage implements OnInit {
   consulta: FormGroup;
 
   diagnosticoForm: FormGroup;
+  casoMedicoId:string="";
 
   constructor(public appService:AppService,
     private fb: FormBuilder,
@@ -34,7 +36,7 @@ export class DetalleConsultaPage implements OnInit {
       numeroLesiones: [null],
       distribucion: [null],
       parteDelCuerpo: [null],
-      casoMedicoAceptado: [true]
+      casoMedicoAceptado: [false]
       });
       Object.keys(this.consulta.controls)
 			.forEach(control=>{
@@ -42,9 +44,11 @@ export class DetalleConsultaPage implements OnInit {
 			}
 			);
 
-    const casoMedicoId = this.route.snapshot.paramMap.get('casoMedicoId');
+    let casoMedicoId = this.route.snapshot.paramMap.get('casoMedicoId');
+	
 	if(casoMedicoId){
-		const casoMedico =this.authService.getCasoMedico(casoMedicoId)
+		this.casoMedicoId = casoMedicoId;
+		const casoMedico =this.authService.getCasoMedico(this.casoMedicoId)
 		console.log(casoMedico);
 		if(casoMedico){
 			this.consulta.get('tipoLesion')?.setValue(casoMedico.tipoLesion?.id)
@@ -60,9 +64,9 @@ export class DetalleConsultaPage implements OnInit {
 	}
    
     this.diagnosticoForm = this.fb.group({
-      nombreLesion: [null,Validators.required, Validators.minLength(6),Validators.maxLength(24)],
-      diagnostico: [null,Validators.required, Validators.minLength(20),Validators.maxLength(200)],
-      tratamiento: [null,Validators.required, Validators.minLength(20),Validators.maxLength(200)]
+      nombreLesion: [null,[Validators.required, Validators.minLength(6),Validators.maxLength(24)]],
+      diagnostico: [null,[Validators.required, Validators.minLength(20),Validators.maxLength(200)]],
+      tratamiento: [null,[Validators.required, Validators.minLength(20),Validators.maxLength(200)]]
       });
    }
 
@@ -79,11 +83,6 @@ export class DetalleConsultaPage implements OnInit {
 	this.router.navigateByUrl('/casos-medicos', { replaceUrl: true });
   }
 
-  llenarInformacionCasoMedico(){
-	this.consulta.get('')
-
-  }
-
   async aceptarCasoMedico() {
     const alert = await this.alertController.create({
       header: 'Aceptar caso medico',
@@ -94,41 +93,10 @@ export class DetalleConsultaPage implements OnInit {
     const {role}  = await alert.onDidDismiss();
     if(role==='ok'){
       this.casoMedicoAceptado?.setValue(true);
-      //this.seleccionarCasomedico();
     }
   }
 
-  async seleccionarCasomedico() {
-    const loading = await this.loadingController.create();
-		await loading.present();
-
-		this.detalleConsultaService.seleccionarCasoMedico("",this.authService.user.email)
-		.subscribe({
-			next:async (res) => {
-				await loading.dismiss();
-				await loading.dismiss();
-				const alert = await this.alertController.create({
-					header: 'Selección de caso medico',
-					message: 'Has aceptado el caso medico ',
-					buttons: ['Aceptar']
-				});
-				await alert.present();
-				this.router.navigateByUrl('/casos-medicos', { replaceUrl: true });
-			},
-			error:async (res) => {
-				await loading.dismiss();
-				const alert = await this.alertController.create({
-					header: 'Selección de caso medico',
-					message: 'Error seleccionando caso medico',
-					buttons: ['Aceptar']
-				});
-				await alert.present();
-			}
-		});
-  }
-
   async crearDiagnostico(){
-    console.log('Diagnostico')
     if (this.diagnosticoForm.invalid){
 			Object.keys(this.diagnosticoForm.controls)
 			.forEach(control=>{
@@ -136,10 +104,11 @@ export class DetalleConsultaPage implements OnInit {
 			}
 			);
 		}else {
-      const loading = await this.loadingController.create();
+      		const loading = await this.loadingController.create();
 			await loading.present();
-			console.log(this.diagnosticoForm.value)
-			this.authService.login(this.diagnosticoForm.value).subscribe({
+			this.detalleConsultaService.crearDiagnostico(
+				this.transformarParaBackend(this.diagnosticoForm.value))
+				.subscribe({
 				next: async (res) => {
 					await loading.dismiss();
 					const alert = await this.alertController.create({
@@ -162,6 +131,15 @@ export class DetalleConsultaPage implements OnInit {
 			);
     }
 
+  }
+
+  transformarParaBackend(diagnosticoForm:DiagnosticoFormInterface):DiagnosticoBackendInterface{
+	return{
+		name_of_injury:diagnosticoForm.nombreLesion,
+		diagnosis:diagnosticoForm.diagnostico,
+		treatment:diagnosticoForm.tratamiento,
+		medical_case_uuid:this.casoMedicoId
+	}
   }
 
   get casoMedicoAceptado() {

@@ -13,7 +13,7 @@
       <strong>Consulta #1234</strong>
     </div>
     <br>
-    <form [formGroup]="consulta">
+    <form id="consulta-form" [formGroup]="consulta">
       <div class="input-group">
         <ion-item>
           <ion-label>Tipos de lesión:</ion-label> 
@@ -71,10 +71,10 @@
 
         <ion-toolbar *ngIf="!isPhone && !casoMedicoAceptado?.value">
           <ion-buttons slot="secondary">
-            <ion-button color="danger" fill="solid" routerLink="/casos-medicos">Cancelar</ion-button>
+            <ion-button id="cancelar-button" color="danger" fill="solid" routerLink="/casos-medicos">Cancelar</ion-button>
           </ion-buttons>
           <ion-buttons slot="primary">
-            <ion-button color="primary" fill="solid" (click)="aceptarCasoMedico()">Aceptar caso</ion-button>
+            <ion-button id="aceptar-caso-button" color="primary" fill="solid" (click)="aceptarCasoMedico()">Aceptar caso</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </div>
@@ -87,7 +87,7 @@
     </div>
     <br>
 
-    <form (ngSubmit)="crearDiagnostico()" [formGroup]="diagnosticoForm">
+    <form id="diagnostico-form" (ngSubmit)="crearDiagnostico()" [formGroup]="diagnosticoForm">
       <ion-item>
         <ion-label class="question-label">Nombre lesión</ion-label>
       </ion-item>
@@ -129,7 +129,7 @@
 
       <ion-toolbar *ngIf="!isPhone">
         <ion-buttons slot="primary">
-          <ion-button type="submit" color="primary" fill="solid" >Enviar diagnóstico</ion-button>
+          <ion-button id="crear-diagnostico-button" type="submit" color="primary" fill="solid" >Enviar diagnóstico</ion-button>
         </ion-buttons>
       </ion-toolbar>
     </form>
