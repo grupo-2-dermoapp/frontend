@@ -5,7 +5,7 @@ import { RegistroUsuarioBackendInterface } from 'src/app/interfaces/registro-usu
 import { environment } from 'src/environments/environment';
 
 
-const API_AUTH_URL = environment.API.API_URL + environment.API.API_REGISTRO_USUARIO_ENDPOINT;
+const API_AUTH_URL = environment.API.AUTH_API_URL + environment.API.API_REGISTRO_USUARIO_ENDPOINT;
 
 @Injectable({
   providedIn: 'root'

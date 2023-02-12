@@ -8,7 +8,7 @@ import { RegistroService } from './registro.service';
 describe('RegistroService', () => {
   let service: RegistroService;
   let httpMock: HttpTestingController;
-  const API_REGISTRO_USUARIO_ENDPOINT = environment.API.API_URL + environment.API.API_REGISTRO_USUARIO_ENDPOINT;
+  const API_REGISTRO_USUARIO_ENDPOINT = environment.API.AUTH_API_URL + environment.API.API_REGISTRO_USUARIO_ENDPOINT;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

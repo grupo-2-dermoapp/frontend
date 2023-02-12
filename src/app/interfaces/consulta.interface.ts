@@ -13,6 +13,6 @@ export interface ConsultaBackendInterface {
     number_of_injuries: string;
     injury_distribucion: string;
     body_part: string;
-    user_id: string;
+    patient_uuid: string;
     type_of_diagnosis: string;
 }
