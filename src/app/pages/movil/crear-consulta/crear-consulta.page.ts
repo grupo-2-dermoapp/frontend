@@ -104,7 +104,7 @@ export class CrearConsultaPage {
 			number_of_injuries: consultaForm.numeroLesiones,
 			injury_distribucion: consultaForm.distribucion,
 			body_part: consultaForm.parteDelCuerpoId,
-			patient_uuid: this.authService.user.user_id,
+			patient_uuid: this.authService.user.uuid,
 			type_of_diagnosis:tipoDeDiagnostico
 		}
 	}

@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   API: {
     AUTH_API_URL: 'http://localhost:8080/dermoapp/auth/v1/',
-    MEDICAL_CASES_URL: 'http://localhost:8080/medical-cases/v1/',
+    MEDICAL_CASES_URL: 'http://localhost:8080/dermoapp/medical-cases/v1/',
     API_PERFIL_DERMATOLOGICO_ENDPOINT: 'dermo-profile-register',
     API_REGISTRO_USUARIO_ENDPOINT: 'patient-register',
     API_LOGIN_USUARIO_ENDPOINT: 'patient-login',

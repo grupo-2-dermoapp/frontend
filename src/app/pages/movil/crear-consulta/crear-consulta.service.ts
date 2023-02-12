@@ -15,7 +15,7 @@ export class CrearConsultaService {
   constructor(private http: HttpClient) { }
 
   crearConsulta(consulta:ConsultaBackendInterface):Observable<any>{
-    console.log('Crear consulta',API_AUTH_URL,consulta)
+    console.log('Crear consulta',API_AUTH_URL,JSON.stringify(consulta))
     return this.http.post<any>(API_AUTH_URL,consulta);
   }
 }
