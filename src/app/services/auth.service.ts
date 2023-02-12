@@ -7,7 +7,7 @@ import { LoginUsuarioInterface } from '../interfaces/login-usuario.interface';
 import { UserInterface } from '../interfaces/user.interface';
 
 
-const API_AUTH_URL = environment.API.API_URL;
+const API_AUTH_URL = environment.API.AUTH_API_URL;
 
 @Injectable({
   providedIn: 'root'

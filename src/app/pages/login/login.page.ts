@@ -47,6 +47,7 @@ export class LoginPage  {
 			this.authService.login(this.credentials.value).subscribe({
 				next: async (res) => {
 					await loading.dismiss();
+					console.log('Resp',res.user);
           this.authService.setUser(res.user);
 					this.router.navigateByUrl('/inicio', { replaceUrl: true });
 				},
