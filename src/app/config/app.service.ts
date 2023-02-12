@@ -85,35 +85,35 @@ export class AppService {
         {id:'LAST_DAY',value:'En el último día'}]
     }
   }
+
   get consulta() {
     return {
       tiposDeLesion :[
-        {id:1,value:'Mácula'},
-        {id:2,value:'Pápula'},
-        {id:3,value:'Parche'},
-        {id:4,value:'Placa'},
-        {id:5,value:'Nódulo'},
-        {id:6,value:'Ampolla'},
-        {id:7,value:'Úlcera'},
-        {id:8,value:'Vesícula'}],
-      formas :[
-        {id:1,value:'Anillo'},
-        {id:2,value:'Domo'},
-        {id:3,value:'Ovalada'},
-        {id:4,value:'Redonda'},
-        {id:5,value:'Indefinida'},
-        {id:6,value:'Enrollada'}],
+        {id:'TAINT',value:'Mácula'},
+        {id:'PAPULE',value:'Pápula'},
+        {id:'PATCH',value:'Parche'},
+        {id:'PLATE',value:'Placa'},
+        {id:'NODULE',value:'Nódulo'},
+        {id:'BLISTER',value:'Ampolla'},
+        {id:'SORE',value:'Úlcera'},
+        {id:'GALLBLADDER',value:'Vesícula'}],
+      formasDeLesiones :[
+        {id:'RING',value:'Anillo'},
+        {id:'DOME',value:'Domo'},
+        {id:'OVAL',value:'Ovalada'},
+        {id:'ROUND',value:'Redonda'},
+        {id:'UNDEFINED',value:'Indefinida'},
+        {id:'ROLLED_UP',value:'Enrollada'}],
       numeroDeLesiones :[
-        {id:1,value:'Solitaria'},
-        {id:2,value:'Múltiple'},
-        {id:3,value:'Recurrente'},
-        {id:4,value:'Diseminada'}],
-      distribucion :[
-        {id:1,value:'Asimétrica'},
-        {id:2,value:'Confluente'},
-        {id:3,value:'Simétrica'},
-        {id:4,value:'Esparcida'}]
-
+        {id:'LONELY',value:'Solitaria'},
+        {id:'MULTIPLE',value:'Múltiple'},
+        {id:'RECURRENT',value:'Recurrente'},
+        {id:'DISSEMINATED',value:'Diseminada'}],
+      distribucionDeLaLesion :[
+        {id:'ASYMMETRIC',value:'Asimétrica'},
+        {id:'CONFLUENT',value:'Confluente'},
+        {id:'SYMMETRIC',value:'Simétrica'},
+        {id:'SCATTERED',value:'Esparcida'}]
     }
   }
 
@@ -121,374 +121,354 @@ export class AppService {
     return {
       cabezaFrente: [
       {
-        id:1,
-        nombre:'Frente'
+        id:'FOREHEAD',
+        value:'Frente'
       },
       {
-        id:2,
-        nombre:'Cejas'
+        id:'EYEBROWS',
+        value:'Cejas'
       },
       {
-        id:3,
-        nombre:'Ceja izquierda'
+        id:'LEFT_EYEBROW',
+        value:'Ceja izquierda'
       },
       {
-        id:4,
-        nombre:'Ceja derecha'
+        id:'RIGHT_EYEBROW',
+        value:'Ceja derecha'
       },
       {
-        id:5,
-        nombre:'Ojos'
+        id:'EYES',
+        value:'Ojos'
       },
       {
-        id:6,
-        nombre:'Ojo izquierdo'
+        id:'LEFT_EYE',
+        value:'Ojo izquierdo'
       },
       {
-        id:7,
-        nombre:'Ojo derecho'
+        id:'RIGHT_EYE',
+        value:'Ojo derecho'
       },
       {
-        id:8,
-        nombre:'Pomulos'
+        id:'CHEEKBONES',
+        value:'Pomulos'
       },
       {
-        id:9,
-        nombre:'Polumo izquierdo'
+        id:'LEFT_CHEEKBONE',
+        value:'Polumo izquierdo'
       },
       {
-        id:10,
-        nombre:'Polumo derecho'
+        id:'RIGHT_CHEEKBONE',
+        value:'Polumo derecho'
       },
       {
-        id:11,
-        nombre:'Cachetes'
+        id:'CHEEKS',
+        value:'Cachetes'
       },
       {
-        id:12,
-        nombre:'Cachete izquierdo'
+        id:'LEFT_CHEEK',
+        value:'Cachete izquierdo'
       },
       {
-        id:13,
-        nombre:'Cachete derecho'
+        id:'RIGHT_CHEEK',
+        value:'Cachete derecho'
       },
       {
-        id:14,
-        nombre:'Nariz'
+        id:'NOSE',
+        value:'Nariz'
       },
       {
-        id:15,
-        nombre:'Labios'
+        id:'LIPS',
+        value:'Labios'
       },
       {
-        id:16,
-        nombre:'Labio superior'
+        id:'SUPERIOR_LIP',
+        value:'Labio superior'
       },
       {
-        id:17,
-        nombre:'Labio inferior'
+        id:'LOWER_LIP',
+        value:'Labio inferior'
       },
       {
-        id:18,
-        nombre:'Menton'
+        id:'CHIN',
+        value:'Menton'
       },
       {
-        id:19,
-        nombre:'Orejas'
+        id:'EARS',
+        value:'Orejas'
       },
       {
-        id:20,
-        nombre:'Oreja izquierda'
+        id:'LEFT_EAR',
+        value:'Oreja izquierda'
       },
       {
-        id:21,
-        nombre:'Oreja derecha'
+        id:'RIGHT_EAR',
+        value:'Oreja derecha'
       },
       {
-        id:22,
-        nombre:'Cuello'
+        id:'FRONT_NECK',
+        value:'Cuello'
       }
     ],
     cabezaEspalda:[
       {
-        id:23,
-        nombre:'Cuello'
+        id:'BACK_NECK',
+        value:'Cuello'
       },
       {
-        id:24,
-        nombre:'Nuca'
+        id:'NAPE',
+        value:'Nuca'
       },
       {
-        id:25,
-        nombre:'Cuero cabelludo'
-      },
-      {
-        id:25,
-        nombre:'Orejas'
-      },
-      {
-        id:26,
-        nombre:'Oreja izquierda'
-      },
-      {
-        id:27,
-        nombre:'Oreja derecha'
-      },
+        id:'SCALP',
+        value:'Cuero cabelludo'
+      }
     ],
     brazoIzqFrente:[
       {
-        id:28,
-        nombre:'Hombro'
+        id:'FRONT_LEFT_SHOULDER',
+        value:'Hombro'
       },
       {
-        id:29,
-        nombre:'Biceps'
+        id:'FRONT_LEFT_BICEPS',
+        value:'Biceps'
       },
       {
-        id:30,
-        nombre:'Antebrazo'
+        id:'FRONT_LEFT_FOREARM',
+        value:'Antebrazo'
       }
     ],
     brazoIzqEspalda:[
       {
-        id:31,
-        nombre:'Hombro'
+        id:'BACK_LEFT_SHOULDER',
+        value:'Hombro'
       },
       {
-        id:32,
-        nombre:'Triceps'
+        id:'BACK_LEFT_BICEPS',
+        value:'TRICEPS'
       },
       {
-        id:33,
-        nombre:'Codo'
+        id:'BACK_LEFT_ELBOW',
+        value:'Codo'
       },
       {
-        id:34,
-        nombre:'Antebrazo'
+        id:'BACK_LEFT_FOREARM',
+        value:'Antebrazo'
       }
     ],
     brazoDerFrente:[
       {
-        id:35,
-        nombre:'Hombro'
+        id:'FRONT_RIGHT_SHOULDER',
+        value:'Hombro'
       },
       {
-        id:36,
-        nombre:'Biceps'
+        id:'FRONT_RIGHT_BICEPS',
+        value:'Biceps'
       },
       {
-        id:37,
-        nombre:'Antebrazo'
+        id:'FRONT_RIGHT_FOREARM',
+        value:'Antebrazo'
       }
     ],
     brazoDerEspalda:[
       {
-        id:38,
-        nombre:'Hombro'
+        id:'BACK_RIGHT_SHOULDER',
+        value:'Hombro'
       },
       {
-        id:39,
-        nombre:'Triceps'
+        id:'BACK_RIGHT_BICEPS',
+        value:'TRICEPS'
       },
       {
-        id:40,
-        nombre:'Codo'
+        id:'BACK_RIGHT_ELBOW',
+        value:'Codo'
       },
       {
-        id:41,
-        nombre:'Antebrazo'
+        id:'BACK_RIGHT_FOREARM',
+        value:'Antebrazo'
       }
     ],
     pieIzqFrente:[
       {
-        id:42,
-        nombre:'Tobillo'
+        id:'LEFT_ANCKLE',
+        value:'Tobillo'
       },
       {
-        id:43,
-        nombre:'Empeine'
+        id:'LEFT_INSTEP',
+        value:'Empeine'
       },
       {
-        id:44,
-        nombre:'Dedos'
+        id:'LEFT_TOES',
+        value:'Dedos'
       }
     ],
     pieIzqEspalda:[
       {
-        id:45,
-        nombre:'Talon'
+        id:'LEFT_HEEL',
+        value:'Talon'
       },
       {
-        id:46,
-        nombre:'Planta'
+        id:'LEFT_SOLE_OF_FOOT',
+        value:'Planta'
       }
     ],
     pieDerFrente:[
       {
-        id:47,
-        nombre:'Tobillo'
+        id:'RIGHT_ANCKLE',
+        value:'Tobillo'
       },
       {
-        id:48,
-        nombre:'Empeine'
+        id:'RIGHT_INSTEP',
+        value:'Empeine'
       },
       {
-        id:49,
-        nombre:'Dedos'
+        id:'RIGHT_TOES',
+        value:'Dedos'
       }
     ],
     pieDerEspalda:[
       {
-        id:50,
-        nombre:'Talon'
+        id:'RIGHT_HEEL',
+        value:'Talon'
       },
       {
-        id:51,
-        nombre:'Planta'
+        id:'RIGHT_SOLE_OF_FOOT',
+        value:'Planta'
       }
     ],
     piernaIzqFrente:[
       {
-        id:52,
-        nombre:'Muslo'
+        id:'FRONT_LEFT_THIGH',
+        value:'Muslo'
       },
       {
-        id:53,
-        nombre:'Rodilla'
+        id:'FRONT_LEFT_KNEE',
+        value:'Rodilla'
       },
       {
-        id:54,
-        nombre:'Pantorrilla'
+        id:'FRONT_LEFT_CALF',
+        value:'Pantorrilla'
       }
     ],
     piernaIzqEspalda:[
       {
-        id:55,
-        nombre:'Muslo'
+        id:'BACK_LEFT_THIGH',
+        value:'Muslo'
       },
       {
-        id:56,
-        nombre:'Gemelo'
+        id:'BACK_LEFT_GASTROCNEMIUS',
+        value:'Gemelo'
       }
     ],
     piernaDerFrente:[
       {
-        id:57,
-        nombre:'Muslo'
+        id:'FRONT_RIGHT_THIGH',
+        value:'Muslo'
       },
       {
-        id:58,
-        nombre:'Rodilla'
+        id:'FRONT_RIGHT_KNEE',
+        value:'Rodilla'
       },
       {
-        id:59,
-        nombre:'Pantorrilla'
+        id:'FRONT_RIGHT_CALF',
+        value:'Pantorrilla'
       }
     ],
     piernaDerEspalda:[
       {
-        id:60,
-        nombre:'Muslo'
+        id:'BACK_RIGHT_THIGH',
+        value:'Muslo'
       },
       {
-        id:61,
-        nombre:'Gemelo'
+        id:'BACK_RIGHT_GASTROCNEMIUS',
+        value:'Gemelo'
       }
     ],
     torsoFrente: [
       {
-        id:62,
-        nombre:"Clavícula"
+        id:'CLAVICLE',
+        value:"Clavícula"
       },
       {
-        id:63,
-        nombre:'Pecho'
+        id:'CHEST',
+        value:'Pecho'
       },
       {
-        id:64,
-        nombre:'Pectoral izquierdo'
+        id:'LEFT_PECTORAL',
+        value:'Pectoral izquierdo'
       },
       {
-        id:65,
-        nombre:'Pectoral derecho'
+        id:'RIGHT_PECTORAL',
+        value:'Pectoral derecho'
       },
       {
-        id:66,
-        nombre:'Abdomen'
+        id:'ABDOMEN',
+        value:'Abdomen'
       },
       {
-        id:67,
-        nombre:'Admonen lateral derecho'
+        id:'RIGHT_LATERAL_ABDOMEN',
+        value:'Admonen lateral derecho'
       },
       {
-        id:68,
-        nombre:'Admonen lateral izquierdo'
+        id:'LEFT_LATERAL_ABDOMEN',
+        value:'Admonen lateral izquierdo'
       },
       {
-        id:69,
-        nombre:'Zona pelvica'
+        id:'PELVIC_AREA',
+        value:'Zona pelvica'
       },
       {
-        id:70,
-        nombre:'Pelvis izquierda'
-      },
-      {
-        id:71,
-        nombre:'Pelvis derecha'
-      },
-      {
-        id:72,
-        nombre:'Genitales'
+        id:'GENITALS',
+        value:'Genitales'
       }
     ],
     torsoEspalda:[
       {
-        id:73,
-        nombre:'Espalda alta'
+        id:'HIGH_BACK',
+        value:'Espalda alta'
       },
       {
-        id:74,
-        nombre:'Espalda alta izquierda'
+        id:'LEFT_HIGH_BACK',
+        value:'Espalda alta izquierda'
       },
       {
-        id:75,
-        nombre:'Espalda alta derecha'
+        id:'RIGHT_HIGH_BACK',
+        value:'Espalda alta derecha'
       },
       {
-        id:76,
-        nombre:'Espalda media'
+        id:'MEDIUM_BACK',
+        value:'Espalda media'
       },
       {
-        id:77,
-        nombre:'Espalda media izquierda'
+        id:'LEFT_MEDIUM_BACK',
+        value:'Espalda media izquierda'
       },
       {
-        id:78,
-        nombre:'Espalda media derecha'
+        id:'RIGHT_MEDIUM_BACK',
+        value:'Espalda media derecha'
       },
       {
-        id:79,
-        nombre:'Espalda baja'
+        id:'LOWER_BACK',
+        value:'Espalda baja'
       },
       {
-        id:80,
-        nombre:'Espalda baja izquierda'
+        id:'LEFT_LOWER_BACK',
+        value:'Espalda baja izquierda'
       },
       {
-        id:81,
-        nombre:'Espalda baja derecha'
+        id:'RIGHT_LOWER_BACK',
+        value:'Espalda baja derecha'
       },
       {
-        id:82,
-        nombre:'Gluteos'
+        id:'BUTTOCKS',
+        value:'Gluteos'
       },
       {
-        id:83,
-        nombre:'Gluteo izquierdo'
+        id:'LEFT_GLUTEUS',
+        value:'Gluteo izquierdo'
       },
       {
-        id:84,
-        nombre:'Gluteo derecho'
+        id:'RIGHT_GLUTEUS',
+        value:'Gluteo derecho'
       }
     ]
     }

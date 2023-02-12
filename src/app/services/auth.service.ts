@@ -23,7 +23,8 @@ export class AuthService {
     }else {
       this.user= {
         email:"",
-        names:""
+        names:"",
+        user_id:""
       };
     }
    }
