@@ -88,7 +88,7 @@ export class CrearConsultaPage {
 			injury_distribucion: consultaForm.distribucion,
 			body_part: consultaForm.parteDelCuerpoId,
 			user_id: this.authService.user.user_id,
-			type_of_diagnosis:tipoDeDiagnostico
+			type_of_diagnosis:tipoDeDiagnostico,
 		}
 	}
 

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { CasosMedicosService } from './casos-medicos.service';
 import { startWith, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { CasosMedicosInterface, CasosMedicosTableInterface } from 'src/app/interfaces/casos-medicos.interface';
+import { AppService } from 'src/app/config/app.service';
 
 @Component({
   selector: 'app-casos-medicos',
@@ -14,55 +16,16 @@ import { Router } from '@angular/router';
 })
 export class CasosMedicosPage implements OnInit {
 
-  casos=[ {
-    "name": "Will Smith",
-    "descripcion": "descripcion"
-},
-{
-    "name": "Jackline Joy",
-    "descripcion": "descripcion"
-},
-{
-    "name": "Alu Arjun",
-    "descripcion": "descripcion"
-},
-{
-    "name": "Kavitha Kumar",
-    "descripcion": "descripcion"
-},
-{
-    "name": "John Snow",
-    "descripcion": "descripcion",
-},
-{
-    "name": "Priya kanana",
-    "descripcion": "descripcion"
-},
-{
-    "name": "Shri Devi",
-    "descripcion": "descripcion",
-    "country": "descripcion"
-},
-{
-    "name": "Richard Roy",
-    "descripcion": "descripcion"
-},
-{
-    "name": "Sonu Nigam",
-    "descripcion": "descripcion",
-},
-{
-    "name": "Priya Dutt",
-    "descripcion": "descripcion",
-}];
-  filtroCasosMedicos:any=new Observable();
+  casos:CasosMedicosTableInterface[]=[];
+  filtroCasosMedicos:any=new Observable<CasosMedicosTableInterface>();
   casosMedicosForm: FormGroup;
   constructor(private casosMedicosService:CasosMedicosService,
     private authService:AuthService,
     private loadingController: LoadingController,
     private router: Router,
     private alertController: AlertController,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private appService:AppService
     ) {
         this.casosMedicosForm = this.fb.group({
 			casosMedicosCtrl: [null],
@@ -83,7 +46,7 @@ export class CasosMedicosPage implements OnInit {
         const valorFiltro = value.toLowerCase();
         return this.casos.filter(
         casosMedicos => {
-            const filter = casosMedicos?.name.toLowerCase();
+            const filter = casosMedicos?.paciente.nombre.toLowerCase();
             return filter.includes(valorFiltro);
         }
         );
@@ -92,20 +55,22 @@ export class CasosMedicosPage implements OnInit {
 
     }
 
-    verDetalleCasoMedico(id:string){
-        this.router.navigate(['/detalle-consulta', { casoMedicoId: id }]);
+    verDetalleCasoMedico(casoMedico:CasosMedicosTableInterface){
+        this.authService.setCasoMedico(casoMedico);
+        this.router.navigate(['/detalle-consulta', { casoMedicoId: casoMedico.casoMedicoId }]);
     }
 
 
   async ngOnInit() {
         this.busquedaCasosMedicos();
-        /*const loading = await this.loadingController.create();
+        const loading = await this.loadingController.create();
 		await loading.present();
-        this.casosMedicosService.obtenerCasosMedicos(this.authService.user.email)
+        this.casosMedicosService.obtenerCasosMedicos()
         .subscribe({
             next: async (res) => {
                 await loading.dismiss();
-                this.casos=res.data;
+                
+                this.casos=this.convertirCasosMedicosBackendAFrontEnd(res.medical_cases);
             },
             error:async (res) => {
                 await loading.dismiss();
@@ -116,7 +81,26 @@ export class CasosMedicosPage implements OnInit {
                 });
                 await alert.present();
             }}
-        );*/
+        );
+  }
+
+  convertirCasosMedicosBackendAFrontEnd(casosMedicosBackend:CasosMedicosInterface[]):CasosMedicosTableInterface[]{
+    let casosMedicosFront :CasosMedicosTableInterface[]=[];
+    casosMedicosBackend.forEach(casoMedicoBack=>casosMedicosFront.push({
+        tipoDeDiagnostico:casoMedicoBack.type_of_diagnosis,
+        casoMedicoId:casoMedicoBack.uuid,
+        tipoLesion:this.appService.consulta.tiposDeLesion.find(tipoLesion=>tipoLesion.id===casoMedicoBack.type_of_injury),
+        formaLesion:this.appService.consulta.formasDeLesiones.find(forma=>forma.id===casoMedicoBack.type_of_injury),
+        numeroLesiones:this.appService.consulta.numeroDeLesiones.find(lesiones=>lesiones.id===casoMedicoBack.type_of_injury),
+        distribucion:this.appService.consulta.distribucionDeLaLesion.find(distribucion=>distribucion.id===casoMedicoBack.type_of_injury),
+        parteDelCuerpo:this.appService.obtenerParteCuerpoPorId(casoMedicoBack.body_part),
+        paciente: {
+            nombre:casoMedicoBack.patient.name
+        }
+
+    }))
+    return []
+
   }
 
 }

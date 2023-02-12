@@ -16,3 +16,4 @@ export interface ConsultaBackendInterface {
     user_id: string;
     type_of_diagnosis: string;
 }
+

@@ -1,5 +1,6 @@
 import { Injectable, } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { IDValueInterface } from '../interfaces/id-value.interface';
 import { PartesCuerpoInterface } from '../interfaces/partes-cuerpo.interface';
 import { PerfilDermatologicoInterface } from '../interfaces/perfil-dermatologico.interface';
 
@@ -472,6 +473,21 @@ export class AppService {
       }
     ]
     }
+  }
+
+  obtenerConsultaPorId(nombreConsulta:string,id:string){
+    const consulta = this.consulta[nombreConsulta as keyof typeof this.consulta]
+    return consulta.find((obj:any)=>obj.id===id);
+  }
+
+  obtenerParteCuerpoPorId(id:string){
+    let parteCuerpo:IDValueInterface | undefined;
+    Object.keys(this.partesCuerpo)
+    .forEach((parte)=>{
+      const partes = this.partesCuerpo[parte as keyof typeof this.partesCuerpo]
+      parteCuerpo=partes.find(p=>p.id===id);
+    });
+    return parteCuerpo;
   }
   
   

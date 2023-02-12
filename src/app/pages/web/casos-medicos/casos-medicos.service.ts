@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CasosMedicoResponseInterface } from 'src/app/interfaces/casos-medicos.interface';
 import { environment } from 'src/environments/environment';
 
 
@@ -13,7 +14,7 @@ export class CasosMedicosService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerCasosMedicos(medicoId:string):Observable<any>{
-    return this.http.post<any>(API_AUTH_URL,{doctorId:medicoId});
+  obtenerCasosMedicos():Observable<CasosMedicoResponseInterface>{
+    return this.http.get<CasosMedicoResponseInterface>(API_AUTH_URL);
   }
 }
