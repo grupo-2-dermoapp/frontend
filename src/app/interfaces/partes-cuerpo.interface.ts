@@ -1,23 +1,21 @@
-export interface PartesCuerpoInterface {
-    cabezaFrente:ParteCuerpoInterface[],
-    cabezaEspalda:ParteCuerpoInterface[],
-    brazoIzqFrente:ParteCuerpoInterface[],
-    brazoIzqEspalda:ParteCuerpoInterface[],
-    brazoDerFrente:ParteCuerpoInterface[],
-    brazoDerEspalda:ParteCuerpoInterface[],
-    pieIzqFrente:ParteCuerpoInterface[],
-    pieIzqEspalda:ParteCuerpoInterface[],
-    pieDerFrente:ParteCuerpoInterface[],
-    pieDerEspalda:ParteCuerpoInterface[],
-    piernaIzqFrente:ParteCuerpoInterface[],
-    piernaIzqEspalda:ParteCuerpoInterface[],
-    piernaDerFrente:ParteCuerpoInterface[],
-    piernaDerEspalda:ParteCuerpoInterface[],
-    torsoFrente:ParteCuerpoInterface[],
-    torsoEspalda:ParteCuerpoInterface[]
+import { IDValueInterface } from "./id-value.interface"
 
-}
-interface ParteCuerpoInterface {
-    id: number,
-    nombre: string
+export interface PartesCuerpoInterface {
+    cabezaFrente:IDValueInterface[],
+    cabezaEspalda:IDValueInterface[],
+    brazoIzqFrente:IDValueInterface[],
+    brazoIzqEspalda:IDValueInterface[],
+    brazoDerFrente:IDValueInterface[],
+    brazoDerEspalda:IDValueInterface[],
+    pieIzqFrente:IDValueInterface[],
+    pieIzqEspalda:IDValueInterface[],
+    pieDerFrente:IDValueInterface[],
+    pieDerEspalda:IDValueInterface[],
+    piernaIzqFrente:IDValueInterface[],
+    piernaIzqEspalda:IDValueInterface[],
+    piernaDerFrente:IDValueInterface[],
+    piernaDerEspalda:IDValueInterface[],
+    torsoFrente:IDValueInterface[],
+    torsoEspalda:IDValueInterface[]
+
 }

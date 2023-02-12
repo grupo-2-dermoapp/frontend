@@ -9,7 +9,7 @@ describe('RegistroMedicoService', () => {
 
   let service: RegistroMedicoService;
   let httpMock: HttpTestingController;
-  const API_REGISTRO_MEDICO_ENDPOINT = environment.API.API_URL + environment.API.API_REGISTRO_MEDICO_ENDPOINT;
+  const API_REGISTRO_MEDICO_ENDPOINT = environment.API.AUTH_API_URL + environment.API.API_REGISTRO_MEDICO_ENDPOINT;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

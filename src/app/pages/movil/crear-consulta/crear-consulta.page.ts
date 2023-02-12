@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/config/app.service';
 import { CrearConsultaService } from './crear-consulta.service';
 import { CuerpoPage } from '../cuerpo/cuerpo.page';
+import { ConsultaBackendInterface, ConsultaFormInterface } from 'src/app/interfaces/consulta.interface';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-crear-consulta',
   templateUrl: './crear-consulta.page.html',
   styleUrls: ['./crear-consulta.page.scss'],
 })
-export class CrearConsultaPage implements OnInit {
+export class CrearConsultaPage {
 
   consulta: FormGroup;
 
@@ -22,7 +24,8 @@ export class CrearConsultaPage implements OnInit {
 		private loadingController: LoadingController,
 		public app: AppService,
 		private crearConsultaService:CrearConsultaService,
-		private modalCtrl: ModalController
+		private modalCtrl: ModalController,
+		private authService:AuthService
 	) {
     this.consulta = this.fb.group({
 		tipoLesion: [null, [Validators.required]],
@@ -33,10 +36,6 @@ export class CrearConsultaPage implements OnInit {
 		parteDelCuerpoId: [null]
 		});
   }
-
-	ngOnInit() {
-		
-	}
 
 	async crearConsulta() {
 		this.consulta.markAsDirty();
@@ -59,25 +58,55 @@ export class CrearConsultaPage implements OnInit {
 			  {
 				label: 'Auto-generado',
 				type: 'radio',
-				value: 'auto',
+				value: 'AUTO',
 			  },
 			  {
 				label: 'Medico',
 				type: 'radio',
-				value: 'med',
+				value: 'DOCTOR',
 			  }
 			],
 		  });
 		  
 		  await alert.present();
 		  const { data } = await alert.onDidDismiss();
-		  console.log('Alert',data.values);
+		  console.log(data)
 		  const loading = await this.loadingController.create();
 			await loading.present();
-			this.crearConsultaService.crearConulta(this.consulta.value)
-			.subscribe(()=>{
-				this.router.navigateByUrl('/inicio', { replaceUrl: true });
-				loading.dismiss()});
+			this.crearConsultaService.crearConsulta(
+				this.transformarParaBackend(this.consulta.value,data.values))
+			.subscribe({
+				next: async (res) => {
+					await loading.dismiss();
+					const alert = await this.alertController.create({
+						header: 'Creación de caso medico',
+						message: 'Creación de caso medico exitoso',
+						buttons: ['Aceptar']
+					});
+					await alert.present();
+					this.router.navigateByUrl('/inicio', { replaceUrl: true });
+				},
+				error: async (res) => {
+					await loading.dismiss();
+					const alert = await this.alertController.create({
+						header: 'Creación de caso medico',
+						message: 'Hubo un error creando el caso medico',
+						buttons: ['Aceptar']
+					});
+					await alert.present();
+				}});
+	}
+
+	transformarParaBackend(consultaForm:ConsultaFormInterface,tipoDeDiagnostico:string):ConsultaBackendInterface{
+		return {
+			type_of_injury:consultaForm.tipoLesion,
+			shape_of_injury:consultaForm.formaLesion,
+			number_of_injuries: consultaForm.numeroLesiones,
+			injury_distribucion: consultaForm.distribucion,
+			body_part: consultaForm.parteDelCuerpoId,
+			patient_uuid: this.authService.user.user_id,
+			type_of_diagnosis:tipoDeDiagnostico
+		}
 	}
 
 	async escogerParteDelCuerpo(){
@@ -91,7 +120,7 @@ export class CrearConsultaPage implements OnInit {
 	  
 		  if (role === 'escoger') {
 			console.log("Parte del cuerpo ",data);
-			this.consulta.get('parteDelCuerpo')?.setValue(data.nombre)
+			this.consulta.get('parteDelCuerpo')?.setValue(data.value)
 			this.consulta.get('parteDelCuerpoId')?.setValue(data.id)
 		  }
 
