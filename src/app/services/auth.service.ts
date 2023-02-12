@@ -24,7 +24,7 @@ export class AuthService {
       this.user= {
         email:"",
         names:"",
-        user_id:""
+        uuid:""
       };
     }
    }
