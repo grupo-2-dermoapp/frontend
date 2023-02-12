@@ -88,7 +88,7 @@ export class CasosMedicosPage implements OnInit {
 
   convertirCasosMedicosBackendAFrontEnd(casosMedicosBackend:CasosMedicosInterface[]):CasosMedicosTableInterface[]{
     let casosMedicosFront :CasosMedicosTableInterface[]=[];
-    casosMedicosBackend.forEach(casoMedicoBack=>casosMedicosFront.push({
+    casosMedicosBackend.forEach((casoMedicoBack,i)=>casosMedicosFront.push({
         tipoDeDiagnostico:casoMedicoBack.type_of_diagnosis,
         casoMedicoId:casoMedicoBack.uuid,
         tipoLesion:this.appService.obtenerConsultaPorId('tiposDeLesion',casoMedicoBack.type_of_injury),
@@ -97,7 +97,7 @@ export class CasosMedicosPage implements OnInit {
         distribucion:this.appService.obtenerConsultaPorId('distribucionDeLaLesion',casoMedicoBack.injury_distribucion),
         parteDelCuerpo:this.appService.obtenerParteCuerpoPorId(casoMedicoBack.body_part),
         paciente: {
-            nombre:casoMedicoBack?.patient?.name
+            nombre:"Paciente "+i//casoMedicoBack?.patient?.name
         }
 
     }))
