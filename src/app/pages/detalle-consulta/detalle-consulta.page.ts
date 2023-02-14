@@ -138,7 +138,8 @@ export class DetalleConsultaPage implements OnInit {
 		name_of_injury:diagnosticoForm.nombreLesion,
 		diagnosis:diagnosticoForm.diagnostico,
 		treatment:diagnosticoForm.tratamiento,
-		medical_case_uuid:this.casoMedicoId
+		medical_case_uuid:this.casoMedicoId,
+		doctor_uuid:this.authService.user.uuid
 	}
   }
 

@@ -10,7 +10,7 @@ export interface CasosMedicosInterface {
     body_part: string,
     type_of_injury: string,
     patient:{
-        name:string;
+        names:string;
     };
 }
 
