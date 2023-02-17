@@ -97,7 +97,7 @@ export class CasosMedicosPage implements OnInit {
         distribucion:this.appService.obtenerConsultaPorId('distribucionDeLaLesion',casoMedicoBack.injury_distribucion),
         parteDelCuerpo:this.appService.obtenerParteCuerpoPorId(casoMedicoBack.body_part),
         paciente: {
-            nombre:"Paciente "+i//casoMedicoBack?.patient?.name
+            nombre: casoMedicoBack?.patient?.names
         }
 
     }))
