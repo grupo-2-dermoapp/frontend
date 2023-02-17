@@ -36,4 +36,29 @@ describe('AppService', () => {
     expect(service.isPhone).toBeFalse();
   });
 
+  it('should get all models data', () => {
+    service = TestBed.inject(AppService);
+    expect(service.fitzpatrick).toBeTruthy();
+    expect(service.consulta).toBeTruthy();
+    expect(service.partesCuerpo).toBeTruthy();
+    expect(service.fitzpatrick).toBeTruthy();
+  });
+
+
+  it('should get consulta model data by ID', () => {
+    service = TestBed.inject(AppService);
+    const nombreConsulta = 'formasDeLesiones';
+    const idConsulta = 'ROLLED_UP';
+    const consultaLoaded = service.obtenerConsultaPorId(nombreConsulta, idConsulta);
+    expect(consultaLoaded?.id).toEqual(idConsulta);
+  });
+
+  it('should get ParteCuerpo model data by ID', () => {
+    service = TestBed.inject(AppService);
+    const idParteCuerpo = 'LEFT_EYE';
+    const parteCuerpoLoaded = service.obtenerParteCuerpoPorId(idParteCuerpo);
+    // Si cambia el modelo de datos hay que ajustar el test
+    expect(parteCuerpoLoaded).toEqual('Ojo izquierdo');
+  });
+
 });
