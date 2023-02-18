@@ -2,7 +2,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { RegistroMedicoFormInterface } from 'src/app/interfaces/registro-medico.interface';
 import { environment } from 'src/environments/environment';
-
 import { RegistroMedicoService } from './registro-medico.service';
 
 describe('RegistroMedicoService', () => {
@@ -17,7 +16,6 @@ describe('RegistroMedicoService', () => {
     });
     service = TestBed.inject(RegistroMedicoService);
     httpMock = TestBed.inject(HttpTestingController);
-
   });
 
   it('should be created', () => {
@@ -42,4 +40,5 @@ describe('RegistroMedicoService', () => {
     expect(req.request.method).toBe("POST");
     req.flush('');
   });
+
 });
