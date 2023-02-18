@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { AlertController, IonicModule, LoadingController } from '@ionic/angular';
 import { Observable, of, throwError } from 'rxjs';
-
 import { RegistroMedicoPage } from './registro-medico.page';
 import { RegistroMedicoService } from './registro-medico.service';
 
@@ -96,7 +95,6 @@ describe('RegistroMedicoPage', () => {
   });
 
   it('should save pdf file', () => {
-
     file.size = 10;
     file.type = 'application/pdf';
     files.target.files = [file];
@@ -112,7 +110,6 @@ describe('RegistroMedicoPage', () => {
   });
 
   it('should validate correct form', async () => {
-
     component.registro.setValue({
       nombre: 'test',
       email: 'test@test.com',
@@ -127,7 +124,6 @@ describe('RegistroMedicoPage', () => {
   });
 
   it('should validate correct form failing observer', async () => {
-
     component.registro.setValue({
       nombre: 'test',
       email: 'test@test.com',
@@ -148,6 +144,5 @@ describe('RegistroMedicoPage', () => {
     await component.registrarse();
     expect(registroMedicoServiceMock.registro).toHaveBeenCalled();
   });
-
 
 });
