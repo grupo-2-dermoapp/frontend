@@ -35,7 +35,7 @@ describe('LoginPage', () => {
 
     alertControllerMock = jasmine.createSpyObj('AlertControllerSpy', ['create', 'present']);
 
-    authServiceMock = jasmine.createSpyObj(['login']);
+    authServiceMock = jasmine.createSpyObj(['login', 'setUser']);
 
     TestBed.configureTestingModule({
       declarations: [ LoginPage ],
@@ -59,24 +59,24 @@ describe('LoginPage', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('Should pass the login with valid credentials', async() => {
+  it('Should pass the login with valid credentials', async() => {
 
-  //   // Configurar Spies
-  //   loadingControllerMock.create.and.returnValue(Promise.resolve(loadingMock));
-  //   authServiceMock.login.and.returnValue(of('Mock Data Login'));
+    // Configurar Spies
+    loadingControllerMock.create.and.returnValue(Promise.resolve(loadingMock));
+    authServiceMock.login.and.returnValue(of('Mock Data Login'));
 
-  //   const credentials = {
-  //     email: 'Test@test.com',
-  //     password: '123456'
-  //   }
+    const credentials = {
+      email: 'Test@test.com',
+      password: '123456'
+    }
 
-  //   component.credentials.setValue(credentials);
+    component.credentials.setValue(credentials);
 
-  //   spyOn(router, 'navigateByUrl');
-  //   await component.login();
-  //   expect(router.navigateByUrl).toHaveBeenCalled();
+    spyOn(router, 'navigateByUrl');
+    await component.login();
+    expect(router.navigateByUrl).toHaveBeenCalled();
 
-  // });
+  });
 
   it('Should reject login with wrong credentials', async() => {
 
