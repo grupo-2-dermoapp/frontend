@@ -1,10 +1,12 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AlertController, IonicModule, LoadingController, ModalController } from '@ionic/angular';
+import { of, throwError } from 'rxjs';
 import { RegistroUsuarioFormInterface } from 'src/app/interfaces/registro-usuario.interface';
-
 import { RegistroPage } from './registro.page';
+import { RegistroService } from './registro.service';
 
 describe('RegistroPage', () => {
   let component: RegistroPage;
@@ -16,6 +18,8 @@ describe('RegistroPage', () => {
   let loadingMock: any;
   let modalControllerMock: any;
   let modalMock: any;
+  let registroServiceMock: any;
+  let routerMock: any;
 
   beforeEach(waitForAsync(() => {
     // Mocks de servicios
@@ -41,6 +45,11 @@ describe('RegistroPage', () => {
     modalControllerMock = jasmine.createSpyObj(['create', 'present']);
     modalControllerMock.create.and.returnValue(Promise.resolve(modalMock));
 
+    registroServiceMock = jasmine.createSpyObj(['registro']);
+
+    routerMock = jasmine.createSpyObj(['navigateByUrl']);
+
+
     TestBed.configureTestingModule({
       declarations: [ RegistroPage ],
       imports: [IonicModule.forRoot(), HttpClientTestingModule],
@@ -49,6 +58,8 @@ describe('RegistroPage', () => {
         { provide: LoadingController, useValue: loadingControllerMock },
         { provide: AlertController, useValue: alertControllerMock },
         { provide: ModalController, useValue: modalControllerMock },
+        { provide: RegistroService, useValue: registroServiceMock },
+        { provide: Router, useValue: routerMock },
       ]
     }).compileComponents();
 
@@ -91,5 +102,70 @@ describe('RegistroPage', () => {
     expect(backendDTO.location).toBe(data.residencia);
     expect(backendDTO.password).toBe(data.password);
   });
+
+  it('should return dermatological profile', async() => {
+     component.registro.controls['perfilDematologico'].setValue([1, 2, 3]);
+     let dermatologicalProfileLoaded: any = component.perfilDematologico;
+     expect(dermatologicalProfileLoaded.value).toEqual([1,2,3]);
+  });
+
+  it('should load terms and conditions alert', async() => {
+    await component.verTerminosYCondiciones();
+    expect(alertMock.present).toHaveBeenCalled();
+  });
+
+  it('should stop registry on invalid form', async() => {
+    await component.registrarse();
+    // debe presentar la alerta de crear perfil
+    expect(alertMock.present).toHaveBeenCalled();
+  });
+
+  it('should make registry on valid form', fakeAsync(async() => {
+    component.registro.setValue({
+      email: 'test@test.com',
+      nombre: 'nombre test',
+      edad: 19,
+      residencia: 'residencia test',
+      validacionPerfilDematologico: true,
+      perfilDematologico: [1],
+      password: 'password',
+      passwordConfirmation: 'password',
+      terminosCondiciones: true
+    })
+
+    registroServiceMock.registro.and.returnValue(of(true));
+    await component.registrarse();
+    tick();
+    // debe navegar a login
+    expect(routerMock.navigateByUrl).toHaveBeenCalled();
+  }));
+
+  it('should show alert on service error at registry', fakeAsync(async() => {
+    component.registro.setValue({
+      email: 'test@test.com',
+      nombre: 'nombre test',
+      edad: 19,
+      residencia: 'residencia test',
+      validacionPerfilDematologico: true,
+      perfilDematologico: [1],
+      password: 'password',
+      passwordConfirmation: 'password',
+      terminosCondiciones: true
+    })
+
+    registroServiceMock.registro.and.returnValue(
+      throwError(() => {
+        return {
+          error: {
+            error: ''
+          }
+        }
+      })
+    );
+    await component.registrarse();
+    tick();
+    // debe mostrar alerta
+    expect(alertMock.present).toHaveBeenCalled();
+  }));
 
 });
