@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
   API: {
-    AUTH_API_URL: 'http://34.120.199.225/dermoapp/auth/v1/',
-    MEDICAL_CASES_URL: 'http://34.120.199.225/dermoapp/medical-cases/v1/',
+    AUTH_API_URL: 'https://bhuux5lyc1.execute-api.us-east-2.amazonaws.com/dermoapp/auth/v1/',
+    MEDICAL_CASES_URL: 'https://bhuux5lyc1.execute-api.us-east-2.amazonaws.com/dermoapp/medical-cases/v1/',
     API_PERFIL_DERMATOLOGICO_ENDPOINT: 'dermo-profile-register',
     API_REGISTRO_USUARIO_ENDPOINT: 'patient-register',
     API_LOGIN_USUARIO_ENDPOINT: 'patient-login',
