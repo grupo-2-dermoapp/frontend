@@ -9,7 +9,7 @@
     DermoApp
   </h1>
   <div class="top-space" [ngClass]="{'web-login':!isPhone}">
-	<form (ngSubmit)="login()" [formGroup]="credentials">
+	<form id="login-form" (ngSubmit)="login()" [formGroup]="credentials">
 		<div class="input-group">
 			<ion-item>
         		<ion-label>Usuario</ion-label>
@@ -34,7 +34,7 @@
       		<ion-button id="login-button" type="submit" expand="block">
         		Iniciar sesión
       		</ion-button>
-      		<a id="registro" type="button" [routerLink]="registerPage" expand="block" color="light" fill="clear" >
+      		<a id="registro" type="button" (click)="goToRegister()" expand="block" color="light" fill="clear" >
         		Registrarse
       		</a>
     	</div>

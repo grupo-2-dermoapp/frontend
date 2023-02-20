@@ -35,7 +35,7 @@ describe('LoginPage', () => {
 
     alertControllerMock = jasmine.createSpyObj('AlertControllerSpy', ['create', 'present']);
 
-    authServiceMock = jasmine.createSpyObj(['login']);
+    authServiceMock = jasmine.createSpyObj(['login', 'setUser']);
 
     TestBed.configureTestingModule({
       declarations: [ LoginPage ],

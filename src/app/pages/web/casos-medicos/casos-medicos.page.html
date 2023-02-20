@@ -1,6 +1,6 @@
 <ion-header >
   <ion-toolbar>
-    <ion-title  style="color: #fff!important;">Casos medicos</ion-title>
+    <ion-title>Casos medicos</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -8,18 +8,36 @@
 </ion-header>
 
 <ion-content class="ion-margin">
+  <form [formGroup]="casosMedicosForm">
+    <ion-item>
+      <ion-label>Buscar Casos Medicos</ion-label>
+      <ion-input type="text" placeholder="Escriba palabra clave de busqueda" formControlName="casosMedicosCtrl"></ion-input>
+    </ion-item>
+  </form>
+
+
   <ion-grid class="ion-margin">
     <ion-row>
       <ion-col>No.</ion-col>
       <ion-col>Nombre paciente</ion-col>
-      <ion-col>Descripción</ion-col>
+      <ion-col>Tipo</ion-col>
+      <ion-col>Forma</ion-col>
+      <ion-col>Número</ion-col>
+      <ion-col>Distribución</ion-col>
+      <ion-col>Parte del cuerpo</ion-col>
       <ion-col>Seleccionar</ion-col>
     </ion-row>
-    <ion-row *ngFor="let caso of casos; index as i">
+    <ion-row *ngFor="let caso of filtroCasosMedicos | async; index as i" >
       <ion-col>{{ i + 1 }}</ion-col>
-      <ion-col>{{ caso.name }}</ion-col>
-      <ion-col>{{ caso.descripcion }}</ion-col>
-      <ion-col><ion-button [routerLink]="'/detalle-consulta'">Seleccionar</ion-button></ion-col>
+      <ion-col>{{ caso.paciente.nombre }}</ion-col>
+      <ion-col>{{ caso.tipoLesion.value }}</ion-col>
+      <ion-col>{{ caso.formaLesion.value }}</ion-col>
+      <ion-col>{{ caso.numeroLesiones.value }}</ion-col>
+      <ion-col>{{ caso.distribucion.value }}</ion-col>
+      <ion-col>{{ caso.parteDelCuerpo }}</ion-col>
+      <ion-col>
+        <ion-button expand="block" (click)="verDetalleCasoMedico(caso)" >Seleccionar</ion-button>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginPage  {
 
   credentials: FormGroup;
-  registerPage ='';
+  registerPage:any[] =[];
   isPhone = false;
 	constructor(
 		private fb: FormBuilder,
@@ -28,7 +28,7 @@ export class LoginPage  {
 			password: [null, [Validators.required, Validators.minLength(6),Validators.maxLength(24)]]
 		});
 		this.isPhone=this.appService.isPhone;
-		this.registerPage = this.isPhone ?'/registro': '/registro-medico'
+		this.registerPage = this.isPhone ?['/registro']:['/registro-medico'] 
   }
 
 
@@ -39,7 +39,7 @@ export class LoginPage  {
 				this.credentials.get(control)?.markAllAsTouched();
 			}
 			);
-      
+
 		}else {
 			const loading = await this.loadingController.create();
 			await loading.present();
@@ -47,6 +47,8 @@ export class LoginPage  {
 			this.authService.login(this.credentials.value).subscribe({
 				next: async (res) => {
 					await loading.dismiss();
+					console.log('Resp',res.user);
+          			this.authService.setUser(res.user);
 					this.router.navigateByUrl('/inicio', { replaceUrl: true });
 				},
 				error:async (res) => {
@@ -60,7 +62,11 @@ export class LoginPage  {
 				}}
 			);
 		}
-		
+
+	}
+
+	goToRegister(){
+		this.router.navigate(this.registerPage, { replaceUrl: true });
 	}
 
 	get email() {

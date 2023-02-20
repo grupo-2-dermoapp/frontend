@@ -5,7 +5,7 @@ import { PerfilDermatologicoBackendInterface } from 'src/app/interfaces/perfil-d
 import { environment } from 'src/environments/environment';
 
 
-const API_AUTH_URL = environment.API.API_URL + environment.API.API_PERFIL_DERMATOLOGICO_ENDPOINT;
+const API_AUTH_URL = environment.API.AUTH_API_URL + environment.API.API_PERFIL_DERMATOLOGICO_ENDPOINT;
 @Injectable({
   providedIn: 'root'
 })

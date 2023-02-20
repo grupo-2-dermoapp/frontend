@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RegistroMedicoFormInterface } from 'src/app/interfaces/registro-medico.interface';
 
-const API_AUTH_URL = environment.API.API_URL + environment.API.API_REGISTRO_MEDICO_ENDPOINT;
+const API_AUTH_URL = environment.API.AUTH_API_URL + environment.API.API_REGISTRO_MEDICO_ENDPOINT;
 
 
 @Injectable({

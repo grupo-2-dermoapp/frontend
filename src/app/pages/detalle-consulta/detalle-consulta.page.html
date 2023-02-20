@@ -1,0 +1,146 @@
+<ion-header >
+  <ion-toolbar >
+    <ion-title>Detalle consulta</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngClass]="{'web-view':!isPhone}">
+    <div class="center titulo-consulta">
+      <strong>Consulta #1234</strong>
+    </div>
+    <br>
+    <form id="consulta-form" [formGroup]="consulta">
+      <div class="input-group">
+        <ion-item>
+          <ion-label>Tipos de lesión:</ion-label> 
+        </ion-item>
+        <ion-item>
+          <ion-select formControlName="tipoLesion" placeholder="Seleccione su tipo de lesión" class="form-item">
+            <ion-select-option *ngFor="let tipoDeLeasion of appService.consulta.tiposDeLesion" [value]="tipoDeLeasion.id">
+              {{tipoDeLeasion.value}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div>
+          <ion-item>
+            <ion-label>Forma lesión</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-select formControlName="formaLesion" placeholder="Seleccione la forma de la lesión" class="form-item">
+              <ion-select-option *ngFor="let forma of appService.consulta.formasDeLesiones" [value]="forma.id">
+                {{forma.value}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div>
+          <ion-item>
+            <ion-label class="question-label">Número de lesiones</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-select formControlName="numeroLesiones" placeholder="Seleccione la cantidad de lesiones" class="form-item">
+              <ion-select-option *ngFor="let numeroLesion of appService.consulta.numeroDeLesiones" [value]="numeroLesion.id">
+                {{numeroLesion.value}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        <div>
+          <ion-item>
+            <ion-label class="question-label">Distribución</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-select formControlName="distribucion" placeholder="Seleccione la distribución de la lesión" class="form-item">
+              <ion-select-option *ngFor="let distribucion of appService.consulta.distribucionDeLaLesion" [value]="distribucion.id">
+                {{distribucion.value}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+
+        <div>
+          <ion-item>
+            <ion-label>
+              Parte del cuerpo
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-input  placeholder="" formControlName="parteDelCuerpo"></ion-input>
+          </ion-item>
+        </div>
+
+        <ion-toolbar *ngIf="!isPhone && !casoMedicoAceptado?.value">
+          <ion-buttons slot="secondary">
+            <ion-button id="cancelar-button" color="danger" fill="solid" routerLink="/casos-medicos">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="primary">
+            <ion-button id="aceptar-caso-button" color="primary" fill="solid" (click)="aceptarCasoMedico()">Aceptar caso</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </div>
+    </form>
+
+    <br>
+    <div class="input-group" *ngIf="casoMedicoAceptado?.value">
+      <div id="explicacion" style="text-align:center;">
+        <strong class="capitalize">Crear diagnóstico</strong>
+    </div>
+    <br>
+
+    <form id="diagnostico-form" (ngSubmit)="crearDiagnostico()" [formGroup]="diagnosticoForm">
+      <ion-item>
+        <ion-label class="question-label">Nombre lesión</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-textarea formControlName="nombreLesion" [autoGrow]="true" placeholder="Escriba el nombre de la lesión">
+      </ion-textarea>
+      </ion-item>
+      <div *ngIf="(nombreLesion?.dirty || nombreLesion?.touched) && nombreLesion?.errors" class="form-error">
+				<span *ngIf="nombreLesion?.errors?.['required']">El nombre de la lesión es requerida</span>
+				<span *ngIf="nombreLesion?.errors?.['minlength']">El nombre de la lesióntiene que tener mínimo 6 caracteres</span>
+				<span *ngIf="nombreLesion?.errors?.['maxlength']">El nombre de la lesióntiene que tener máximo 24 caracteres</span>
+			</div>
+
+      <ion-item>
+        <ion-label class="question-label">Diagnóstico</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-textarea formControlName="diagnostico" [autoGrow]="true" placeholder="Escriba el diagnóstico">
+      </ion-textarea>
+      </ion-item>
+      <div *ngIf="(diagnostico?.dirty || diagnostico?.touched) && diagnostico?.errors" class="form-error">
+				<span *ngIf="diagnostico?.errors?.['required']">El diagnóstico es requerido</span>
+				<span *ngIf="diagnostico?.errors?.['minlength']">El diagnóstico tiene que tener mínimo 20 caracteres</span>
+				<span *ngIf="diagnostico?.errors?.['maxlength']">El diagnóstico tiene que tener máximo 200 caracteres</span>
+			</div>
+
+      <ion-item>
+        <ion-label class="question-label">Tratamiento</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-textarea formControlName="tratamiento" [autoGrow]="true" placeholder="Escriba el tratamiento">
+      </ion-textarea>
+      </ion-item>
+      <div *ngIf="(tratamiento?.dirty || tratamiento?.touched) && tratamiento?.errors" class="form-error">
+				<span *ngIf="tratamiento?.errors?.['required']">El tratamiento es requerido</span>
+				<span *ngIf="tratamiento?.errors?.['minlength']">El tratamiento tiene que tener mínimo 20 caracteres</span>
+				<span *ngIf="tratamiento?.errors?.['maxlength']">El tratamiento tiene que tener máximo 200 caracteres</span>
+			</div>
+
+      <ion-toolbar *ngIf="!isPhone">
+        <ion-buttons slot="primary">
+          <ion-button id="crear-diagnostico-button" type="submit" color="primary" fill="solid" >Enviar diagnóstico</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </form>
+
+    </div>
+  </div>
+</ion-content>
+<ion-footer  *ngIf="isPhone">
+  <div class="center" style="text-align: center;">
+    <ion-button type="submit" expand="block" [routerLink]="'/consultas'">
+      Guardar cambios
+    </ion-button>
+  </div>
+</ion-footer>
