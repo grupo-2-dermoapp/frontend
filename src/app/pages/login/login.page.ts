@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginPage  {
 
   credentials: FormGroup;
-  registerPage ='';
+  registerPage:any[] =[];
   isPhone = false;
 	constructor(
 		private fb: FormBuilder,
@@ -28,7 +28,7 @@ export class LoginPage  {
 			password: [null, [Validators.required, Validators.minLength(6),Validators.maxLength(24)]]
 		});
 		this.isPhone=this.appService.isPhone;
-		this.registerPage = this.isPhone ?'/registro': '/registro-medico'
+		this.registerPage = this.isPhone ?['/registro']:['/registro-medico'] 
   }
 
 
@@ -63,6 +63,10 @@ export class LoginPage  {
 			);
 		}
 
+	}
+
+	goToRegister(){
+		this.router.navigate(this.registerPage, { replaceUrl: true });
 	}
 
 	get email() {
