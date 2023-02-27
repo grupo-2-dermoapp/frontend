@@ -44,7 +44,7 @@ export class HistoriasClinicasPage implements OnInit {
         );
   }
 
-  convertirCasosMedicosBackendAFrontEnd(historiasClinicas:HistoriaClinicaBackendInterface[]):HistoriaClinicaFrontendInterface[]{ 
+  convertirCasosMedicosBackendAFrontEnd(historiasClinicas:HistoriaClinicaBackendInterface[]):HistoriaClinicaFrontendInterface[]{
     const historiasClinicasFrontend:HistoriaClinicaFrontendInterface[] = [];
     historiasClinicas.forEach((historiaClinica)=>
     historiasClinicasFrontend.push({
