@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConsultaResponseInterface } from 'src/app/interfaces/consulta.interface';
-import { DiagnosticoBackendInterface } from 'src/app/interfaces/diagnostico.interface';
+import {
+  DiagnosticoBackendInterface,
+  DiagnosticoBackendResponseInterface,
+} from 'src/app/interfaces/diagnostico.interface';
 import { ResponseInterface } from 'src/app/interfaces/response.interface';
 import { environment } from 'src/environments/environment';
 
@@ -18,7 +21,7 @@ export class DetalleConsultaService {
     diagnostico: DiagnosticoBackendInterface
   ): Observable<keyof ResponseInterface> {
     return this.http.post<keyof ResponseInterface>(
-      API_URL + environment.API.API_CREAR_DIAGNOSTICO_ENDPOINT,
+      API_URL + environment.API.API_DIAGNOSTICO_ENDPOINT,
       diagnostico
     );
   }
@@ -26,6 +29,14 @@ export class DetalleConsultaService {
   obtenerConsulta(idConsulta: string): Observable<ConsultaResponseInterface> {
     return this.http.get<ConsultaResponseInterface>(
       API_URL + environment.API.API_CASOS_MEDICOS_ENDPOINT + '/' + idConsulta
+    );
+  }
+
+  obtenerDiagnostico(
+    idConsulta: string
+  ): Observable<DiagnosticoBackendResponseInterface> {
+    return this.http.get<DiagnosticoBackendResponseInterface>(
+      API_URL + environment.API.API_DIAGNOSTICO_ENDPOINT + '/' + idConsulta
     );
   }
 }

@@ -38,7 +38,7 @@
   <ion-list id="lista-consultas-medicas">
     <ion-item *ngFor="let casoMedico of historiaClinica?.casosMedicos; let i = index"> 
       <ion-label>Caso medico {{i+1}}</ion-label>
-      <ion-button slot="end" [routerLink]="['/detalle-consulta',{ casoMedicoId: casoMedico}]">Ver detalle</ion-button>
+      <ion-button slot="end" id="caso-medico-{{i+1}}" [routerLink]="['/detalle-consulta',{ casoMedicoId: casoMedico}]">Ver detalle</ion-button>
     </ion-item>
   </ion-list>
 </div>
