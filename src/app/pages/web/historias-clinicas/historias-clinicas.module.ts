@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,8 +13,9 @@ import { HistoriasClinicasPage } from './historias-clinicas.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    HistoriasClinicasPageRoutingModule
+    HistoriasClinicasPageRoutingModule,
+    ReactiveFormsModule,
   ],
-  declarations: [HistoriasClinicasPage]
+  declarations: [HistoriasClinicasPage],
 })
 export class HistoriasClinicasPageModule {}
