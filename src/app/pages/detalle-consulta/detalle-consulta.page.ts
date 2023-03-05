@@ -22,6 +22,7 @@ export class DetalleConsultaPage implements OnInit {
 
   diagnosticoForm: FormGroup;
   casoMedicoId: string = '';
+  diagnosticoCreado = false;
 
   constructor(
     public appService: AppService,
@@ -70,6 +71,7 @@ export class DetalleConsultaPage implements OnInit {
               ?.setValue(
                 this.appService.obtenerParteCuerpoPorId(casoMedico.body_part)
               );
+            this.obetenerDiagnosticoCasoMedico(this.casoMedicoId);
           }
         },
         error: (res) => {
@@ -109,6 +111,28 @@ export class DetalleConsultaPage implements OnInit {
   }
 
   ngOnInit() {}
+
+  obetenerDiagnosticoCasoMedico(casoMedicoId: string) {
+    this.detalleConsultaService.obtenerDiagnostico(casoMedicoId).subscribe({
+      next: (response) => {
+        console.log('Diagnostico', response);
+        const diagnostico = response['medical diagnostic'];
+        if (diagnostico) {
+          this.nombreLesion?.setValue(diagnostico.name_of_injury);
+          this.nombreLesion?.disable();
+          this.diagnostico?.setValue(diagnostico.diagnosis);
+          this.diagnostico?.disable();
+          this.tratamiento?.setValue(diagnostico.treatment);
+          this.tratamiento?.disable();
+          this.casoMedicoAceptado?.setValue(true);
+          this.diagnosticoCreado = true;
+        }
+      },
+      error: (res) => {
+        this.erroObteniendoCasoMedico();
+      },
+    });
+  }
 
   async erroObteniendoCasoMedico() {
     const alert = await this.alertController.create({

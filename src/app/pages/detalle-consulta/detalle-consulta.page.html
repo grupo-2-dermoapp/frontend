@@ -127,7 +127,7 @@
 				<span *ngIf="tratamiento?.errors?.['maxlength']">El tratamiento tiene que tener máximo 200 caracteres</span>
 			</div>
 
-      <ion-toolbar *ngIf="!isPhone">
+      <ion-toolbar *ngIf="!isPhone && !diagnosticoCreado">
         <ion-buttons slot="primary">
           <ion-button id="crear-diagnostico-button" type="submit" color="primary" fill="solid" >Enviar diagnóstico</ion-button>
         </ion-buttons>
