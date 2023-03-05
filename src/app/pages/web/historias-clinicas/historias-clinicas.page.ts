@@ -18,7 +18,7 @@ import { HistoriasClinicasService } from './historias-clinicas.service';
 })
 export class HistoriasClinicasPage implements OnInit {
   pacientes: PacienteFrontendInterface[] = [];
-  filtroPacientes: any = new Observable<PacienteFrontendInterface>();
+  filtroPacientes: any = new Observable<PacienteFrontendInterface[] | ''>();
   filtroPacienteForm: FormGroup;
   constructor(
     private historiasClinicasService: HistoriasClinicasService,
