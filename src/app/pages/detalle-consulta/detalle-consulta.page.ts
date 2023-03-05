@@ -36,7 +36,9 @@ export class DetalleConsultaPage implements OnInit {
   ) {
     this.isPhone = this.appService.isPhone;
     this.consulta = this.fb.group({
-
+      tipoLesion: [null],
+      formaLesion: [null],
+      numeroLesiones: [null],
       distribucion: [null],
       parteDelCuerpo: [null],
       casoMedicoAceptado: [false],
@@ -137,7 +139,7 @@ export class DetalleConsultaPage implements OnInit {
   async erroObteniendoCasoMedico() {
     const alert = await this.alertController.create({
       header: 'Error',
-      message: 'Error obteniendo la informacion del caso medico',
+      message: 'Error obteniendo la información del caso medico',
       buttons: ['Aceptar'],
     });
     await alert.present();
@@ -176,8 +178,8 @@ export class DetalleConsultaPage implements OnInit {
           next: async (res) => {
             await loading.dismiss();
             const alert = await this.alertController.create({
-              header: 'Creación de diagnostico',
-              message: 'Creación de diagnostico exitoso',
+              header: 'Creación de diagnóstico',
+              message: 'Creación de diagnóstico exitoso',
               buttons: ['Aceptar'],
             });
             await alert.present();
@@ -186,8 +188,8 @@ export class DetalleConsultaPage implements OnInit {
           error: async (res) => {
             await loading.dismiss();
             const alert = await this.alertController.create({
-              header: 'Creación de diagnostico',
-              message: 'Hubo un error creando el diagnostico',
+              header: 'Creación de diagnóstico',
+              message: 'Hubo un error creando el diagnóstico',
               buttons: ['Aceptar'],
             });
             await alert.present();
