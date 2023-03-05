@@ -17,9 +17,9 @@ export const environment = {
     API_SELECCIONAR_CASO_MEDICO_ENDPOINT: 'choose-medical-case',
     API_CREAR_DIAGNOSTICO_ENDPOINT: 'medical-diagnostic',
     API_CREAR_CONSULTA_MEDICA_ENDPOINT: 'create-medical-consultation',
-    API_HISTORIAS_CLINICAS_ENDPOINT: 'clincial-history'
-
-  }
+    API_HISTORIAS_CLINICAS_ENDPOINT: 'clincial-history',
+    API_PATIENTS: 'patients',
+  },
 };
 
 /*
