@@ -6,19 +6,19 @@ export interface PacienteInterface {
 }
 
 export interface HistoriasClinicasResponseInterface extends ResponseInterface {
-  medical_history: HistoriaClinicaBackendInterface[];
+  clinical_history: HistoriaClinicaBackendInterface;
 }
 
 export interface HistoriaClinicaBackendInterface {
-  uuid: string;
-  patient: any;
-  medical_cases: any[];
+  patient_uuid: string;
+  medical_cases: string[];
+  updated_at: string;
 }
 
 export interface HistoriaClinicaFrontendInterface {
-  uuid: string;
-  nombrePaciente: string;
-  casosMedicos: any[];
+  pacienteId: string;
+  ultimaActualizacion: string;
+  casosMedicos: string[];
 }
 
 export interface PacientesResponseInterface extends ResponseInterface {
