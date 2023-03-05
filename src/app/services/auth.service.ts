@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppService } from '../config/app.service';
-import { CasosMedicosTableInterface } from '../interfaces/casos-medicos.interface';
 import { LoginUsuarioInterface } from '../interfaces/login-usuario.interface';
 import { PacienteFrontendInterface } from '../interfaces/paciente.interface';
 import { UserInterface } from '../interfaces/user.interface';
@@ -39,15 +38,6 @@ export class AuthService {
   setUser(user: UserInterface) {
     this.user = user;
     localStorage.setItem('user', JSON.stringify(user));
-  }
-
-  setCasoMedico(casoMedico: CasosMedicosTableInterface) {
-    localStorage.setItem(casoMedico.casoMedicoId, JSON.stringify(casoMedico));
-  }
-
-  getCasoMedico(casoMedicoId: string): CasosMedicosTableInterface | null {
-    let casoMedico = localStorage.getItem(casoMedicoId);
-    return casoMedico ? JSON.parse(casoMedico) : null;
   }
 
   setPaciente(paciente: PacienteFrontendInterface) {

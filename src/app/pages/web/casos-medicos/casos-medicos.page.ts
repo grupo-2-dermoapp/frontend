@@ -58,7 +58,6 @@ export class CasosMedicosPage implements OnInit {
   }
 
   verDetalleCasoMedico(casoMedico: CasosMedicosTableInterface) {
-    this.authService.setCasoMedico(casoMedico);
     this.router.navigate([
       '/detalle-consulta',
       { casoMedicoId: casoMedico.casoMedicoId },
