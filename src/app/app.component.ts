@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
     this.navEnd.subscribe((evt) => {
       console.log(evt);
       this.showMenu =
+        evt.url !== '/' &&
         evt.url !== '/login' &&
         evt.url !== '/registro' &&
         evt.url !== '/registro-medico';
