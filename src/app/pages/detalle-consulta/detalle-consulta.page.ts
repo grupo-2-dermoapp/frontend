@@ -130,9 +130,6 @@ export class DetalleConsultaPage implements OnInit {
           this.diagnosticoCreado = true;
         }
       },
-      error: (res) => {
-        this.erroObteniendoCasoMedico();
-      },
     });
   }
 
