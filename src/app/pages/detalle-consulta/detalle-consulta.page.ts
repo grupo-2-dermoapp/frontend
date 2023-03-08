@@ -16,13 +16,15 @@ import { DetalleConsultaService } from './detalle-consulta.service';
   templateUrl: './detalle-consulta.page.html',
   styleUrls: ['./detalle-consulta.page.scss'],
 })
-export class DetalleConsultaPage implements OnInit {
+export class DetalleConsultaPage {
   isPhone = false;
   consulta: FormGroup;
 
   diagnosticoForm: FormGroup;
   casoMedicoId: string = '';
   diagnosticoCreado = false;
+  tipoDiagnostico = '';
+  doctorID = '';
 
   constructor(
     public appService: AppService,
@@ -73,6 +75,7 @@ export class DetalleConsultaPage implements OnInit {
               ?.setValue(
                 this.appService.obtenerParteCuerpoPorId(casoMedico.body_part)
               );
+            this.tipoDiagnostico = casoMedico.type_of_diagnosis;
             this.obetenerDiagnosticoCasoMedico(this.casoMedicoId);
           }
         },
@@ -112,8 +115,6 @@ export class DetalleConsultaPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
   obetenerDiagnosticoCasoMedico(casoMedicoId: string) {
     this.detalleConsultaService.obtenerDiagnostico(casoMedicoId).subscribe({
       next: (response) => {
@@ -128,6 +129,9 @@ export class DetalleConsultaPage implements OnInit {
           this.tratamiento?.disable();
           this.casoMedicoAceptado?.setValue(true);
           this.diagnosticoCreado = true;
+          this.doctorID = diagnostico.doctor_uuid
+            ? diagnostico.doctor_uuid
+            : '';
         }
       },
     });
@@ -157,6 +161,50 @@ export class DetalleConsultaPage implements OnInit {
     if (role === 'ok') {
       this.casoMedicoAceptado?.setValue(true);
     }
+  }
+
+  async validarAgendarCita() {
+    const alert = await this.alertController.create({
+      header: 'Agengar cita',
+      message: 'Esta seguro que desea agendar cita para este caso?',
+      buttons: [
+        { text: 'Cancelar', role: 'cancel' },
+        { text: 'Aceptar', role: 'ok' },
+      ],
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+    if (role === 'ok') {
+      this.agendarCita();
+    }
+  }
+
+  async agendarCita() {
+    const loading = await this.loadingController.create();
+    await loading.present();
+    this.detalleConsultaService
+      .agendarCita(this.doctorID, this.authService.user.uuid)
+      .subscribe({
+        next: async (res) => {
+          await loading.dismiss();
+          const alert = await this.alertController.create({
+            header: 'Creación de agenda',
+            message: 'Creación de agenda exitoso',
+            buttons: ['Aceptar'],
+          });
+          await alert.present();
+          this.router.navigateByUrl('/consultas', { replaceUrl: true });
+        },
+        error: async (res) => {
+          await loading.dismiss();
+          const alert = await this.alertController.create({
+            header: 'Creación de agenda',
+            message: 'Hubo un error creando la agenda',
+            buttons: ['Aceptar'],
+          });
+          await alert.present();
+        },
+      });
   }
 
   async crearDiagnostico() {
