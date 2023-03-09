@@ -84,7 +84,7 @@
     <div class="input-group" *ngIf="casoMedicoAceptado?.value">
       <div id="explicacion" style="text-align:center;">
         <strong class="capitalize">Crear diagnóstico</strong>
-    </div>
+      </div>
     <br>
 
     <form id="diagnostico-form" (ngSubmit)="crearDiagnostico()" [formGroup]="diagnosticoForm">
@@ -137,9 +137,9 @@
     </div>
   </div>
 </ion-content>
-<ion-footer  *ngIf="isPhone">
+<ion-footer  *ngIf="isPhone && casoMedicoAceptado?.value && tipoDiagnostico ==='DOCTOR'">
   <div class="center" style="text-align: center;">
-    <ion-button type="submit" expand="block" [routerLink]="'/consultas'">
+    <ion-button type="submit" expand="block" (click)="agendarCita()">
       Agendar cita
     </ion-button>
   </div>

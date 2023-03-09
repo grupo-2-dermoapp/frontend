@@ -39,4 +39,17 @@ export class DetalleConsultaService {
       API_URL + environment.API.API_DIAGNOSTICO_ENDPOINT + '/' + idConsulta
     );
   }
+
+  agendarCita(
+    doctorId: String,
+    patientId: String
+  ): Observable<keyof ResponseInterface> {
+    return this.http.post<keyof ResponseInterface>(
+      environment.API.AGENDA_URL + environment.API.API_AGENDAR_CITA_ENDPOINT,
+      {
+        doctor_uuid: doctorId,
+        patient_uuid: patientId,
+      }
+    );
+  }
 }

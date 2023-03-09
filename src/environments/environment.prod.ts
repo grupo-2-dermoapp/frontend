@@ -7,6 +7,8 @@ export const environment = {
       'https://bhuux5lyc1.execute-api.us-east-2.amazonaws.com/dermoapp/medical-cases/v1/',
     CLINICAL_HISTORY_URL:
       'https://bhuux5lyc1.execute-api.us-east-2.amazonaws.com/dermoapp/clinical-history/v1/',
+    AGENDA_URL:
+      'https://bhuux5lyc1.execute-api.us-east-2.amazonaws.com/dermoapp/agenda/v1/',
     API_PERFIL_DERMATOLOGICO_ENDPOINT: 'dermo-profile-register',
     API_REGISTRO_USUARIO_ENDPOINT: 'patient-register',
     API_LOGIN_USUARIO_ENDPOINT: 'patient-login',
