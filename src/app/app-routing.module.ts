@@ -50,7 +50,11 @@ const routes: Routes = [
   {
     path: 'consultas',
     loadChildren: () => import('./pages/consultas/consultas.module').then( m => m.ConsultasPageModule)
-  }
+  },
+  {
+    path: 'agenda',
+    loadChildren: () => import('./pages/web/agenda/agenda.module').then((m) => m.AgendaPageModule)
+  },
 ];
 
 @NgModule({

@@ -187,9 +187,10 @@ export class DetalleConsultaPage {
       .subscribe({
         next: async (res) => {
           await loading.dismiss();
+          const fechaCita = res.event.start_date.split('T');
           const alert = await this.alertController.create({
-            header: 'Creación de agenda',
-            message: 'Creación de agenda exitoso',
+            header: res.event.name,
+            message: `Su agenda ha sido exitosamente asignada para el dia ${fechaCita[0]} a las ${fechaCita[1]}`,
             buttons: ['Aceptar'],
           });
           await alert.present();
