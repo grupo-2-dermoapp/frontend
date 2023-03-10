@@ -2,13 +2,17 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const baseUrl = 'http://localhost:8100/';
 export const environment = {
-  production: false,
+  production: true,
+  baseUrl: 'test',
   API: {
-    AUTH_API_URL: 'http://localhost:8080/dermoapp/auth/v1/',
-    MEDICAL_CASES_URL: 'http://localhost:8080/dermoapp/medical-cases/v1/',
-    CLINICAL_HISTORY_URL: 'http://localhost:8080/dermoapp/clinical-history/v1/',
-    AGENDA_URL: 'http://localhost:8080/dermoapp/agenda/v1/',
+    AUTH_API_URL: baseUrl + 'auth/v1/',
+    MEDICAL_CASES_URL: baseUrl + 'medical-cases/v1/',
+    CLINICAL_HISTORY_URL: baseUrl + 'clinical-history/v1/',
+    AGENDA_URL: baseUrl + 'agenda/v1/',
+    REPORTES_URL: baseUrl + 'reportes/v1/',
+    NOTIFICACIONES_URL: baseUrl + 'notificaciones/v1/',
     API_PERFIL_DERMATOLOGICO_ENDPOINT: 'dermo-profile-register',
     API_REGISTRO_USUARIO_ENDPOINT: 'patient-register',
     API_LOGIN_USUARIO_ENDPOINT: 'patient-login',
@@ -21,6 +25,9 @@ export const environment = {
     API_HISTORIAS_CLINICAS_ENDPOINT: 'clincial-history',
     API_PATIENTS: 'patients',
     API_AGENDAR_CITA_ENDPOINT: 'events',
+    API_AGENDA_ENDPOINT: 'agenda',
+    API_REPORTES_ENDPOINT: 'reports',
+    API_NOTIFICACIONES_ENDPOINT: 'notifications',
   },
 };
 
