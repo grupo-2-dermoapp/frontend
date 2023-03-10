@@ -55,11 +55,18 @@ const routes: Routes = [
     path: 'agenda',
     loadChildren: () => import('./pages/web/agenda/agenda.module').then((m) => m.AgendaPageModule)
   },
-    {
+  {
     path: 'reportes',
     loadChildren: () =>
       import('./pages/web/reportes/reportes.module').then(
         (m) => m.ReportesPageModule
+      ),
+  },
+  {
+    path: 'notificaciones',
+    loadChildren: () =>
+      import('./pages/movil/notificaciones/notificaciones.module').then(
+        (m) => m.NotificacionesPageModule
       ),
   },
 ];

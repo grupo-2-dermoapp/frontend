@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.navEnd.subscribe((evt) => {
-      console.log(evt);
       this.showMenu =
         evt.url !== '/' &&
         evt.url !== '/login' &&
