@@ -1,6 +1,6 @@
 <ion-header >
   <ion-toolbar>
-    <ion-title class="center">Crear consulta</ion-title>
+    <ion-title class="center">{{ 'crearConsulta.titulo'| translate }}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -9,60 +9,60 @@
 
 <ion-content>
   <div class="crear-consulta-info">
-    <p>Para la creación de una consulta el paciente debe suministrar información básica sobre la lesión.</p>
+    <p>{{ 'crearConsulta.infoPaciente'| translate }}</p>
   </div>
 	<form (ngSubmit)="crearConsulta()" [formGroup]="consulta">
 
-        <h2 class="form-title">Descripción de la lesión</h2>
+        <h2 class="form-title">{{ 'crearConsulta.descripcionLesion'| translate }}</h2>
         <ion-item>
-          <ion-label class="question-label">Tipos de lesión:</ion-label>
-          <ion-select formControlName="tipoLesion" placeholder="Seleccione su tipo de lesión" class="form-item">
+          <ion-label class="question-label">{{ 'crearConsulta.tiposLesion'| translate }}</ion-label>
+          <ion-select formControlName="tipoLesion" placeholder="{{ 'crearConsulta.placeholderTiposLesion'| translate }}" class="form-item">
             <ion-select-option text-wrap value="42" *ngFor="let tipoDeLeasion of app.consulta.tiposDeLesion" [value]="tipoDeLeasion.id">
               {{tipoDeLeasion.value}}</ion-select-option>
           </ion-select>
         </ion-item>
         <div *ngIf="(tipoLesion?.dirty || tipoLesion?.touched)" class="form-error">
-          <span *ngIf="tipoLesion?.errors?.['required']">Campo requerido</span>
+          <span *ngIf="tipoLesion?.errors?.['required']">{{ 'crearConsulta.campoRequerido'| translate }}</span>
         </div>
 
         <ion-item>
-          <ion-label class="question-label">Forma lesión</ion-label>
-          <ion-select formControlName="formaLesion" placeholder="Seleccione la forma de la lesión" class="form-item">
+          <ion-label class="question-label">{{ 'crearConsulta.formasLesion'| translate }}</ion-label>
+          <ion-select formControlName="formaLesion" placeholder="{{ 'crearConsulta.placeholderFormasLesion'| translate }}" class="form-item">
             <ion-select-option *ngFor="let forma of app.consulta.formasDeLesiones" [value]="forma.id">
               {{forma.value}}</ion-select-option>
           </ion-select>
         </ion-item>
         <div *ngIf="(formaLesion?.dirty || formaLesion?.touched)" class="form-error">
-          <span *ngIf="formaLesion?.errors?.['required']">Campo requerido</span>
+          <span *ngIf="formaLesion?.errors?.['required']">{{ 'crearConsulta.campoRequerido'| translate }}</span>
         </div>
 
         <ion-item>
-          <ion-label class="question-label">Número de lesiones</ion-label>
-          <ion-select formControlName="numeroLesiones" placeholder="Seleccione la cantidad de lesiones" class="form-item">
+          <ion-label class="question-label">{{ 'crearConsulta.numeroLesion'| translate }}</ion-label>
+          <ion-select formControlName="numeroLesiones" placeholder="{{ 'crearConsulta.placeholdernumeroLesion'| translate }}" class="form-item">
             <ion-select-option *ngFor="let numeroLesion of app.consulta.numeroDeLesiones" [value]="numeroLesion.id">
               {{numeroLesion.value}}</ion-select-option>
           </ion-select>
         </ion-item>
         <div *ngIf="(numeroLesiones?.dirty || numeroLesiones?.touched)" class="form-error">
-          <span *ngIf="numeroLesiones?.errors?.['required']">Campo requerido</span>
+          <span *ngIf="numeroLesiones?.errors?.['required']">{{ 'crearConsulta.campoRequerido'| translate }}</span>
         </div>
 
         <ion-item>
-          <ion-label class="question-label">Distribución de la lesión</ion-label>
-          <ion-select formControlName="distribucion" placeholder="Seleccione la distribución de la lesión" class="form-item">
+          <ion-label class="question-label">{{ 'crearConsulta.distribucionLesion'| translate }}</ion-label>
+          <ion-select formControlName="distribucion" placeholder="{{ 'crearConsulta.placeholderDistribucion'| translate }}" class="form-item">
             <ion-select-option *ngFor="let distribucion of app.consulta.distribucionDeLaLesion" [value]="distribucion.id">
               {{distribucion.value}}</ion-select-option>
           </ion-select>
         </ion-item>
         <div *ngIf="(distribucion?.dirty || distribucion?.touched)" class="form-error">
-          <span *ngIf="distribucion?.errors?.['required']">Campo requerido</span>
+          <span *ngIf="distribucion?.errors?.['required']">{{ 'crearConsulta.campoRequerido'| translate }}</span>
         </div>
 
         <div *ngIf="parteDelCuerpo?.invalid">
-          <h2 class="form-title">Parte del cuerpo</h2>
+          <h2 class="form-title">{{ 'crearConsulta.parteCuerpo'| translate }}</h2>
       <ion-item >
         <ion-button id="parte-cuerpo-button" class="form-item"  expand="block" type="button" (click)="escogerParteDelCuerpo()">
-          Seleccionar parte del cuerpo
+          {{ 'crearConsulta.seleccionParteCuerpo'| translate }}
         </ion-button>
       </ion-item>
 
@@ -71,13 +71,13 @@
         <div *ngIf="!parteDelCuerpo?.invalid">
           <ion-item>
         <ion-label>
-          Parte del cuerpo:
+          {{ 'crearConsulta.parteCuerpoSub'| translate }}
         </ion-label>
         <ion-input [disabled]="true" placeholder="" formControlName="parteDelCuerpo"></ion-input>
       </ion-item>
         </div>
         <div *ngIf="(parteDelCuerpo?.dirty || parteDelCuerpo?.touched )" class="form-error">
-          <span *ngIf="parteDelCuerpo?.errors?.['required']">Campo requerido</span>
+          <span *ngIf="parteDelCuerpo?.errors?.['required']">{{ 'crearConsulta.campoRequerido'| translate }}</span>
         </div>
 
 	</form>
@@ -85,7 +85,7 @@
 <ion-footer>
   <div class="center" >
     <ion-button id="crear-consulta-button" (click)="crearConsulta()" expand="block" >
-      Crear consulta
+      {{ 'crearConsulta.botonCrearConsulta'| translate }}
     </ion-button>
   </div>
 </ion-footer>

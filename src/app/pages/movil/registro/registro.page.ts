@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { RegistroService } from './registro.service';
 import { PerfilDermatologicoPage } from '../perfil-dermatologico/perfil-dermatologico.page';
 import { RegistroUsuarioBackendInterface, RegistroUsuarioFormInterface } from 'src/app/interfaces/registro-usuario.interface';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registro',
@@ -14,13 +15,15 @@ import { RegistroUsuarioBackendInterface, RegistroUsuarioFormInterface } from 's
 export class RegistroPage {
 
   registro: FormGroup;
+  lang = 'es';
 	constructor(
 		private fb: FormBuilder,
 		private alertController: AlertController,
 		private router: Router,
 		private loadingController: LoadingController,
 		private registroService:RegistroService,
-		private modalCtrl: ModalController
+		private modalCtrl: ModalController,
+    public translate: TranslateService
 	) {
     this.registro = this.fb.group({
 			email:  ['',[Validators.required, Validators.email]],
@@ -35,6 +38,9 @@ export class RegistroPage {
 		},{
 			validators: this.confirmedValidator('password', 'passwordConfirmation'),
 		  })
+    translate.addLangs(['en']);
+    translate.setDefaultLang('es');
+    translate.use(this.lang.match(/en/) ? this.lang : 'es');
   }
 
 	async crearPerfilDermatologico() {
@@ -183,5 +189,9 @@ export class RegistroPage {
 		};
 	  }
 
+    cambiarIdioma(lang: string): void {
+      this.lang = lang;
+      this.translate.use(lang);
+    }
 
 }

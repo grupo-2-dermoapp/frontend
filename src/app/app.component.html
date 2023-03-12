@@ -18,11 +18,11 @@
 
           <ion-item lines="none" (click)="changeLanguage()">
             <ion-icon slot="start" ios="language-outline" md="language-sharp"></ion-icon>
-            <ion-label>Cambiar idioma</ion-label>
+            <ion-label>{{ 'menu.cambiarIdioma'| translate }}</ion-label>
           </ion-item>
           <ion-item lines="none" (click)="navigateTo('/login')" >
             <ion-icon slot="start" ios="close-circle-outline" md="close-circle-sharp"></ion-icon>
-            <ion-label>Cerrar sesión</ion-label>
+            <ion-label>{{ 'menu.cerrarSesion'| translate }}</ion-label>
           </ion-item>
         </ion-list>
       </ion-content>

@@ -2,71 +2,71 @@
   <ion-header  >
     <ion-toolbar >
       <ion-title class="title-cuerpo" >
-        Escoger parte del cuerpo
+        {{ 'cuerpo.titulo'| translate }}
       </ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-button expand="block" (click)="rotar()" >Rotar</ion-button>
+  <ion-button expand="block" (click)="rotar()" >{{ 'cuerpo.rotar'| translate }}</ion-button>
   <div class="container">
     <img alt="Cuerpo" [src]="cuerpo"/>
     <div *ngIf="image===''">
       <button id="cabeza-button" class="btn-cabeza floating-btn" (click)="parteDelcuerpo('cabeza')">
-        Cabeza</button>
+        {{ 'cuerpo.cabeza'| translate }}</button>
 
       <button class="btn-torso floating-btn" (click)="parteDelcuerpo('torso')">
-        Torso</button>
+        {{ 'cuerpo.torso'| translate }}</button>
 
-      <button class="btn-brazo-iz floating-btn" 
+      <button class="btn-brazo-iz floating-btn"
       (click)="parteDelcuerpo('brazo-'+(rotacion === 'frente' ? 'izq':'der'))">
-      Brazo {{rotacion === 'frente' ? 'Izq':'Der'}}</button>
+      {{ 'cuerpo.brazo'| translate }} {{rotacion === 'frente' ? 'Izq':'Der'}}</button>
 
-      <button class="btn-brazo-de floating-btn" 
+      <button class="btn-brazo-de floating-btn"
       (click)="parteDelcuerpo('brazo-'+(rotacion === 'frente' ? 'der':'izq'))">
-      Brazo {{rotacion === 'frente' ? 'Der':'Izq'}}</button>
+      {{ 'cuerpo.brazo'| translate }} {{rotacion === 'frente' ? 'Der':'Izq'}}</button>
 
-      <button class="btn-mano-iz floating-btn" 
+      <button class="btn-mano-iz floating-btn"
       (click)="parteDelcuerpo('mano-'+(rotacion === 'frente' ? 'izq':'der'))">
-      Mano {{rotacion === 'frente' ? 'Izq':'Der'}}</button>
+      {{ 'cuerpo.mano'| translate }}  {{rotacion === 'frente' ? 'Izq':'Der'}}</button>
 
-      <button class="btn-mano-de floating-btn" 
+      <button class="btn-mano-de floating-btn"
       (click)="parteDelcuerpo('mano-'+(rotacion === 'frente' ? 'der':'izq'))">
-      Mano {{rotacion === 'frente' ? 'Der':'Izq'}}</button>
+      {{ 'cuerpo.mano'| translate }}  {{rotacion === 'frente' ? 'Der':'Izq'}}</button>
 
-      <button class="btn-pierna-iz floating-btn" 
+      <button class="btn-pierna-iz floating-btn"
       (click)="parteDelcuerpo('pierna-'+(rotacion === 'frente' ? 'izq':'der'))">
-      Pierna {{rotacion === 'frente' ? 'Izq':'Der'}}</button>
+      {{ 'cuerpo.pierna'| translate }}  {{rotacion === 'frente' ? 'Izq':'Der'}}</button>
 
-      <button class="btn-pierna-de floating-btn" 
+      <button class="btn-pierna-de floating-btn"
       (click)="parteDelcuerpo('pierna-'+(rotacion === 'frente' ? 'der':'izq'))">
-      Pierna {{rotacion === 'frente' ? 'Der':'Izq'}}</button>
+      {{ 'cuerpo.pierna'| translate }}  {{rotacion === 'frente' ? 'Der':'Izq'}}</button>
 
-      <button class="btn-pie-iz floating-btn" 
+      <button class="btn-pie-iz floating-btn"
       (click)="parteDelcuerpo('pie-'+(rotacion === 'frente' ? 'izq':'der'))">
-      Pie {{rotacion === 'frente' ? 'Izq':'Der'}}</button>
+      {{ 'cuerpo.pie'| translate }} {{rotacion === 'frente' ? 'Izq':'Der'}}</button>
 
-      <button class="btn-pie-de floating-btn" 
+      <button class="btn-pie-de floating-btn"
       (click)="parteDelcuerpo('pie-'+(rotacion === 'frente' ? 'der':'izq'))">
-      Pie {{rotacion === 'frente' ? 'Der':'Izq'}}</button>
+      {{ 'cuerpo.pie'| translate }} {{rotacion === 'frente' ? 'Der':'Izq'}}</button>
     </div>
     <form [formGroup]="cuerpoForm"  *ngIf="image!==''">
     <ion-item>
-      <ion-label>Parte del cuerpo</ion-label>
+      <ion-label>{{ 'cuerpo.parteCuerpo'| translate }}</ion-label>
       <ion-item>
-        <ion-select formControlName="parteCuerpo" placeholder="Seleccione parte" >
+        <ion-select formControlName="parteCuerpo" placeholder="{{ 'cuerpo.placeHolderParteCuerpo'| translate }}" >
           <ion-select-option *ngFor="let parte of partes" [value]="parte">{{parte.value}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-item>
     <div *ngIf="(parteCuerpo?.dirty || parteCuerpo?.touched) && parteCuerpo?.errors" class="form-error">
-      <span *ngIf="parteCuerpo?.errors?.['required']">Debe escoger una parte del cuerpo para continuar</span>
+      <span *ngIf="parteCuerpo?.errors?.['required']">{{ 'cuerpo.escogerContinuar'| translate }}</span>
     </div>
   </form>
   </div>
-  
+
 
 </ion-content>
 <ion-footer>
   <ion-button id="seleccionar-parte-button" type="button" expand="block" (click)="escoger()">
-    Escoger
+    {{ 'cuerpo.botonEscoger'| translate }}
   </ion-button>
 </ion-footer>
