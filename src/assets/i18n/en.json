@@ -11,7 +11,7 @@
     "seleccionNacionalidad": "Select nationality",
     "seleccionEspecialidad": "Select specialty",
     "botonAgregarSoporte": "Add support",
-    "botonRegistrarse": "Check in",
+    "botonRegistrarse": "Sign Up",
     "nombreRequerido": "The name is required",
     "minimoCaracteresNombre": "The name needs a minimum of 4 characters",
     "maximoCaracteresNombre": "The name needs a maximum of 60 characters",
@@ -25,5 +25,27 @@
     "maximoCaracteresContrasena": "Password needs a maximum of 60 characters",
     "coincidenContrasenas": "Passwords must match",
     "botonInicio": "Home"
+  },
+  "login":{
+    "tituloApp":"DermoApp",
+    "titulo":"DermoApp",
+    "usuario":"User",
+    "placeholderUsuario": "Email",
+    "usuarioRequerido": "Mail is required",
+    "usuarioValido": "Email is invalid",
+    "contrasena": "Password",
+    "placeholderContrasena": "Password",
+    "contrasenaRequerida": "Password is required",
+    "minimoCaracteresContrasena": "The password name needs a minimum of 4 characters ",
+    "maximoCaracteresContrasena": "Password needs a maximum of 60 characters",
+    "botonIniciarSesion": "Log in",
+    "botonRegistrarse": "Create new account"
+  },
+  "inicio":{
+    "titulo":"Welcome to Dermo App",
+    "tituloPhone": "Welcome to Dermo App",
+    "objetivo": "The objective of DermoApp is to support patients with dermatological problems in the diagnosis and treatment of dermatological lesions, as well as in locating specialized dermatologists close to the areas where a patient lives, whenever possible.",
+    "botonCrearConsulta": "Create medical consultation",
+    "botonVerCasosMedicos": "See medical cases"
   }
 }

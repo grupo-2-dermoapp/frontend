@@ -25,5 +25,28 @@
     "maximoCaracteresContrasena": "La contraseña necesita un máximo de 60 caracteres",
     "coincidenContrasenas": "La contraseñas deben coincidir",
     "botonInicio": "Inicio"
+  },
+  "login":{
+    "tituloApp":"DermoApp",
+    "titulo":"DermoApp",
+    "usuario":"Usuario",
+    "placeholderUsuario": "Correo Electronico",
+    "usuarioRequerido": "El correo es requerido",
+    "usuarioValido": "El correo es inválido",
+    "contrasena": "Contraseña",
+    "placeholderContrasena": "Contraseña",
+    "contrasenaRequerida": "La contraseña es requerida",
+    "minimoCaracteresContrasena": "La contraseña nombre necesita un mínimo de 4 caracteres",
+    "maximoCaracteresContrasena": "La contraseña necesita un máximo de 60 caracteres",
+    "botonIniciarSesion": "Iniciar sesión",
+    "botonRegistrarse": "Registrarse"
+  },
+  "inicio":{
+    "titulo":"Bienvenido a Dermo App",
+    "tituloPhone": "Bienvenido a Dermo App",
+    "objetivo": "El objetivo de DermoApp es apoyar a pacientes con problemas dermatológicos en el diagnóstico y tratamiento de lesiones dermatológicas, así como en la localización de dermatólogos especializados cercanos a las zonas en las que habita un paciente, cuando sea posible.",
+    "botonCrearConsulta": "Crear consulta",
+    "botonVerCasosMedicos": "Ver casos médicos"
   }
+
 }
