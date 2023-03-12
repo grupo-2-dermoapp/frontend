@@ -1,0 +1,29 @@
+{
+  "registroMedico":{
+    "titulo":"Registro Medico",
+    "nombre": "Nombre",
+    "email": "Correo electronico",
+    "nacionalidad": "Nacionalidad",
+    "especialidad": "Especialidad",
+    "licenciaMedica": "Licencia Medica",
+    "contrasena": "Contraseña",
+    "confirmacionContrasena": "Confirmar Contraseña",
+    "seleccionNacionalidad": "Seleccione nacionalidad",
+    "seleccionEspecialidad": "Seleccione especialidad",
+    "botonAgregarSoporte": "Agregar soporte",
+    "botonRegistrarse": "Registrarse",
+    "nombreRequerido": "El nombre es requerido",
+    "minimoCaracteresNombre": "El nombre necesita un mínimo de 4 caracteres",
+    "maximoCaracteresNombre": "El nombre necesita un máximo de 60 caracteres",
+    "correoRequerido": "El correo es requerido",
+    "invalidoCorreo": "El correo es inválido",
+    "nacionalidadRequerida": "La nacionalidad es requerida",
+    "especialidadRequerida": "La especialidad es requerida",
+    "licenciaRequerida": "La licencia medica es requerida",
+    "contrasenaRequerida": "La contraseña es requerida",
+    "minimoCaracteresContrasena": "La contraseña nombre necesita un mínimo de 4 caracteres",
+    "maximoCaracteresContrasena": "La contraseña necesita un máximo de 60 caracteres",
+    "coincidenContrasenas": "La contraseñas deben coincidir",
+    "botonInicio": "Inicio"
+  }
+}

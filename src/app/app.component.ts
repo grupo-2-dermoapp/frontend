@@ -4,6 +4,8 @@ import { AlertController } from '@ionic/angular';
 import { filter, Observable } from 'rxjs';
 import { AppService } from './config/app.service';
 import { AuthService } from './services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -14,17 +16,24 @@ export class AppComponent implements OnInit {
   private isPhone = false;
   private navEnd: Observable<NavigationEnd>;
   public showMenu = false;
+  lang : string = 'es';
+
   constructor(
     private alertController: AlertController,
     private appService: AppService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public translate: TranslateService
   ) {
     this.isPhone = this.appService.isPhone;
     this.navEnd = this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd)
     ) as Observable<NavigationEnd>;
     this.loadSidemenu();
+    translate.addLangs(['en']);
+    translate.setDefaultLang('es');
+    //this.lang = translate.getBrowserLang();
+    translate.use(this.lang.match(/en/) ? this.lang : 'es');
   }
 
   ngOnInit() {
@@ -81,7 +90,7 @@ export class AppComponent implements OnInit {
           {
             type: 'radio',
             label: 'Español (Colombia)',
-            value: 'xs',
+            value: 'es',
           },
           {
             type: 'radio',
@@ -91,7 +100,7 @@ export class AppComponent implements OnInit {
           {
             type: 'radio',
             label: 'Inglés',
-            value: 's',
+            value: 'en',
           },
         ],
         buttons: [
@@ -105,6 +114,7 @@ export class AppComponent implements OnInit {
             text: 'Cambiar',
             handler: (data: any) => {
               console.log('Selected Information', data);
+              this.translate.use(data);
             },
           },
         ],

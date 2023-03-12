@@ -1,0 +1,29 @@
+{
+  "registroMedico":{
+    "titulo": "Medical Record",
+    "nombre": "Name",
+    "email": "Email",
+    "nacionalidad": "Nationality",
+    "especialidad": "Specialty",
+    "licenciaMedica": "Medical license",
+    "contrasena":  "Password",
+    "confirmacionContrasena": "Confirm Password",
+    "seleccionNacionalidad": "Select nationality",
+    "seleccionEspecialidad": "Select specialty",
+    "botonAgregarSoporte": "Add support",
+    "botonRegistrarse": "Check in",
+    "nombreRequerido": "The name is required",
+    "minimoCaracteresNombre": "The name needs a minimum of 4 characters",
+    "maximoCaracteresNombre": "The name needs a maximum of 60 characters",
+    "correoRequerido": "Mail is required",
+    "invalidoCorreo": "The email is invalid",
+    "nacionalidadRequerida": "Nationality is required",
+    "especialidadRequerida": "The specialty is required",
+    "licenciaRequerida": "Medical license is required",
+    "contrasenaRequerida": "Password is required",
+    "minimoCaracteresContrasena": "The password name needs a minimum of 4 characters",
+    "maximoCaracteresContrasena": "Password needs a maximum of 60 characters",
+    "coincidenContrasenas": "Passwords must match",
+    "botonInicio": "Home"
+  }
+}

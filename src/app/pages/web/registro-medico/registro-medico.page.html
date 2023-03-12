@@ -1,57 +1,65 @@
 <ion-content padding>
+    <nav>
+      <ul class="list-item">
+        <li><a href="#">{{ 'registroMedico.botonInicio'| translate }}</a></li>
+        <li>
+            <a *ngIf="lang ==='es'" (click)="cambiarIdioma('en')">English</a>
+            <a *ngIf="lang ==='en'" (click)="cambiarIdioma('es')">Spanish</a>
+        </li>
+      </ul>
+    </nav>
   <h1 class="center titulo-registro">
-    Registro Medico
+    {{ 'registroMedico.titulo'| translate }}
   </h1>
   <div class="web-registro">
 	<form id="registro-form" (ngSubmit)="registrarse()" [formGroup]="registro">
 		<div class="input-group">
 			<ion-item>
-        <ion-label>Nombre</ion-label>
-				<ion-input type="text" placeholder="Nombre" formControlName="nombre"></ion-input>
+        <ion-label>{{ 'registroMedico.nombre'| translate }}</ion-label>
+				<ion-input type="text" placeholder="{{ 'registroMedico.nombre'| translate }}" formControlName="nombre"></ion-input>
 			</ion-item>
       <div *ngIf="(nombre?.dirty || nombre?.touched) && nombre?.errors" class="form-error">
-        <span *ngIf="nombre?.errors?.['required']">El nombre es requerido</span>
-				<span *ngIf="nombre?.errors?.['minlength']">El nombre necesita un mínimo de 4 caracteres</span>
-        <span *ngIf="nombre?.errors?.['maxlength']">El nombre necesita un máximo de 60 caracteres</span>
+        <span *ngIf="nombre?.errors?.['required']">{{ 'registroMedico.nombreRequerido'| translate }}</span>
+				<span *ngIf="nombre?.errors?.['minlength']">{{ 'registroMedico.minimoCaracteresNombre'| translate }}</span>
+        <span *ngIf="nombre?.errors?.['maxlength']">{{ 'registroMedico.maximoCaracteresNombre'| translate }}</span>
 			</div>
 
       <ion-item>
-        <ion-label>Email</ion-label>
-				<ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+        <ion-label>{{ 'registroMedico.email'| translate }}</ion-label>
+				<ion-input type="email" placeholder="{{ 'registroMedico.email'| translate }}" formControlName="email"></ion-input>
 			</ion-item>
       <div *ngIf="(email?.dirty || email?.touched) && email?.errors" class="form-error">
-				<span *ngIf="email?.errors?.['required']">El correo es requerido</span>
-				<span *ngIf="email?.errors?.['email']">El correo es inválido</span>
+				<span *ngIf="email?.errors?.['required']">{{ 'registroMedico.correoRequerido'| translate }}</span>
+				<span *ngIf="email?.errors?.['email']">{{ 'registroMedico.invalidoCorreo'| translate }}</span>
 			</div>
 
       <ion-item>
-        <ion-label>Nacionalidad</ion-label>
+        <ion-label>{{ 'registroMedico.nacionalidad'| translate }}</ion-label>
         <ion-item>
-          <ion-select formControlName="nacionalidad" placeholder="Seleccione nacionalidad" >
+          <ion-select formControlName="nacionalidad" placeholder="{{ 'registroMedico.seleccionNacionalidad'| translate }}" >
             <ion-select-option *ngFor="let nacion of nacionalidades" [value]="nacion">{{nacion}}</ion-select-option>
           </ion-select>
         </ion-item>
 			</ion-item>
       <div *ngIf="(nacionalidad?.dirty || nacionalidad?.touched) && nacionalidad?.errors" class="form-error">
-				<span *ngIf="nacionalidad?.errors?.['required']">La nacionalidad es requerida</span>
+				<span *ngIf="nacionalidad?.errors?.['required']">{{ 'registroMedico.nacionalidadRequerida'| translate }}</span>
 			</div>
 
-
       <ion-item>
-        <ion-label>Especialidad</ion-label>
+        <ion-label>{{ 'registroMedico.especialidad'| translate }}</ion-label>
         <ion-item >
-          <ion-select formControlName="especialidad"  placeholder="Seleccione especialidad" >
+          <ion-select formControlName="especialidad"  placeholder="{{ 'registroMedico.seleccionEspecialidad'| translate }}" >
             <ion-select-option *ngFor="let especialidad of especialidades" [value]="especialidad.id">
               {{especialidad.value}}</ion-select-option>
           </ion-select>
         </ion-item>
 			</ion-item>
       <div *ngIf="(especialidad?.dirty || especialidad?.touched) && especialidad?.errors" class="form-error">
-				<span *ngIf="especialidad?.errors?.['required']">La especialidad es requerida</span>
+				<span *ngIf="especialidad?.errors?.['required']">{{ 'registroMedico.especialidadRequerida'| translate }}</span>
 			</div>
 
       <ion-item>
-      <ion-label for="file">Licenia Medica</ion-label>
+      <ion-label for="file">{{ 'registroMedico.licenciaMedica'| translate }}</ion-label>
 
         <input
         #inputFiles
@@ -64,40 +72,39 @@
         (change)="onFileChange($event)">
 
         <ion-button [disabled]="file" (click)="attachFiles()" type="button" expand="block" >
-          {{ file ? file.name:'Agregar soporte'}}
+          {{ file ? file.name: 'registroMedico.botonAgregarSoporte'| translate }}
         </ion-button>
       </ion-item>
       <div *ngIf="(licenciaMedica?.dirty || licenciaMedica?.touched) && licenciaMedica?.errors" class="form-error">
-				<span *ngIf="licenciaMedica?.errors?.['required']">La licencia medica es requerida</span>
+				<span *ngIf="licenciaMedica?.errors?.['required']">{{ 'registroMedico.licenciaRequerida'| translate }}</span>
 			</div>
 
 
 			<ion-item>
-        <ion-label>Contraseña</ion-label>
+        <ion-label>{{ 'registroMedico.contrasena'| translate }}</ion-label>
 				<ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
 			</ion-item>
       <div *ngIf="(password?.dirty || password?.touched) && password?.errors" class="form-error">
-				<span *ngIf="password?.errors?.['required']">La contraseña es requerida</span>
-        <span *ngIf="password?.errors?.['minlength']">La contraseña nombre necesita un mínimo de 4 caracteres</span>
-        <span *ngIf="password?.errors?.['maxlength']">La contraseña necesita un máximo de 60 caracteres</span>
+				<span *ngIf="password?.errors?.['required']">{{ 'registroMedico.contrasenaRequerida'| translate }}</span>
+        <span *ngIf="password?.errors?.['minlength']">{{ 'registroMedico.minimoCaracteresContrasena'| translate }}</span>
+        <span *ngIf="password?.errors?.['maxlength']">{{ 'registroMedico.maximoCaracteresContrasena'| translate }}</span>
       </div>
 
       <ion-item>
-        <ion-label>Confirmar Contraseña</ion-label>
+        <ion-label>{{ 'registroMedico.confirmacionContrasena'| translate }}</ion-label>
 				<ion-input type="password" placeholder="Password" formControlName="passwordConfirmation"></ion-input>
 			</ion-item>
       <div *ngIf="(passwordConfirmation?.dirty || passwordConfirmation?.touched) && passwordConfirmation?.errors" class="form-error">
-				<span *ngIf="passwordConfirmation?.errors?.['required']">La contraseña es requerida</span>
-        <span *ngIf="passwordConfirmation?.errors?.['minlength']">La contraseña necesita un mínimo de 4 caracteres</span>
-        <span *ngIf="passwordConfirmation?.errors?.['maxlength']">La contraseña necesita un máximo de 60 caracteres</span>
-        <span *ngIf="passwordConfirmation?.errors?.['confirmedValidator']">La contraseñas deben coincidir</span>
+				<span *ngIf="passwordConfirmation?.errors?.['required']">{{ 'registroMedico.contrasenaRequerida'| translate }}</span>
+        <span *ngIf="passwordConfirmation?.errors?.['minlength']">{{ 'registroMedico.minimoCaracteresContrasena'| translate }}</span>
+        <span *ngIf="passwordConfirmation?.errors?.['maxlength']">{{ 'registroMedico.maximoCaracteresContrasena'| translate }}</span>
+        <span *ngIf="passwordConfirmation?.errors?.['confirmedValidator']">{{ 'registroMedico.coincidenContrasenas'| translate }}</span>
       </div>
-
 		</div>
 
     <div class="center boton-registro" >
       <ion-button id="register-button" type="submit" expand="block">
-        Registrarse
+        {{ 'registroMedico.botonRegistrarse'| translate }}
       </ion-button>
     </div>
 	</form>
