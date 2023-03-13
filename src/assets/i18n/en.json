@@ -85,7 +85,7 @@
     "buscarCasosMedicos": "Search Medical Cases",
     "placeHolderBuscarCasosMedicos": "Type search keyword",
     "idNo": "No.",
-    "nombrePaciente": "patient name",
+    "nombrePaciente": "Patient name",
     "tipo": "Type",
     "forma": "Form",
     "numero": "Number ",
@@ -144,7 +144,7 @@
     "infoPaciente": "Information of the patiente ",
     "placeHolderTratamiento": "Write treatment",
     "fechaActualizacion": "Last update date",
-    "listadoConsultas": "List of queries",
+    "listadoConsultas": "List of Medical Consultations",
     "casoMedico": "Medical case",
     "verDetalle": "See detail"
   },

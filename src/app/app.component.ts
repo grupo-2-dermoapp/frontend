@@ -94,11 +94,6 @@ export class AppComponent implements OnInit {
           },
           {
             type: 'radio',
-            label: 'Español (Mexico)',
-            value: 'xs',
-          },
-          {
-            type: 'radio',
             label: 'Inglés',
             value: 'en',
           },
