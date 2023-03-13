@@ -202,5 +202,19 @@
   "menu":{
     "cambiarIdioma": "Change language",
     "cerrarSesion": "Log out"
+  },
+  "agenda":{
+    "titulo": "Appointment's Schedule",
+    "labelNoTieneCita": "You don't have appointments",
+    "labelCitaMedica": "Medical Appointment",
+    "horarioCitaMedica": "your medical appointment's time is"
+  },
+  "reportes":{
+    "titulo": "Reports",
+    "filtroPaciente": "Filter by patient",
+    "filtrarFecha": "Filter by date",
+    "desde": "From",
+    "hasta": "To",
+    "generarReporte": "Generate report"
   }
 }

@@ -202,6 +202,20 @@
   "menu":{
     "cambiarIdioma": "Cambiar idioma",
     "cerrarSesion": "Cerrar sesión"
+  },
+  "agenda":{
+    "titulo": "Agenda",
+    "labelNoTieneCita": "No tiene ninguna cita asignada",
+    "labelCitaMedica": "Cita médica",
+    "horarioCitaMedica": "El horario de la cita médica es:"
+  },
+  "reportes":{
+    "titulo": "Reportes",
+    "filtroPaciente": "Filtrar por paciente",
+    "filtrarFecha": "Filtrar por fecha",
+    "desde": "Desde",
+    "hasta": "Hasta",
+    "generarReporte": "Generar reporte"
   }
 
 }
