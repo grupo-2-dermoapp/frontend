@@ -1,6 +1,6 @@
 <ion-header >
   <ion-toolbar >
-    <ion-title  style="color: #fff!important;">{{ 'reportes.titulo'| translate }}</ion-title>
+    <ion-title>{{ 'reportes.titulo'| translate }}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -8,37 +8,18 @@
 </ion-header>
 
 <ion-content>
-  <div class="web-view">
-    <div class="input-group">
-      <div>
-        <ion-item>
-          <ion-label class="question-label">{{ 'reportes.filtroPaciente'| translate }}</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-select value="" placeholder="Seleccione paciente" style="width: 100%;">
-            <ion-select-option value="Paciente1">Paciente1</ion-select-option>
-            <ion-select-option value="oranges">Oranges</ion-select-option>
-            <ion-select-option value="bananas">Bananas</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label class="question-label">{{ 'reportes.filtrarFecha'| translate }}</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label class="question-label">{{ 'reportes.desde'| translate }}</ion-label>
-          <ion-input value="xx/xx/xxx">
-          </ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label class="question-label">{{ 'reportes.hasta'| translate }}</ion-label>
-          <ion-input value="xx/xx/xxx">
-          </ion-input>
-        </ion-item>
-        <br>
-        <ion-item>
-          <ion-button slot="end">{{ 'reportes.generarReporte'| translate }}</ion-button>
-        </ion-item>
-      </div>
-    </div>
-  </div>
+  <ion-grid class="ion-margin">
+    <ion-row>
+      <ion-col>{{ 'casosMedicos.idNo'| translate }}</ion-col>
+      <ion-col>{{ 'detalleConsulta.nombreLesion'| translate }}</ion-col>
+      <ion-col>{{ 'detalleConsulta.diagnostico'| translate }}</ion-col>
+      <ion-col>{{ 'detalleConsulta.tratamiento'| translate }}</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of datosReporte; index as i" >
+      <ion-col>{{ i + 1 }}</ion-col>
+      <ion-col>{{ item.name_of_injury }}</ion-col>
+      <ion-col>{{ item.diagnosis}}</ion-col>
+      <ion-col>{{ item.treatment }}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
