@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { AlertController, IonicModule, LoadingController, ModalController } from '@ionic/angular';
 import { of, throwError } from 'rxjs';
 import { PerfilDermatologicoFormInterface } from 'src/app/interfaces/perfil-dermatologico.interface';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { PerfilDermatologicoPage } from './perfil-dermatologico.page';
 import { PerfilDermatologicoService } from './perfil-dermatologico.service';
 
@@ -48,7 +48,7 @@ describe('PerfilDermatologicoPage', () => {
 
     TestBed.configureTestingModule({
       declarations: [ PerfilDermatologicoPage ],
-      imports: [IonicModule.forRoot()],
+      imports: [IonicModule.forRoot(),TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         { provide: LoadingController, useValue: loadingControllerMock },

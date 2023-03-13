@@ -1,0 +1,25 @@
+<ion-header >
+  <ion-toolbar >
+    <ion-title>{{ 'reportes.titulo'| translate }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-margin">
+    <ion-row>
+      <ion-col>{{ 'casosMedicos.idNo'| translate }}</ion-col>
+      <ion-col>{{ 'detalleConsulta.nombreLesion'| translate }}</ion-col>
+      <ion-col>{{ 'detalleConsulta.diagnostico'| translate }}</ion-col>
+      <ion-col>{{ 'detalleConsulta.tratamiento'| translate }}</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of datosReporte; index as i" >
+      <ion-col>{{ i + 1 }}</ion-col>
+      <ion-col>{{ item.name_of_injury }}</ion-col>
+      <ion-col>{{ item.diagnosis}}</ion-col>
+      <ion-col>{{ item.treatment }}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

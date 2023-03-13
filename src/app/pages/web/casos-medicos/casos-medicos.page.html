@@ -1,6 +1,6 @@
 <ion-header >
   <ion-toolbar>
-    <ion-title>Casos medicos</ion-title>
+    <ion-title>{{ 'casosMedicos.titulo'| translate }}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -10,22 +10,22 @@
 <ion-content class="ion-margin">
   <form [formGroup]="casosMedicosForm">
     <ion-item>
-      <ion-label>Buscar Casos Medicos</ion-label>
-      <ion-input type="text" placeholder="Escriba palabra clave de busqueda" formControlName="casosMedicosCtrl"></ion-input>
+      <ion-label>{{ 'casosMedicos.buscarCasosMedicos'| translate }}</ion-label>
+      <ion-input type="text" placeholder="{{ 'casosMedicos.placeHolderBuscarCasosMedicos'| translate }}" formControlName="casosMedicosCtrl"></ion-input>
     </ion-item>
   </form>
 
 
   <ion-grid class="ion-margin">
     <ion-row>
-      <ion-col>No.</ion-col>
-      <ion-col>Nombre paciente</ion-col>
-      <ion-col>Tipo</ion-col>
-      <ion-col>Forma</ion-col>
-      <ion-col>Número</ion-col>
-      <ion-col>Distribución</ion-col>
-      <ion-col>Parte del cuerpo</ion-col>
-      <ion-col>Seleccionar</ion-col>
+      <ion-col>{{ 'casosMedicos.idNo'| translate }}</ion-col>
+      <ion-col>{{ 'casosMedicos.nombrePaciente'| translate }}</ion-col>
+      <ion-col>{{ 'casosMedicos.tipo'| translate }}</ion-col>
+      <ion-col>{{ 'casosMedicos.forma'| translate }}</ion-col>
+      <ion-col>{{ 'casosMedicos.numero'| translate }}</ion-col>
+      <ion-col>{{ 'casosMedicos.distribucion'| translate }}</ion-col>
+      <ion-col>{{ 'casosMedicos.parteDelCuerpo'| translate }}</ion-col>
+      <ion-col>{{ 'casosMedicos.seleccionar'| translate }}</ion-col>
     </ion-row>
     <ion-row *ngFor="let caso of filtroCasosMedicos | async; index as i" >
       <ion-col>{{ i + 1 }}</ion-col>
@@ -36,7 +36,7 @@
       <ion-col>{{ caso.distribucion.value }}</ion-col>
       <ion-col>{{ caso.parteDelCuerpo }}</ion-col>
       <ion-col>
-        <ion-button expand="block" (click)="verDetalleCasoMedico(caso)" >Seleccionar</ion-button>
+        <ion-button expand="block" (click)="verDetalleCasoMedico(caso)" >{{ 'casosMedicos.botonSeleccionar'| translate }}</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

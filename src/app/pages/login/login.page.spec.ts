@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { AlertController, IonicModule, LoadingController } from '@ionic/angular';
 import { Observable, of, throwError } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { LoginPage } from './login.page';
 import { Router } from '@angular/router';
 
@@ -39,7 +39,7 @@ describe('LoginPage', () => {
 
     TestBed.configureTestingModule({
       declarations: [ LoginPage ],
-      imports: [IonicModule.forRoot()],
+      imports: [IonicModule.forRoot(),TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         { provide: LoadingController, useValue: loadingControllerMock },

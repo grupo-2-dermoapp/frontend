@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController, IonicModule, LoadingController } from '@ionic/angular';
 import { of, throwError } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { CasosMedicosPage } from './casos-medicos.page';
 import { CasosMedicosService } from './casos-medicos.service';
 import { CasosMedicosInterface, CasosMedicosTableInterface } from 'src/app/interfaces/casos-medicos.interface';
@@ -86,7 +86,7 @@ describe('CasosMedicosPage', () => {
 
     TestBed.configureTestingModule({
       declarations: [ CasosMedicosPage ],
-      imports: [IonicModule.forRoot()],
+      imports: [IonicModule.forRoot(),TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         { provide: LoadingController, useValue: loadingControllerMock },

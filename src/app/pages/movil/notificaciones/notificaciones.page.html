@@ -1,0 +1,27 @@
+<ion-header >
+  <ion-toolbar >
+    <ion-title>Notificaciones</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="notificaciones.length ===0">
+      <ion-card-header>
+        <ion-card-title>No tiene notificaciones</ion-card-title>
+      </ion-card-header>
+    </ion-item>
+    <ion-item *ngFor="let notificacion of notificaciones; let i = index;">
+      <ion-card-header id="notificacion-{{i}}">
+        <ion-card-title>{{notificacion.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{notificacion.message}}
+      </ion-card-content>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

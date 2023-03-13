@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { AlertController, IonicModule, ModalController } from '@ionic/angular';
 import { AppService } from 'src/app/config/app.service';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { CuerpoPage } from './cuerpo.page';
 
 describe('CuerpoPage', () => {
@@ -35,7 +35,7 @@ describe('CuerpoPage', () => {
 
     TestBed.configureTestingModule({
       declarations: [ CuerpoPage ],
-      imports: [IonicModule.forRoot()],
+      imports: [IonicModule.forRoot(),TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         { provide: AlertController, useValue: alertControllerMock },

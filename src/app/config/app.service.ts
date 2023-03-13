@@ -9,17 +9,16 @@ import { PerfilDermatologicoInterface } from '../interfaces/perfil-dermatologico
 })
 export class AppService {
 
-  isPhone=false;
+  isPhone=true;
 
   constructor(private platform:Platform) {
 
-    if(this.platform.is("mobile") || this.platform.is('mobileweb')
+    if(this.platform.is("mobile") || this.platform.is('mobileweb') || this.platform.is("android")
     || window.navigator.userAgent== 'Mobile') {
       this.isPhone = true;
     } else {
       this.isPhone = false;
     }
-    console.log("Is Phone: ",this.isPhone);
   }
 
   get fitzpatrick(): PerfilDermatologicoInterface {
@@ -492,7 +491,7 @@ export class AppService {
     });
     return parteCuerpo?.value;
   }
-  
-  
+
+
 
 }

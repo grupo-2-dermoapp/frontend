@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { RegistroMedicoBackendInterface, RegistroMedicoFormInterface } from 'src/app/interfaces/registro-medico.interface';
 import { RegistroMedicoService } from './registro-medico.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registro-medico',
@@ -15,14 +16,15 @@ export class RegistroMedicoPage {
   registro: FormGroup;
   @ViewChild('inputFiles') inputFiles:any;
   file: any;
+  lang = 'es';
 
 	constructor(
 		private fb: FormBuilder,
 		private alertController: AlertController,
 		private router: Router,
 		private loadingController: LoadingController,
-		private registroMedicoService: RegistroMedicoService
-
+		private registroMedicoService: RegistroMedicoService,
+    public translate: TranslateService
 	) {
     this.registro = this.fb.group({
 		nombre: ['', [Validators.required, Validators.minLength(4),Validators.maxLength(60)]],
@@ -37,10 +39,13 @@ export class RegistroMedicoPage {
 		  validator: this.confirmedValidator('password', 'passwordConfirmation'),
 		}
 		);
+    translate.addLangs(['en']);
+    translate.setDefaultLang('es');
+    translate.use(this.lang.match(/en/) ? this.lang : 'es');
   }
 
 	async registrarse() {
-		
+
 		if (this.registro.invalid){
 			Object.keys(this.registro.controls)
 			.forEach(control=>{
@@ -156,5 +161,9 @@ export class RegistroMedicoPage {
 		};
 	  }
 
+  cambiarIdioma(lang: string): void {
+    this.lang = lang;
+    this.translate.use(lang);
+  }
 
 }
