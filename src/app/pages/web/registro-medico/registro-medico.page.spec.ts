@@ -1,4 +1,4 @@
-import { TranslateLoader, TranslateService, TranslateStore } from '@ngx-translate/core';
+import { MissingTranslationHandler, TranslateCompiler, TranslateLoader, TranslateParser, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
@@ -8,7 +8,7 @@ import { RegistroMedicoPage } from './registro-medico.page';
 import { RegistroMedicoService } from './registro-medico.service';
 import { TranslateModule } from '@ngx-translate/core';
 
-fdescribe('RegistroMedicoPage', () => {
+describe('RegistroMedicoPage', () => {
   let component: RegistroMedicoPage;
   let fixture: ComponentFixture<RegistroMedicoPage>;
   let alertControllerMock: any;
@@ -50,15 +50,12 @@ fdescribe('RegistroMedicoPage', () => {
 
     TestBed.configureTestingModule({
       declarations: [ RegistroMedicoPage ],
-      imports: [IonicModule.forRoot(), HttpClientTestingModule, TranslateModule],
+      imports: [IonicModule.forRoot(), HttpClientTestingModule, TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         { provide: LoadingController, useValue: loadingControllerMock },
         { provide: AlertController, useValue: alertControllerMock },
-        { provide: RegistroMedicoService, useValue: registroMedicoServiceMock },
-        TranslateService,
-        TranslateStore,
-        TranslateLoader
+        { provide: RegistroMedicoService, useValue: registroMedicoServiceMock }
       ]
     }).compileComponents();
 
