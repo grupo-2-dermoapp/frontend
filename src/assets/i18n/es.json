@@ -1,6 +1,6 @@
 {
-  "registroMedico":{
-    "titulo":"Registro Medico",
+  "registroMedico": {
+    "titulo": "Registro Medico",
     "nombre": "Nombre",
     "email": "Correo electronico",
     "nacionalidad": "Nacionalidad",
@@ -26,10 +26,10 @@
     "coincidenContrasenas": "La contraseñas deben coincidir",
     "botonInicio": "Inicio"
   },
-  "login":{
-    "tituloApp":"DermoApp",
-    "titulo":"DermoApp",
-    "usuario":"Usuario",
+  "login": {
+    "tituloApp": "DermoApp",
+    "titulo": "DermoApp",
+    "usuario": "Usuario",
     "placeholderUsuario": "Correo Electronico",
     "usuarioRequerido": "El correo es requerido",
     "usuarioValido": "El correo es inválido",
@@ -41,14 +41,14 @@
     "botonIniciarSesion": "Iniciar sesión",
     "botonRegistrarse": "Registrarse"
   },
-  "inicio":{
-    "titulo":"Bienvenido a Dermo App",
+  "inicio": {
+    "titulo": "Bienvenido a Dermo App",
     "tituloPhone": "Bienvenido a Dermo App",
     "objetivo": "El objetivo de DermoApp es apoyar a pacientes con problemas dermatológicos en el diagnóstico y tratamiento de lesiones dermatológicas, así como en la localización de dermatólogos especializados cercanos a las zonas en las que habita un paciente, cuando sea posible.",
     "botonCrearConsulta": "Crear consulta",
     "botonVerCasosMedicos": "Ver casos médicos"
   },
-  "registroUsuario":{
+  "registroUsuario": {
     "titulo": "Registro",
     "email": "Email",
     "correoRequerido": "El correo es requerido",
@@ -75,13 +75,13 @@
     "minimoCaracteresContrasena": "La contraseña nombre necesita un mínimo de 4 caracteres",
     "maximoCaracteresContrasena": "La contraseña necesita un máximo de 60 caracteres",
     "coincidenContrasenas": "La contraseñas deben coincidir",
-    "labelAceptaTerminos":"Aceptar terminos y condiciones.",
-    "labelAceptaTerminosRequerido":"Aceptar termino y condiciones es requerido.",
+    "labelAceptaTerminos": "Aceptar terminos y condiciones.",
+    "labelAceptaTerminosRequerido": "Aceptar termino y condiciones es requerido.",
     "botonRegistrarse": "Registrarse",
     "leer": "Leer"
   },
-  "casosMedicos":{
-    "titulo":"Casos médicos",
+  "casosMedicos": {
+    "titulo": "Casos médicos",
     "buscarCasosMedicos": "Buscar Casos Medicos",
     "placeHolderBuscarCasosMedicos": "Escriba palabra clave de busqueda",
     "idNo": "No.",
@@ -94,13 +94,13 @@
     "seleccionar": "Seleccionar",
     "botonSeleccionar": "Seleccionar"
   },
-  "historiasClinicas":{
+  "historiasClinicas": {
     "titulo": "Historias clinicas",
     "filtrarPaciente": "Filtrar por paciente",
     "placeHolderFiltro": "Escriba palabra clave de busqueda",
     "botonDetalles": "Ver detalles"
   },
-  "perfilDermatologico":{
+  "perfilDermatologico": {
     "titulo": "Perfil dermatológico",
     "geneticoCaracteristicas": "Genético (características físicas)",
     "preguntaOjos": "¿De qué color son tus ojos?",
@@ -124,7 +124,7 @@
     "botonCrearPerfil": "Crear perfil dermatológico",
     "placeHolderSeleccionRespuesta": "Seleccione su respuesta"
   },
-  "cuerpo":{
+  "cuerpo": {
     "titulo": "Escoger parte del cuerpo",
     "rotar": "Rotar",
     "cabeza": "Cabeza",
@@ -138,7 +138,7 @@
     "escogerContinuar": "Debe escoger una parte del cuerpo para continuar",
     "botonEscoger": "Escoger"
   },
-  "consultas":{
+  "consultas": {
     "titulo": "Dermo App",
     "historiaPaciente": "Historia médica del paciente:",
     "infoPaciente": "Información del paciente",
@@ -148,7 +148,7 @@
     "casoMedico": "Caso medico",
     "verDetalle": "Ver detalle"
   },
-  "detalleConsulta":{
+  "detalleConsulta": {
     "titulo": "Detalle consulta",
     "consulta": "Consulta",
     "tipoLesion": "Tipos de lesión:",
@@ -179,10 +179,11 @@
     "mintratamientoRequerido": "El tratamiento tiene que tener mínimo 20 caracteres",
     "maxtratamientoRequerido": "El tratamiento tiene que tener máximo 200 caracteres",
     "botonEnviarDiagnostico": "Enviar diagnóstico",
-    "agendarCita": "Agendar cita"
+    "agendarCita": "Agendar cita",
+    "porcentaje": "Porcentaje de certidumbre"
   },
-  "crearConsulta":{
-    "titulo":"Crear consulta",
+  "crearConsulta": {
+    "titulo": "Crear consulta",
     "infoPaciente": "Para la creación de una consulta el paciente debe suministrar información básica sobre la lesión.",
     "descripcionLesion": "Descripción de la lesión",
     "tiposLesion": "Tipos de lesión:",
@@ -199,17 +200,17 @@
     "parteCuerpoSub": "Parte del cuerpo:",
     "botonCrearConsulta": "Crear consulta"
   },
-  "menu":{
+  "menu": {
     "cambiarIdioma": "Cambiar idioma",
     "cerrarSesion": "Cerrar sesión"
   },
-  "agenda":{
+  "agenda": {
     "titulo": "Agenda",
     "labelNoTieneCita": "No tiene ninguna cita asignada",
     "labelCitaMedica": "Cita médica",
     "horarioCitaMedica": "El horario de la cita médica es:"
   },
-  "reportes":{
+  "reportes": {
     "titulo": "Reportes",
     "filtroPaciente": "Filtrar por paciente",
     "filtrarFecha": "Filtrar por fecha",

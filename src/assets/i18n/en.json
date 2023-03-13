@@ -179,10 +179,11 @@
     "mintratamientoRequerido": "The treatment must have a minimum of 20 characters",
     "maxtratamientoRequerido": "The treatment must have a maximum of 200 characters",
     "botonEnviarDiagnostico": "Send diagnosis",
-    "agendarCita": "Schedule appointment"
+    "agendarCita": "Schedule appointment",
+    "porcentaje": "Certification percentage"
   },
-  "crearConsulta":{
-    "titulo":"Create Medical Consultation",
+  "crearConsulta": {
+    "titulo": "Create Medical Consultation",
     "infoPaciente": "To create a query, the patient must provide basic information about the injury.",
     "descripcionLesion": "Description of the injury",
     "tiposLesion": "Types of injury:",
@@ -199,17 +200,17 @@
     "parteCuerpoSub": "Body part:",
     "botonCrearConsulta": "Create Consultation"
   },
-  "menu":{
+  "menu": {
     "cambiarIdioma": "Change language",
     "cerrarSesion": "Log out"
   },
-  "agenda":{
+  "agenda": {
     "titulo": "Appointment's Schedule",
     "labelNoTieneCita": "You don't have appointments",
     "labelCitaMedica": "Medical Appointment",
     "horarioCitaMedica": "your medical appointment's time is"
   },
-  "reportes":{
+  "reportes": {
     "titulo": "Reports",
     "filtroPaciente": "Filter by patient",
     "filtrarFecha": "Filter by date",

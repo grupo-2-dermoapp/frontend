@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   AlertController,
@@ -174,7 +174,8 @@ export class RegistroPage {
       age: registroUsuario.edad,
       location: registroUsuario.residencia,
       dermatological_profile_uuid: registroUsuario.perfilDematologico,
-      notification_token: this.authService.pushNotificationToken,
+      notification_token:
+        'fRzOheTKSce9sYKL6AQZqI:APA91bHyXr5bh7K73b0H0Dnx0jJsU__6jkSsKXgW0h0oKkayudqz2cPQLQIPoVhezs1aa9PGCXIBixGsiE9HAJyZXAukdu-WxQ0iQQsUEx2yUrUOZfiSmrvErbGdmiq--SPJrvKqOTJ_', //this.authService.pushNotificationToken,
     };
   }
 
@@ -214,28 +215,26 @@ export class RegistroPage {
     return this.registro.get('terminosCondiciones');
   }
 
-	confirmedValidator(controlName: string, matchingControlName: string) {
-		return (formGroup: FormGroup) => {
-		  const control = formGroup.controls[controlName];
-		  const matchingControl = formGroup.controls[matchingControlName];
-		  if (
-			matchingControl.errors &&
-			!matchingControl.errors?.['confirmedValidator']
-		  ) {
-			return;
-		  }
-		  if (control.value !== matchingControl.value) {
-			matchingControl.setErrors({ confirmedValidator: true });
-		  } else {
-			matchingControl.setErrors(null);
-		  }
-		};
-	  }
+  confirmedValidator(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+      if (
+        matchingControl.errors &&
+        !matchingControl.errors?.['confirmedValidator']
+      ) {
+        return;
+      }
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ confirmedValidator: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    };
+  }
 
-    cambiarIdioma(lang: string): void {
-      this.lang = lang;
-      this.translate.use(lang);
-    }
-
-
+  cambiarIdioma(lang: string): void {
+    this.lang = lang;
+    this.translate.use(lang);
+  }
 }

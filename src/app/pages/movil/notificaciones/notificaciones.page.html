@@ -8,15 +8,20 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header id="notificacion-0">
-      <ion-card-title>Cita asignada</ion-card-title>
-      <ion-card-subtitle>La consulta #1234 tiene una cita asgianda</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-      Señor usuario tiene una cita el dia xx/xx/xxxx con el médico Nombres Apellidos
-    </ion-card-content>
-  </ion-card>
+  <ion-list>
+    <ion-item *ngIf="notificaciones.length ===0">
+      <ion-card-header>
+        <ion-card-title>No tiene notificaciones</ion-card-title>
+      </ion-card-header>
+    </ion-item>
+    <ion-item *ngFor="let notificacion of notificaciones; let i = index;">
+      <ion-card-header id="notificacion-{{i}}">
+        <ion-card-title>{{notificacion.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{notificacion.message}}
+      </ion-card-content>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

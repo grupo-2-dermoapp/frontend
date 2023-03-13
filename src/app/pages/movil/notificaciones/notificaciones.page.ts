@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { NotificacionInterface } from 'src/app/interfaces/notificacion.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificacionesService } from './notificaciones.service';
 
@@ -10,7 +11,7 @@ import { NotificacionesService } from './notificaciones.service';
   styleUrls: ['./notificaciones.page.scss'],
 })
 export class NotificacionesPage implements OnInit {
-  notificaciones: any[] = [];
+  notificaciones: NotificacionInterface[] = [];
   constructor(
     private authService: AuthService,
     private notificacionesService: NotificacionesService,

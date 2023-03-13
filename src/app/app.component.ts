@@ -50,7 +50,16 @@ export class AppComponent implements OnInit {
         evt.url !== '/registro' &&
         evt.url !== '/registro-medico';
     });
-    // On success, we should be able to receive notifications
+
+    PushNotifications.requestPermissions().then((result) => {
+      if (result.receive === 'granted') {
+        // Register with Apple / Google to receive push via APNS/FCM
+        PushNotifications.register();
+      } else {
+        // Show some error
+      }
+    });
+
     PushNotifications.addListener('registration', (token: Token) => {
       console.log('Push registration success, token: ', token.value);
       this.authService.pushNotificationToken = token.value;

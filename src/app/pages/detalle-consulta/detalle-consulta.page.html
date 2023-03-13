@@ -139,7 +139,7 @@
 </ion-content>
 <ion-footer  *ngIf="isPhone && casoMedicoAceptado?.value && tipoDiagnostico ==='DOCTOR'">
   <div class="center" style="text-align: center;">
-    <ion-button type="submit" expand="block" (click)="agendarCita()">
+    <ion-button id="button-agendar-cita" type="submit" expand="block" (click)="agendarCita()">
       {{ 'detalleConsulta.agendarCita'| translate }}
     </ion-button>
   </div>

@@ -23,7 +23,7 @@ export const environment = {
     API_PATIENTS: 'patients',
     API_AGENDAR_CITA_ENDPOINT: 'events',
     API_AGENDA_ENDPOINT: 'agenda',
-    API_REPORTES_ENDPOINT: 'reports',
-    API_NOTIFICACIONES_ENDPOINT: 'notifications',
+    API_REPORTES_ENDPOINT: 'report',
+    API_NOTIFICACIONES_ENDPOINT: 'notification-history',
   },
 };

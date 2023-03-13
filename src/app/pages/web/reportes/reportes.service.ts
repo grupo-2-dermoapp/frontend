@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ResponseInterface } from 'src/app/interfaces/response.interface';
+import { ReporteResponseInterface } from 'src/app/interfaces/reportes.interface';
 import { environment } from 'src/environments/environment';
 
-const API_URL = environment.API.REPORTES_URL;
+const API_URL = environment.API.AGENDA_URL;
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +12,9 @@ const API_URL = environment.API.REPORTES_URL;
 export class ReportesService {
   constructor(private http: HttpClient) {}
 
-  getReporte(): Observable<keyof ResponseInterface> {
-    return this.http.get<keyof ResponseInterface>(
-      API_URL + environment.API.API_REPORTES_ENDPOINT
+  getReporte(doctorId: string): Observable<ReporteResponseInterface> {
+    return this.http.get<ReporteResponseInterface>(
+      API_URL + environment.API.API_REPORTES_ENDPOINT + '/' + doctorId
     );
   }
 }
