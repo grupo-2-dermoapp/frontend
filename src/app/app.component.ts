@@ -4,6 +4,14 @@ import { AlertController } from '@ionic/angular';
 import { filter, Observable } from 'rxjs';
 import { AppService } from './config/app.service';
 import { AuthService } from './services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  ActionPerformed,
+  PushNotificationSchema,
+  PushNotifications,
+  Token,
+} from '@capacitor/push-notifications';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -31,7 +39,6 @@ export class AppComponent implements OnInit {
     this.loadSidemenu();
     translate.addLangs(['en']);
     translate.setDefaultLang('es');
-    //this.lang = translate.getBrowserLang();
     translate.use(this.lang.match(/en/) ? this.lang : 'es');
   }
 
