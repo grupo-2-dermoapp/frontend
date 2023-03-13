@@ -174,8 +174,7 @@ export class RegistroPage {
       age: registroUsuario.edad,
       location: registroUsuario.residencia,
       dermatological_profile_uuid: registroUsuario.perfilDematologico,
-      notification_token:
-        'fRzOheTKSce9sYKL6AQZqI:APA91bHyXr5bh7K73b0H0Dnx0jJsU__6jkSsKXgW0h0oKkayudqz2cPQLQIPoVhezs1aa9PGCXIBixGsiE9HAJyZXAukdu-WxQ0iQQsUEx2yUrUOZfiSmrvErbGdmiq--SPJrvKqOTJ_', //this.authService.pushNotificationToken,
+      notification_token: this.authService.pushNotificationToken,
     };
   }
 
