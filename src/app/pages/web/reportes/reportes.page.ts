@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { ReportesService } from './reportes.service';
 @Component({
   selector: 'app-reportes',
@@ -13,7 +14,8 @@ export class ReportesPage implements OnInit {
     private reportesService: ReportesService,
     private alertController: AlertController,
     private loadingController: LoadingController,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {}
@@ -23,7 +25,7 @@ export class ReportesPage implements OnInit {
       message: 'Obteniendo reporte',
     });
     await loading.present();
-    this.reportesService.getReporte().subscribe({
+    this.reportesService.getReporte(this.authService.user.uuid).subscribe({
       next: (res) => {
         console.log(res);
         loading.dismiss();

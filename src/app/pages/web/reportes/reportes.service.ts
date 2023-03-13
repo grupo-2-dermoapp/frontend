@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ResponseInterface } from 'src/app/interfaces/response.interface';
 import { environment } from 'src/environments/environment';
 
-const API_URL = environment.API.REPORTES_URL;
+const API_URL = environment.API.AGENDA_URL;
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +12,9 @@ const API_URL = environment.API.REPORTES_URL;
 export class ReportesService {
   constructor(private http: HttpClient) {}
 
-  getReporte(): Observable<keyof ResponseInterface> {
+  getReporte(doctorId: string): Observable<keyof ResponseInterface> {
     return this.http.get<keyof ResponseInterface>(
-      API_URL + environment.API.API_REPORTES_ENDPOINT
+      API_URL + environment.API.API_REPORTES_ENDPOINT + '/' + doctorId
     );
   }
 }

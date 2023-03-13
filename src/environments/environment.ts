@@ -2,7 +2,8 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const baseUrl = 'http://localhost:8080/dermoapp/';
+const baseUrl =
+  'https://bhuux5lyc1.execute-api.us-east-2.amazonaws.com/dermoapp/';
 export const environment = {
   production: true,
   baseUrl: 'test',
@@ -26,8 +27,8 @@ export const environment = {
     API_PATIENTS: 'patients',
     API_AGENDAR_CITA_ENDPOINT: 'events',
     API_AGENDA_ENDPOINT: 'agenda',
-    API_REPORTES_ENDPOINT: 'reports',
-    API_NOTIFICACIONES_ENDPOINT: 'notifications',
+    API_REPORTES_ENDPOINT: 'report',
+    API_NOTIFICACIONES_ENDPOINT: 'notification-history',
   },
 };
 

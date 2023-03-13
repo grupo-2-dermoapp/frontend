@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ResponseInterface } from 'src/app/interfaces/response.interface';
+import { NotificacionResponseInterface } from 'src/app/interfaces/notificacion.interface';
 import { environment } from 'src/environments/environment';
 
-const API_URL = environment.API.NOTIFICACIONES_URL;
+const API_URL = environment.API.MEDICAL_CASES_URL;
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +12,8 @@ const API_URL = environment.API.NOTIFICACIONES_URL;
 export class NotificacionesService {
   constructor(private http: HttpClient) {}
 
-  getNotificaciones(userId: string): Observable<keyof ResponseInterface> {
-    return this.http.get<keyof ResponseInterface>(
+  getNotificaciones(userId: string): Observable<NotificacionResponseInterface> {
+    return this.http.get<NotificacionResponseInterface>(
       API_URL + environment.API.API_NOTIFICACIONES_ENDPOINT + '/' + userId
     );
   }
