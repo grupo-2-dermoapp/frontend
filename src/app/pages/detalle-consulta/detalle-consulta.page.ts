@@ -181,14 +181,7 @@ export class DetalleConsultaPage {
     const loading = await this.loadingController.create();
     await loading.present();
     await loading.dismiss();
-    const alert = await this.alertController.create({
-      header: 'Evento con Oscar',
-      message: `Su agenda ha sido exitosamente asignada para el dia 23-03-2023  a las 09:00:00`,
-      buttons: ['Aceptar'],
-    });
-    await alert.present();
-    this.router.navigateByUrl('/inicio', { replaceUrl: true });
-    /* this.detalleConsultaService
+    this.detalleConsultaService
       .agendarCita(this.doctorID, this.authService.user.uuid)
       .subscribe({
         next: async (res) => {
@@ -211,7 +204,7 @@ export class DetalleConsultaPage {
           });
           await alert.present();
         },
-      });*/
+      });
   }
 
   async crearDiagnostico() {
