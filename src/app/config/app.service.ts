@@ -19,8 +19,6 @@ export class AppService {
     } else {
       this.isPhone = false;
     }
-    console.log("Is Phone: ",this.isPhone);
-    console.log("Is Mobile: ",this.platform);
   }
 
   get fitzpatrick(): PerfilDermatologicoInterface {
@@ -493,7 +491,7 @@ export class AppService {
     });
     return parteCuerpo?.value;
   }
-  
-  
+
+
 
 }

@@ -4,13 +4,12 @@ import { AlertController } from '@ionic/angular';
 import { filter, Observable } from 'rxjs';
 import { AppService } from './config/app.service';
 import { AuthService } from './services/auth.service';
-import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
+
 export class AppComponent implements OnInit {
   public appPages = [{ title: '', url: '', icon: '' }];
   private isPhone = false;
@@ -36,15 +35,46 @@ export class AppComponent implements OnInit {
     translate.use(this.lang.match(/en/) ? this.lang : 'es');
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.navEnd.subscribe((evt) => {
-      console.log(evt);
       this.showMenu =
         evt.url !== '/' &&
         evt.url !== '/login' &&
         evt.url !== '/registro' &&
         evt.url !== '/registro-medico';
     });
+    // On success, we should be able to receive notifications
+    PushNotifications.addListener('registration', (token: Token) => {
+      console.log('Push registration success, token: ', token.value);
+      this.authService.pushNotificationToken = token.value;
+    });
+
+    // Some issue with our setup and push will not work
+    PushNotifications.addListener('registrationError', (error: any) => {
+      console.error('Error on registration: ', JSON.stringify(error));
+    });
+
+    // Show us the notification payload if the app is open on our device
+    PushNotifications.addListener(
+      'pushNotificationReceived',
+      async (notification: PushNotificationSchema) => {
+        console.log('Push received: ', notification);
+        const alert = await this.alertController.create({
+          header: notification.title,
+          message: notification.body,
+          buttons: ['Aceptar'],
+        });
+        await alert.present();
+      }
+    );
+
+    // Method called when tapping on a notification
+    PushNotifications.addListener(
+      'pushNotificationActionPerformed',
+      (notification: ActionPerformed) => {
+        alert('Push action performed: ' + JSON.stringify(notification));
+      }
+    );
   }
 
   navigateTo(url: string) {
@@ -78,6 +108,7 @@ export class AppComponent implements OnInit {
           icon: 'medical',
         },
         { title: 'Reportes', url: '/reportes', icon: 'bar-chart' },
+        { title: 'Agenda', url: '/agenda', icon: 'calendar' },
       ];
     }
   }

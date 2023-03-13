@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AgendaResponseInterface } from 'src/app/interfaces/agenda.interface';
 import { ConsultaResponseInterface } from 'src/app/interfaces/consulta.interface';
 import {
   DiagnosticoBackendInterface,
@@ -43,8 +44,8 @@ export class DetalleConsultaService {
   agendarCita(
     doctorId: String,
     patientId: String
-  ): Observable<keyof ResponseInterface> {
-    return this.http.post<keyof ResponseInterface>(
+  ): Observable<AgendaResponseInterface> {
+    return this.http.post<AgendaResponseInterface>(
       environment.API.AGENDA_URL + environment.API.API_AGENDAR_CITA_ENDPOINT,
       {
         doctor_uuid: doctorId,

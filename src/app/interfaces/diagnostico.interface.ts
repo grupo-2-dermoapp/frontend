@@ -10,11 +10,12 @@ export interface DiagnosticoBackendInterface {
   diagnosis: string;
   treatment: string;
   medical_case_uuid: string;
-  doctor_uuid?: string;
+  doctor?: { uuid: string };
   certification_percentage?: string;
   uuid?: string;
+  doctor_uuid?: string;
 }
 
 export interface DiagnosticoBackendResponseInterface extends ResponseInterface {
-  'medical diagnostic': DiagnosticoBackendInterface;
+  medical_diagnostic: DiagnosticoBackendInterface;
 }

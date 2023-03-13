@@ -119,7 +119,7 @@ export class DetalleConsultaPage {
     this.detalleConsultaService.obtenerDiagnostico(casoMedicoId).subscribe({
       next: (response) => {
         console.log('Diagnostico', response);
-        const diagnostico = response['medical diagnostic'];
+        const diagnostico = response.medical_diagnostic;
         if (diagnostico) {
           this.nombreLesion?.setValue(diagnostico.name_of_injury);
           this.nombreLesion?.disable();
@@ -129,9 +129,7 @@ export class DetalleConsultaPage {
           this.tratamiento?.disable();
           this.casoMedicoAceptado?.setValue(true);
           this.diagnosticoCreado = true;
-          this.doctorID = diagnostico.doctor_uuid
-            ? diagnostico.doctor_uuid
-            : '';
+          this.doctorID = diagnostico.doctor?.uuid || '';
         }
       },
     });
@@ -187,13 +185,14 @@ export class DetalleConsultaPage {
       .subscribe({
         next: async (res) => {
           await loading.dismiss();
+          const fechaCita = res.event.start_date.split('T');
           const alert = await this.alertController.create({
-            header: 'Creación de agenda',
-            message: 'Creación de agenda exitoso',
+            header: res.event.name,
+            message: `Su agenda ha sido exitosamente asignada para el dia ${fechaCita[0]} a las ${fechaCita[1]}`,
             buttons: ['Aceptar'],
           });
           await alert.present();
-          this.router.navigateByUrl('/consultas', { replaceUrl: true });
+          this.router.navigateByUrl('/inicio', { replaceUrl: true });
         },
         error: async (res) => {
           await loading.dismiss();

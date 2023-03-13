@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.uniandes.dermoapp;
 
 import com.getcapacitor.BridgeActivity;
 
