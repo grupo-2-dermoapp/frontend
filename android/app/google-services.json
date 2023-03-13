@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "520477609263",
+    "project_id": "dermoapp-376723",
+    "storage_bucket": "dermoapp-376723.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520477609263:android:f876df811c67169e7865da",
+        "android_client_info": {
+          "package_name": "com.uniandes.dermoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520477609263-erqac9vt9pv0icunokf0ccbrvcejcqpi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD96Htsp__yNiC3By8ebMiGVN9xc-9oCJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520477609263-erqac9vt9pv0icunokf0ccbrvcejcqpi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

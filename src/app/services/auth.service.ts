@@ -14,6 +14,7 @@ const API_AUTH_URL = environment.API.AUTH_API_URL;
 })
 export class AuthService {
   user: UserInterface;
+  pushNotificationToken: string = '';
 
   constructor(private http: HttpClient, private appService: AppService) {
     let userString = localStorage.getItem('user');
