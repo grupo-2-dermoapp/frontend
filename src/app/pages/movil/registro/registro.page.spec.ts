@@ -7,6 +7,7 @@ import { of, throwError } from 'rxjs';
 import { RegistroUsuarioFormInterface } from 'src/app/interfaces/registro-usuario.interface';
 import { RegistroPage } from './registro.page';
 import { RegistroService } from './registro.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('RegistroPage', () => {
   let component: RegistroPage;
@@ -52,7 +53,7 @@ describe('RegistroPage', () => {
 
     TestBed.configureTestingModule({
       declarations: [ RegistroPage ],
-      imports: [IonicModule.forRoot(), HttpClientTestingModule],
+      imports: [IonicModule.forRoot(), HttpClientTestingModule, TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         { provide: LoadingController, useValue: loadingControllerMock },

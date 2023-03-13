@@ -13,6 +13,7 @@ import {
   RegistroUsuarioFormInterface,
 } from 'src/app/interfaces/registro-usuario.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registro',
@@ -21,6 +22,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegistroPage {
   registro: FormGroup;
+  lang = 'es';
   constructor(
     private fb: FormBuilder,
     private alertController: AlertController,
@@ -28,7 +30,8 @@ export class RegistroPage {
     private loadingController: LoadingController,
     private registroService: RegistroService,
     private modalCtrl: ModalController,
-    private authService: AuthService
+    private authService: AuthService,
+    public translate: TranslateService
   ) {
     this.registro = this.fb.group(
       {
@@ -77,6 +80,9 @@ export class RegistroPage {
         validators: this.confirmedValidator('password', 'passwordConfirmation'),
       }
     );
+    translate.addLangs(['en']);
+    translate.setDefaultLang('es');
+    translate.use(this.lang.match(/en/) ? this.lang : 'es');
   }
 
   async crearPerfilDermatologico() {
@@ -208,21 +214,28 @@ export class RegistroPage {
     return this.registro.get('terminosCondiciones');
   }
 
-  confirmedValidator(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
-      if (
-        matchingControl.errors &&
-        !matchingControl.errors?.['confirmedValidator']
-      ) {
-        return;
-      }
-      if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ confirmedValidator: true });
-      } else {
-        matchingControl.setErrors(null);
-      }
-    };
-  }
+	confirmedValidator(controlName: string, matchingControlName: string) {
+		return (formGroup: FormGroup) => {
+		  const control = formGroup.controls[controlName];
+		  const matchingControl = formGroup.controls[matchingControlName];
+		  if (
+			matchingControl.errors &&
+			!matchingControl.errors?.['confirmedValidator']
+		  ) {
+			return;
+		  }
+		  if (control.value !== matchingControl.value) {
+			matchingControl.setErrors({ confirmedValidator: true });
+		  } else {
+			matchingControl.setErrors(null);
+		  }
+		};
+	  }
+
+    cambiarIdioma(lang: string): void {
+      this.lang = lang;
+      this.translate.use(lang);
+    }
+
+
 }

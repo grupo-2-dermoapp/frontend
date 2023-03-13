@@ -1,6 +1,6 @@
 <ion-header >
   <ion-toolbar >
-    <ion-title>Historias clinicas</ion-title>
+    <ion-title>{{ 'historiasClinicas.titulo'| translate }}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -8,14 +8,14 @@
 </ion-header>
 
 <ion-content >
-  
+
   <div class="web-view">
     <div class="input-group">
       <div>
          <form [formGroup]="filtroPacienteForm">
           <ion-item>
-            <ion-label>Filtrar por paciente</ion-label>
-            <ion-input type="text" placeholder="Escriba palabra clave de busqueda" formControlName="pacienteCrtl"></ion-input>
+            <ion-label>{{ 'historiasClinicas.filtrarPaciente'| translate }}</ion-label>
+            <ion-input type="text" placeholder="{{ 'historiasClinicas.placeHolderFiltro'| translate }}" formControlName="pacienteCrtl"></ion-input>
           </ion-item>
         </form>
 
@@ -23,7 +23,7 @@
         <ion-list id="lista-pacientes">
           <ion-item *ngFor="let paciente of filtroPacientes | async;" lines="none">
             <ion-label>{{paciente.nombre}}</ion-label>
-            <ion-button slot="end" (click)="verHistoriaClinica(paciente)">Ver detalles</ion-button>
+            <ion-button slot="end" (click)="verHistoriaClinica(paciente)">{{ 'historiasClinicas.botonDetalles'| translate }}</ion-button>
           </ion-item>
         </ion-list>
       </div>

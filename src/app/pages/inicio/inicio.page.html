@@ -10,12 +10,12 @@
   <div [ngClass]="{'web-inicio':!isPhone}">
   <ion-header collapse="condense" >
     <ion-toolbar >
-      <ion-title class="inicio-title title" >Bienvenido a Dermo App</ion-title>
+      <ion-title class="inicio-title title" >{{ 'inicio.titulo'| translate }}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div *ngIf="!isPhone" id="explicacion" class="center">
-    <strong class="capitalize">Bienvenido a Dermo App</strong>
+    <strong class="capitalize">{{ 'inicio.tituloPhone'| translate }}</strong>
   </div>
 
   <div id="container" class="title">
@@ -25,11 +25,11 @@
   <br>
 
   <div class="inicio-description">
-    <p>El objetivo de DermoApp es apoyar a pacientes con problemas dermatológicos en el diagnóstico y tratamiento de lesiones dermatológicas, así como en la localización de dermatólogos especializados cercanos a las zonas en las que habita un paciente, cuando sea posible.</p>
+    <p>{{ 'inicio.objetivo'| translate }}</p>
   </div>
   <div class="spacer" style="width:300px;height:51px;" id="login-spacer2"></div>
 
-  <ion-button id="crear-consulta-button" *ngIf="isPhone" expand="block" [routerLink]="'/crear-consulta'">Crear consulta</ion-button>
-  <ion-button id="casos-medicos-button" *ngIf="!isPhone" expand="block" [routerLink]="'/casos-medicos'">Ver casos médicos</ion-button>
+  <ion-button id="crear-consulta-button" *ngIf="isPhone" expand="block" [routerLink]="'/crear-consulta'">{{ 'inicio.botonCrearConsulta'| translate }}</ion-button>
+  <ion-button id="casos-medicos-button" *ngIf="!isPhone" expand="block" [routerLink]="'/casos-medicos'">{{ 'inicio.botonVerCasosMedicos'| translate }}</ion-button>
 </div>
 </ion-content>

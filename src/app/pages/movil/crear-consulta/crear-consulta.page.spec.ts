@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController, IonicModule, LoadingController, ModalController } from '@ionic/angular';
 import { of, throwError } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { CrearConsultaPage } from './crear-consulta.page';
 import { CrearConsultaService } from './crear-consulta.service';
 
@@ -56,7 +56,7 @@ describe('CrearConsultaPage', () => {
 
     TestBed.configureTestingModule({
       declarations: [ CrearConsultaPage ],
-      imports: [IonicModule.forRoot()],
+      imports: [IonicModule.forRoot(),TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         { provide: LoadingController, useValue: loadingControllerMock },

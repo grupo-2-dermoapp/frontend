@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
-
 import { CuerpoPageRoutingModule } from './cuerpo-routing.module';
-
 import { CuerpoPage } from './cuerpo.page';
 
 @NgModule({
@@ -14,7 +12,8 @@ import { CuerpoPage } from './cuerpo.page';
     FormsModule,
     IonicModule,
     CuerpoPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   declarations: [CuerpoPage]
 })

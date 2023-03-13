@@ -1,3 +1,4 @@
+import { MissingTranslationHandler, TranslateCompiler, TranslateLoader, TranslateParser, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
@@ -5,6 +6,7 @@ import { AlertController, IonicModule, LoadingController } from '@ionic/angular'
 import { Observable, of, throwError } from 'rxjs';
 import { RegistroMedicoPage } from './registro-medico.page';
 import { RegistroMedicoService } from './registro-medico.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('RegistroMedicoPage', () => {
   let component: RegistroMedicoPage;
@@ -48,7 +50,7 @@ describe('RegistroMedicoPage', () => {
 
     TestBed.configureTestingModule({
       declarations: [ RegistroMedicoPage ],
-      imports: [IonicModule.forRoot(), HttpClientTestingModule],
+      imports: [IonicModule.forRoot(), HttpClientTestingModule, TranslateModule.forRoot()],
       providers: [
         FormBuilder,
         { provide: LoadingController, useValue: loadingControllerMock },

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { AppService } from 'src/app/config/app.service';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { InicioPage } from './inicio.page';
 
 describe('InicioPage', () => {
@@ -25,7 +25,7 @@ describe('InicioPage', () => {
     });
     TestBed.configureTestingModule({
       declarations: [ InicioPage ],
-      imports: [IonicModule.forRoot()],
+      imports: [IonicModule.forRoot(), TranslateModule.forRoot()],
       providers: [
         { provide: AuthService, useValue: authServiceMock },
         { provide: AppService, useValue: appServiceMock }

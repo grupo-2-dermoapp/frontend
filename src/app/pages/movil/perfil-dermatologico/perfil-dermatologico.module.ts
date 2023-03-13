@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
 import { PerfilPaso1PageRoutingModule } from './perfil-dermatologico-routing.module';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { PerfilDermatologicoPage } from './perfil-dermatologico.page';
 
 @NgModule({
@@ -13,7 +12,8 @@ import { PerfilDermatologicoPage } from './perfil-dermatologico.page';
     FormsModule,
     IonicModule,
     PerfilPaso1PageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   declarations: [PerfilDermatologicoPage]
 })
