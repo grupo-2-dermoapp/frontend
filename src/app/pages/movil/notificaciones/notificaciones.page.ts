@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { AppService } from 'src/app/config/app.service';
 import { NotificacionInterface } from 'src/app/interfaces/notificacion.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificacionesService } from './notificaciones.service';
@@ -17,7 +18,8 @@ export class NotificacionesPage implements OnInit {
     private notificacionesService: NotificacionesService,
     private alertController: AlertController,
     private loadingController: LoadingController,
-    private router: Router
+    private router: Router,
+    private appService: AppService
   ) {}
 
   async ngOnInit() {
@@ -30,6 +32,9 @@ export class NotificacionesPage implements OnInit {
       .subscribe({
         next: (res) => {
           console.log(res);
+
+          this.notificaciones = res.notifications;
+          this.transformarNombreParteDelCuerpo(this.notificaciones);
           loading.dismiss();
         },
         error: (err) => {
@@ -38,6 +43,19 @@ export class NotificacionesPage implements OnInit {
           loading.dismiss();
         },
       });
+  }
+
+  transformarNombreParteDelCuerpo(notificaciones: NotificacionInterface[]) {
+    notificaciones.forEach((notificacion) => {
+      const text = notificacion.message.split('BodyPart.');
+      const parteDelCuerpo = text[1].split(' ')[0];
+      console.log(parteDelCuerpo);
+      this.appService.obtenerParteCuerpoPorId(parteDelCuerpo);
+      notificacion.message =
+        text[0] +
+        this.appService.obtenerParteCuerpoPorId(parteDelCuerpo) +
+        ' ha sido realizado';
+    });
   }
 
   async erroObteniendoNotificaciones() {
