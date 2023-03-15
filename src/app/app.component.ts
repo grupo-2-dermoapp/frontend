@@ -17,13 +17,12 @@ import {
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-
 export class AppComponent implements OnInit {
   public appPages = [{ title: '', url: '', icon: '' }];
   private isPhone = false;
   private navEnd: Observable<NavigationEnd>;
   public showMenu = false;
-  lang : string = 'es';
+  lang: string = 'es';
 
   constructor(
     private alertController: AlertController,
@@ -75,9 +74,21 @@ export class AppComponent implements OnInit {
       'pushNotificationReceived',
       async (notification: PushNotificationSchema) => {
         console.log('Push received: ', notification);
+        let msg = 'El diágnostico para la lesión ha sido realizado';
+        if (notification.body !== undefined) {
+          const text = notification.body?.split('BodyPart.');
+          const parteDelCuerpo = text[1]!.split(' ')[0];
+          console.log(parteDelCuerpo);
+          this.appService.obtenerParteCuerpoPorId(parteDelCuerpo);
+          msg =
+            text[0] +
+            this.appService.obtenerParteCuerpoPorId(parteDelCuerpo) +
+            ' ha sido realizado';
+        }
+
         const alert = await this.alertController.create({
           header: notification.title,
-          message: notification.body,
+          message: msg,
           buttons: ['Aceptar'],
         });
         await alert.present();

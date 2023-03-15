@@ -7,5 +7,5 @@ export interface NotificacionInterface {
 }
 
 export interface NotificacionResponseInterface extends ResponseInterface {
-  notifications: NotificacionInterface;
+  notifications: NotificacionInterface[];
 }

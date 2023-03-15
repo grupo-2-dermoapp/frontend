@@ -15,10 +15,9 @@
       </ion-card-header>
     </ion-item>
     <ion-item *ngFor="let notificacion of notificaciones; let i = index;">
-      <ion-card-header id="notificacion-{{i}}">
-        <ion-card-title>{{notificacion.title}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
+
+      <ion-card-content id="notificacion-{{i}}">
+        <strong>Notifiación {{i+1}}:</strong>
         {{notificacion.message}}
       </ion-card-content>
     </ion-item>
